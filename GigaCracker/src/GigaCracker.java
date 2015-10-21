@@ -34,6 +34,13 @@ public class GigaCracker extends JFrame //implements KeyListener
 	// create JButtons that act as input
 	
 	// These buttons act as basic inputs, numbers and directions for the game
+	JButton[] JBDigits=new JButton[10];
+	JButton[] JBDirections=new JButton[7];
+	JButton[] JBTools=new JButton[4];
+	JButton[] JBHelpers=new JButton[5];
+	
+	
+	
 	JButton J0 = new JButton("");
 	JButton J1 = new JButton("");
 	JButton J2 = new JButton("");
@@ -108,6 +115,8 @@ public class GigaCracker extends JFrame //implements KeyListener
 	
 	public GigaCracker() 
 	{
+		State.welcomeState(JBDigits,JBDirections,JBTools,JBHelpers);
+		
 		mainWindow.setSize(775,500);
 		p0.setSize(750,500);
 		p0.setLocation(0,0);
