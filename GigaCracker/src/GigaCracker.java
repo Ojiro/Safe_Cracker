@@ -36,28 +36,28 @@ public class GigaCracker extends JFrame //implements KeyListener
 	// These buttons act as basic inputs, numbers and directions for the game
 	JButton[] JBDigits=new JButton[10];
 	JButton[] JBDirections=new JButton[7];
-	JButton[] JBTools=new JButton[4];
+	JButton[] JBTools=new JButton[5];
 	JButton[] JBHelpers=new JButton[5];
 	
 	
 	
-	JButton J0 = new JButton("");
-	JButton J1 = new JButton("");
-	JButton J2 = new JButton("");
-	JButton J3 = new JButton("");
-	JButton J4 = new JButton("");
-	JButton J5 = new JButton("");
-	JButton J6 = new JButton("");
-	JButton J7 = new JButton("");
-	JButton J8 = new JButton("");
-	JButton J9 = new JButton("");
-	JButton JUp = new JButton("");
-	JButton JDown = new JButton("");
-	JButton JLeft = new JButton("");
-	JButton JRight = new JButton("");
-	JButton JEnter = new JButton("Enter"); // allow the player to advance through the game and enter guesses
-	JButton JClear= new JButton("");
-	JButton JBackSpace= new JButton("");
+	JButton J0 = JBDigits[0];
+	JButton J1 = JBDigits[1];
+	JButton J2 = JBDigits[2];
+	JButton J3 = JBDigits[3];
+	JButton J4 = JBDigits[4];
+	JButton J5 = JBDigits[5];
+	JButton J6 = JBDigits[6];
+	JButton J7 = JBDigits[7];
+	JButton J8 = JBDigits[8];
+	JButton J9 = JBDigits[9];
+	JButton JUp = JBDirections[0];
+	JButton JDown =JBDirections[1];
+	JButton JLeft = JBDirections[2];
+	JButton JRight = JBDirections[3];
+	JButton JEnter = JBDirections[4]; // allow the player to advance through the game and enter guesses
+	JButton JClear= JBDirections[5];
+	JButton JBackSpace= JBDirections[6];
 	JButton JInfo= new JButton("Info");
 	
 	// Extra buttons for cheats
@@ -131,49 +131,18 @@ public class GigaCracker extends JFrame //implements KeyListener
 		name.setLocation(250,0);
 		
 		// set size and Location of buttons and object
-		J0.setSize(100,50); 
-		J1.setSize(100,50);
-		J2.setSize(100,50);
-		J3.setSize(100,50);
-		J4.setSize(100,50);
-		J5.setSize(100,50);
-		J6.setSize(100,50);
-		J7.setSize(100,50);
-		J8.setSize(100,50);
-		J9.setSize(100,50);
-		JUp.setSize(100,50);
-		JDown.setSize(100,50);
-		JLeft.setSize(100,50);
-		JRight.setSize(100,50);
-		JEnter.setSize(100,100);
-		JClear.setSize(200,50);
-		JBackSpace.setSize(200,50);
-		Help.setSize(100,50);
-		Load.setSize(100,50);
-		Save.setSize(100,50);
-		JStore.setSize(100,50);
-		JTNT.setSize(100,50);
-		JSnips.setSize(100,50);
-		JPicks.setSize(100,50);
-		JInfo.setSize(100,50);
+		State.setButtonToDefaultSize(JBDigits);
+		State.setButtonToDefaultSize(JBDirections);
+	//	State.setButtonToDefaultSize(JBHelpers);
+		State.setButtonToDefaultSize(JBTools);
+		//JBackSpace.setSize(200,50);
+	
+		for(int i=0; i<JBDigits.length; i++)
+		{
+			p0.add(JBDigits[i]);
+		}
 		
-		J0.setLocation(25,200);
-		J1.setLocation(125,200);
-		J2.setLocation(225,200);
-		J3.setLocation(325,200);
-		J4.setLocation(425,200);
-		J5.setLocation(25,250);
-		J6.setLocation(125,250);
-		J7.setLocation(225,250);
-		J8.setLocation(325,250);
-		J9.setLocation(425,250);
-		JUp.setLocation(25,300);
-		JDown.setLocation(125,300);
-		JLeft.setLocation(225,300);
-		JRight.setLocation(325,300);
-		JEnter.setLocation(425,300);
-		JClear.setLocation(225,350);
-		JBackSpace.setLocation(25,350);
+	
 		Help.setLocation(550,200);
 		JStore.setLocation(650,200);
 		Load.setLocation(550,250);
@@ -189,7 +158,7 @@ public class GigaCracker extends JFrame //implements KeyListener
 		
 		
 		//register listeners
-		JEnter.addActionListener(exitWelcome1);
+		//JEnter.addActionListener(exitWelcome1);
 		Help.addActionListener(help); // note the button "Help" is capitalized, while the listener is lowercase
 		JInfo.addActionListener(infoPress);
 		mainWindow.setFocusable(true); // sets the main window to focusable
@@ -198,42 +167,7 @@ public class GigaCracker extends JFrame //implements KeyListener
 		mainWindow.addKeyListener(key1); // registers the keyListener for the game
 		
 		// add buttons to the panel
-		p0.add(J0);
-		p0.add(J1);
-		p0.add(J2);
-		p0.add(J3);
-		p0.add(J4);
-		p0.add(J5);
-		p0.add(J6);
-		p0.add(J7);
-		p0.add(J8);
-		p0.add(J9);
-		p0.add(JUp);
-		p0.add(JDown);
-		p0.add(JLeft);
-		p0.add(JRight);
-		p0.add(JEnter);
-		p0.add(Help);
-		p0.add(Load);
-		p0.add(Save);
-		p0.add(JStore);
-		p0.add(topText);
-		p0.add(JClear);
-		p0.add(JBackSpace);
-		p0.add(JTNT);
-		p0.add(JSnips);
-		p0.add(JPicks);
-		mainWindow.add(p0);
-		p0.add(name);
-		p0.add(JInfo);
 		
-		JUp.setVisible(true);
-		JDown.setVisible(true);
-		JLeft.setVisible(true);
-		JRight.setVisible(true);
-		JTNT.setVisible(true);
-		JPicks.setVisible(true);
-		JSnips.setVisible(true);
 			
 		
 		// opening methods
