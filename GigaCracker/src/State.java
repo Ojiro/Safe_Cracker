@@ -19,7 +19,7 @@ final public class State {
 	}
 
 	public static void setWelcomeState(JButton[] JBDigits,
-			JButton[] JBDirections, JButton[] JBTools, JButton[] JBHelpers) {
+			JButton[] JBDirections, JButton[] JBTools, JButton[] JBHelpers, JTextArea topText) {
 
 		setButtonsAsReal(JBDigits);
 		setButtonsAsReal(JBDirections);
@@ -29,10 +29,6 @@ final public class State {
 		JBTools[0] = new JButton("Pro Shop");
 		JBHelpers[0] = new JButton("Info");
 		JBHelpers[3] = new JButton("Help");
-
-	}
-
-	public static void setWelcomeState(JTextArea topText) {
 
 		topText.setBackground(Color.WHITE);
 		topText.setText("		 Welcome to SafeCracker V3"
@@ -48,6 +44,7 @@ final public class State {
 				+ "\n" + "For more information, click how to" + "\n"
 				+ "To play, click enter");
 	}
+
 
 	public static void setLevelSelectState(JButton[] JBDigits,
 			JButton[] JBDirections, JButton[] JBTools, JButton[] JBHelpers,
