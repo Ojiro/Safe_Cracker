@@ -137,6 +137,7 @@ public class GigaCracker extends JFrame //implements KeyListener
 		State.addButtonToElement(p0, JBDirections);
 		State.addButtonToElement(p0, JBTools);
 		State.addButtonToElement(p0, JBHelpers);
+		State.setDefaultLocation(JBDigits, JBDirections, JBTools, JBHelpers);
 		
 		//register listeners
 		//JEnter.addActionListener(exitWelcome1);
@@ -147,7 +148,6 @@ public class GigaCracker extends JFrame //implements KeyListener
 //		mainWindow.setFocusTraversalKeysEnabled(false); // keeps focus from shifting away
 //		mainWindow.addKeyListener(key1); // registers the keyListener for the game
 		
-		// add buttons to the panel
 
 		// opening methods
 	//	welcomeText();
@@ -156,7 +156,6 @@ public class GigaCracker extends JFrame //implements KeyListener
 		State.addButtonToElement(p0,JBDirections);
 		State.addButtonToElement(p0,JBTools);
 		State.addButtonToElement(p0,JBHelpers);
-		
 		mainWindow.add(p0);
 		mainWindow.setVisible(true); // turn the mainWindow visible
 		//hideButtons();  // Consider removing this method 
