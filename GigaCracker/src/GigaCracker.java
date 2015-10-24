@@ -1419,76 +1419,24 @@ public class GigaCracker extends JFrame // implements KeyListener
 
 		// getBail();
 		bail = 500; // holder value, 500 is the default/ minimum bail out value
-
 		bail *= wantedLevel * difficulty; // sets the amount to bail out
 		loot -= bail; // subtracts the bail out from the
 
-		topText.setBackground(Color.RED);
-		topText.setText("		Loot:  $" + loot + "     Wanted Level: "
-				+ wantedLevel + "      Break-Ins: " + totalBreakIns + "\n"
-				+ "\n" + "    	    Busted!" + "\n"
-				+ "         You Failed To Crack The Safe" + "\n"
-				+ "         You Bailed Out $" + bail + "\n"
-				+ "         Hit Enter To Case Out Your Next Target");
-
+		State.setResultsState(topText, false, loot, wantedLevel, totalBreakIns, bail, 0);
 		// sets listeners for the transition from the end of the game to the
 		// difficulty selection
-		J0.removeActionListener(numbers2);
-		J1.removeActionListener(numbers2);
-		J2.removeActionListener(numbers2);
-		J3.removeActionListener(numbers2);
-		J4.removeActionListener(numbers2);
-		J5.removeActionListener(numbers2);
-		J6.removeActionListener(numbers2);
-		J7.removeActionListener(numbers2);
-		J8.removeActionListener(numbers2);
-		J9.removeActionListener(numbers2);
-		JUp.removeActionListener(numbers2);
-		JDown.removeActionListener(numbers2);
-		JLeft.removeActionListener(numbers2);
-		JRight.removeActionListener(numbers2);
-		JEnter.removeActionListener(numbers2);
-		JBackSpace.removeActionListener(numbers2);
-		JClear.removeActionListener(numbers2);
-		J0.removeActionListener(cheatListener);
-		J1.removeActionListener(cheatListener);
-		J2.removeActionListener(cheatListener);
-		JEnter.addActionListener(exitGame1);
+		State.removeListenerFromButton(numbers2, JBDigits); // abstract this portion of code
+		State.removeListenerFromButton(numbers2, JBDirections);
+	
+		JBDigits[0].removeActionListener(cheatListener);
+		JBDigits[1].removeActionListener(cheatListener);
+		JBDigits[2].removeActionListener(cheatListener);
+		JBDirections[4].addActionListener(exitGame1);
 
-		JBackSpace.setForeground(Color.LIGHT_GRAY);
-		JClear.setForeground(Color.LIGHT_GRAY);
+		JBDirections[5].setForeground(Color.LIGHT_GRAY);
+		JBDirections[6].setForeground(Color.LIGHT_GRAY);
 
-		// proshop may be turned on during this phase
-		if (totalBreakIns >= 3) {
-			JStore.setText("Pro Shop");
-			JStore.setForeground(Color.BLACK);
-			JStore.setVisible(true);
-			JStore.addActionListener(proShopListener);
-		} else {
-			JStore.setVisible(false);
-		}
-
-		// show tools if they are available,
-		if (explosives > 0) {
-			JTNT.setText("TNT (" + explosives + "x)");
-
-		} else {
-			JTNT.setText("");
-
-		}
-
-		if (snips > 0) {
-			JSnips.setText("Snips (" + snips + "x)");
-		} else {
-			JSnips.setText("");
-
-		}
-
-		if (picks > 0) {
-			JPicks.setText("Picks (" + picks + "x)");
-		} else {
-			JPicks.setText("");
-		}
+		State.setProShopButtonState(true, JBTools, totalBreakIns, explosives, snips, picks);
 
 		posistionsCorrect = 0;
 		digitsCorrect = 0;
@@ -1506,78 +1454,28 @@ public class GigaCracker extends JFrame // implements KeyListener
 		totalBreakIns++;
 		wantedLevel();
 
-		topText.setBackground(Color.GREEN);
-		topText.setText("		Loot:  $" + loot + "     Wanted Level: "
-				+ wantedLevel + "      Break-Ins: " + totalBreakIns + "\n"
-				+ "\n" + "         Nice!  You Cracked The Safe" + "\n"
-				+ "         You \"Found\"  $" + payout + "\n"
-				+ "         Hit Enter To Case Out Your Next Target");
+		State.setResultsState(topText, true, loot, wantedLevel, totalBreakIns, bail, payout);
 
 		turnCount = 0;
 
 		// sets listeners for the transition from the end of the game to the
 		// difficulty selection
-		J0.removeActionListener(numbers2);
-		J1.removeActionListener(numbers2);
-		J2.removeActionListener(numbers2);
-		J3.removeActionListener(numbers2);
-		J4.removeActionListener(numbers2);
-		J5.removeActionListener(numbers2);
-		J6.removeActionListener(numbers2);
-		J7.removeActionListener(numbers2);
-		J8.removeActionListener(numbers2);
-		J9.removeActionListener(numbers2);
-		JUp.removeActionListener(numbers2);
-		JDown.removeActionListener(numbers2);
-		JLeft.removeActionListener(numbers2);
-		JRight.removeActionListener(numbers2);
-		JEnter.removeActionListener(numbers2);
-		JBackSpace.removeActionListener(numbers2);
-		JClear.removeActionListener(numbers2);
-		JEnter.addActionListener(exitGame1);
+		State.removeListenerFromButton(numbers2, JBDigits);
+		State.removeListenerFromButton(numbers2, JBDirections);
+	
+		JBDigits[0].removeActionListener(cheatListener);
+		JBDigits[1].removeActionListener(cheatListener);
+		JBDigits[2].removeActionListener(cheatListener);
+		JBDirections[4].addActionListener(exitGame1);
 
-		// turn off tools
-		JTNT.removeActionListener(applyCheat);
-		JSnips.removeActionListener(applyCheat);
-		JPicks.removeActionListener(applyCheat);
-		J0.removeActionListener(cheatListener);
-		J1.removeActionListener(cheatListener);
-		J2.removeActionListener(cheatListener);
+		JBDirections[5].setForeground(Color.LIGHT_GRAY);
+		JBDirections[6].setForeground(Color.LIGHT_GRAY);
 
-		JBackSpace.setForeground(Color.LIGHT_GRAY);
-		JClear.setForeground(Color.LIGHT_GRAY);
-
-		// turn off tools
-		if (totalBreakIns >= 3) {
-			JStore.setText("Pro Shop");
-			JStore.setForeground(Color.BLACK);
-			JStore.setVisible(true);
-			JStore.addActionListener(proShopListener);
-		} else {
-			JStore.setVisible(false);
-		}
-
-		// show tools if they are available,
-		if (explosives > 0) {
-			JTNT.setText("TNT (" + explosives + "x)");
-		} else {
-			JTNT.setText("");
-		}
-
-		if (snips > 0) {
-			JSnips.setText("Snips (" + snips + "x)");
-		} else {
-			JSnips.setText("");
-		}
-
-		if (picks > 0) {
-			JPicks.setText("Picks (" + picks + "x)");
-		} else {
-			JPicks.setText("");
-		}
+		State.setProShopButtonState(true, JBTools, totalBreakIns, explosives, snips, picks);
 
 		posistionsCorrect = 0;
 		digitsCorrect = 0;
+
 
 	} // ends winning protocol
 

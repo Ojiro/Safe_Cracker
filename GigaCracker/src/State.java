@@ -274,6 +274,28 @@ final public class State {
 
 	}
 
+	public static void setResultsState(JTextArea topText,boolean sucess, int loot, int wantedLevel, int totalBreakIns, int bail, int payout)
+	{
+		if(sucess)
+		{
+			topText.setBackground(Color.GREEN);
+			topText.setText("		Loot:  $" + loot + "     Wanted Level: "
+					+ wantedLevel + "      Break-Ins: " + totalBreakIns + "\n"
+					+ "\n" + "         Nice!  You Cracked The Safe" + "\n"
+					+ "         You \"Found\"  $" + payout + "\n"
+					+ "         Hit Enter To Case Out Your Next Target");
+		}
+		else
+		{
+			topText.setBackground(Color.RED);
+			topText.setText("		Loot:  $" + loot + "     Wanted Level: "
+					+ wantedLevel + "      Break-Ins: " + totalBreakIns + "\n"
+					+ "\n" + "    	    Busted!" + "\n"
+					+ "         You Failed To Crack The Safe" + "\n"
+					+ "         You Bailed Out $" + bail + "\n"
+					+ "         Hit Enter To Case Out Your Next Target");
+		}
+	}
 	public static void setButtonsAsReal(JButton[] arr) {
 		for (int i = 0; i < arr.length; i++) {
 			arr[i] = new JButton("");
