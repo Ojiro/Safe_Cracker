@@ -54,7 +54,7 @@ final public class State {
 				+ "To play, click enter");
 	}
 	
-	public static void setProShopWelcomeState(JButton[] JBDigits,JButton[] JBDirections)
+	public static void setProShopWelcomeState(JButton[] JBDigits,JButton[] JBDirections, JButton[] JBTools,JTextArea topText, int loot, int wantedLevel,int totalBreakIns,int explosives, int snips,int picks)
 	{
 
 		JBDigits[0].setText("TNT");
@@ -72,6 +72,52 @@ final public class State {
 		JBDirections[2].setText("");
 		JBDirections[3].setText("");
 		JBDirections[4].setText("Exit");
+		
+		if (loot < 3000) // text shown if the player doesn't have enough money
+		{
+
+			topText.setText("		Loot:  $" + loot + "     Wanted Level: "
+					+ wantedLevel + "      Break-Ins: " + totalBreakIns + "\n"
+					+ "\n" + "        We Aint Got Anything For You Right Now!"
+					+ "\n");
+		} else // text shown if the player has enough money
+		{
+			topText.setText("		Loot:  $"
+					+ loot
+					+ "     Wanted Level: "
+					+ wantedLevel
+					+ "      Break-Ins: "
+					+ totalBreakIns
+					+ "\n"
+					+ "\n"
+					+ "            		Psst, Welcome To The Pro-Shop"
+					+ "\n"
+					+ "              		     Here's What We Got"
+					+ "\n"
+					+ "\n"
+					+ "$4,500 "
+					+ "TNT- Breaks A Safe For You, But May Alert The Cops (Tread Lightly)"
+					+ "\n" + "$3,500 "
+					+ "Lock Pick- Removes A Digit From A Combo" + "\n"
+					+ "$3,000 "
+					+ "Snips- Delays The Cops And Gives You An Extra Move ");
+		}
+
+		// check if there are any quantities of tools and displays the number is
+		// they do
+		if (explosives > 0) {
+			JBTools[1].setText("TNT (" + explosives + "x)");
+			JBTools[1].setForeground(Color.GRAY);
+		}
+		if (picks > 0) {
+			JBTools[2].setText("Picks (" + picks + "x)");
+			JBTools[2].setForeground(Color.GRAY);
+		}
+		if (snips > 0) {
+			JBTools[3].setText("Snips (" + snips + "x)");
+			JBTools[3].setForeground(Color.GRAY);
+		}
+
 	}
 	public static void setDefaultLocation(JButton[] JBDigits,
 			JButton[] JBDirections, JButton[] JBTools, JButton[] JBHelpers) {
