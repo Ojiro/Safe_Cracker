@@ -112,8 +112,6 @@ public class GigaCracker extends JFrame //implements KeyListener
 	
 	public GigaCracker() 
 	{
-		State.welcomeState(JBDigits,JBDirections,JBTools,JBHelpers);
-		
 		mainWindow.setSize(775,500);
 		p0.setSize(750,500);
 		p0.setLocation(0,0);
@@ -128,12 +126,16 @@ public class GigaCracker extends JFrame //implements KeyListener
 		name.setLocation(250,0);
 		
 		// set size and Location of buttons and object
+		State.setButtonsAsReal(JBDigits);
+		State.setButtonsAsReal(JBDirections);
+		State.setButtonsAsReal(JBTools);
+		State.setButtonsAsReal(JBHelpers);
 		State.setButtonToDefaultSize(JBDigits);
 		State.setButtonToDefaultSize(JBDirections);
 		State.setButtonToDefaultSize(JBHelpers);
 		State.setButtonToDefaultSize(JBTools);
 		
-		State.welcomeState(JBDigits,JBDigits,JBTools,JBHelpers);
+		//State.welcomeState(JBDigits,JBDigits,JBTools,JBHelpers);
 		JBDirections[6].setSize(200,50); // backspace button
 		State.setButtonAsDisabled(JBTools);
 		for(int i=0; i<JBDigits.length; i++)
@@ -156,12 +158,13 @@ public class GigaCracker extends JFrame //implements KeyListener
 		// add buttons to the panel
 
 		// opening methods
-		welcomeText();
+	//	welcomeText();
 		//JStore.setVisible(true);
+		mainWindow.add(p0);
 		mainWindow.setVisible(true); // turn the mainWindow visible
 		//hideButtons();  // Consider removing this method 
-	//	JEnter.setVisible(true);
-		JInfo.setVisible(true);
+		JBDirections[4].setVisible(true);
+		JBHelpers[0].setVisible(true);
 	
 		
 	} // ends constructor

@@ -74,6 +74,12 @@ final public class State {
 	}
 	
 
+	public static void setButtonsAsReal(JButton[] arr)
+	{
+		for (int i = 0; i < arr.length; i++) {
+			arr[i]= new JButton();
+		}
+	}
 	public static void setButtonToDefaultSize(JButton[] arr) {
 		for (int i = 0; i < arr.length; i++) {
 			arr[i].setSize(100, 50);
