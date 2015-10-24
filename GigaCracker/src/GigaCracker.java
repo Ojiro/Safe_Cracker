@@ -55,8 +55,7 @@ public class GigaCracker extends JFrame // implements KeyListener
 	JButton JDown = JBDirections[1];
 	JButton JLeft = JBDirections[2];
 	JButton JRight = JBDirections[3];
-	JButton JEnter = JBDirections[4]; // allow the player to advance through the
-										// game and enter guesses
+	JButton JEnter = JBDirections[4]; 
 	JButton JClear = JBDirections[5];
 	JButton JBackSpace = JBDirections[6];
 	JButton JStore = JBTools[0];
@@ -1335,33 +1334,8 @@ public class GigaCracker extends JFrame // implements KeyListener
 					+ "    Posistions Correct: " + posistionsCorrect);
 
 			// update the tool buttons
-			if (explosives > 0) {
-				JTNT.setText("TNT (" + explosives + "x)");
-				JTNT.setForeground(Color.BLACK);
-				JTNT.addActionListener(applyCheat);
-			} else {
-				JTNT.setText("");
-				JTNT.removeActionListener(applyCheat);
-			}
-
-			if (snips > 0) {
-				JSnips.setText("Snips (" + snips + "x)");
-				JSnips.setForeground(Color.BLACK);
-				JSnips.addActionListener(applyCheat);
-			} else {
-				JSnips.setText("");
-				JSnips.removeActionListener(applyCheat);
-			}
-
-			if (picks > 0) {
-				JPicks.setText("Lock Pick (" + picks + "x)");
-				JPicks.setForeground(Color.BLACK);
-				JPicks.addActionListener(applyCheat);
-			} else {
-				JPicks.setText("");
-				JPicks.removeActionListener(applyCheat);
-			}
-
+			State.setProShopButtonState(false, JBTools, totalBreakIns, explosives, snips, picks);
+			
 		}// ends else
 
 		mainWindow.requestFocus();
