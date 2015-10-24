@@ -1,6 +1,8 @@
 import java.awt.Color;
 
 import javax.swing.JButton;
+import javax.swing.JPanel;
+import javax.tools.JavaFileObject;
 
 /*
  * JBDigit buttons 0-9 correspond to J0-J9
@@ -11,39 +13,21 @@ import javax.swing.JButton;
  * */
 final public class State {
 
+	
 	private static void State() {
 	}
 
-	public static void welcomeState(JButton[] JBDigits, JButton[] JBDirections,
-			JButton[] JBTools, JButton[] JBHelpers) {
-		JBDigits[0] = new JButton("");
-		JBDigits[1] = new JButton("");
-		JBDigits[2] = new JButton("");
-		JBDigits[3] = new JButton("");
-		JBDigits[4] = new JButton("");
-		JBDigits[5] = new JButton("");
-		JBDigits[6] = new JButton("");
-		JBDigits[7] = new JButton("");
-		JBDigits[8] = new JButton("");
-		JBDigits[9] = new JButton("");
-
-		JBDirections[0] = new JButton("");
-		JBDirections[1] = new JButton("");
-		JBDirections[2] = new JButton("");
-		JBDirections[3] = new JButton("");
-		JBDirections[4] = new JButton("Enter");
-		JBDirections[5] = new JButton("");
-		JBDirections[6] = new JButton("");
-
-		JBTools[0] = new JButton("Pro Shop");
-		JBTools[1] = new JButton("-");
-		JBTools[2] = new JButton("-");
-		JBTools[3] = new JButton("-");
+	public static void setWelcomeState(JButton[] JBDigits, JButton[] JBDirections, JButton[] JBTools, JButton[] JBHelpers) {
 		
+		
+		setButtonsAsReal(JBDigits);
+		setButtonsAsReal(JBDirections);
+		setButtonsAsReal(JBTools);
+		setButtonsAsReal(JBHelpers);
+		JBDirections[4] = new JButton("Enter");
+		JBTools[0] = new JButton("Pro Shop");
 		JBHelpers[0] = new JButton("Info");
-		JBHelpers[0] = new JButton("-");
-		JBHelpers[0] = new JButton("-");
-		JBHelpers[0] = new JButton("Help");
+		JBHelpers[3] = new JButton("Help");
 		
 		
 	}
@@ -61,6 +45,14 @@ final public class State {
 		JBDigits[8].setLocation(325, 250);
 		JBDigits[9].setLocation(425, 250);
 
+		JBDirections[0].setLocation(25,300);
+		JBDirections[1].setLocation(125,300);
+		JBDirections[2].setLocation(225,300);
+		JBDirections[3].setLocation(325,300);
+		JBDirections[4].setLocation(425,300);
+		JBDirections[5].setLocation(225,350);
+		JBDirections[6].setLocation(25,350);
+		
 		JBHelpers[0].setLocation(650, 400);
 		JBHelpers[0].setLocation(550, 250);
 		JBHelpers[0].setLocation(650, 250);
@@ -77,7 +69,7 @@ final public class State {
 	public static void setButtonsAsReal(JButton[] arr)
 	{
 		for (int i = 0; i < arr.length; i++) {
-			arr[i]= new JButton();
+			arr[i]= new JButton("");
 		}
 	}
 	public static void setButtonToDefaultSize(JButton[] arr) {
@@ -103,6 +95,12 @@ final public class State {
 	public static void setButtonAsDisabled(JButton[] arr) {
 		for (int i = 0; i < arr.length; i++) {
 			arr[i].setForeground(Color.LIGHT_GRAY);
+		}
+	}
+	
+	public static void addButtonToElement(JPanel element,JButton[] arr) {
+		for (int i = 0; i < arr.length; i++) {
+			element.add(arr[i]);
 		}
 	}
 

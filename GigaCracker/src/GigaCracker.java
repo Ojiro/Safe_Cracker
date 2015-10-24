@@ -126,34 +126,17 @@ public class GigaCracker extends JFrame //implements KeyListener
 		name.setLocation(250,0);
 		
 		// set size and Location of buttons and object
-		State.setButtonsAsReal(JBDigits);
-		State.setButtonsAsReal(JBDirections);
-		State.setButtonsAsReal(JBTools);
-		State.setButtonsAsReal(JBHelpers);
+		State.setWelcomeState(JBDigits,JBDirections, JBHelpers, JBTools);
 		State.setButtonToDefaultSize(JBDigits);
 		State.setButtonToDefaultSize(JBDirections);
+		JBDirections[4].setSize(100,100);
+		JBDirections[6].setSize(200,50); // backspace button
 		State.setButtonToDefaultSize(JBHelpers);
 		State.setButtonToDefaultSize(JBTools);
-		
-		//State.welcomeState(JBDigits,JBDigits,JBTools,JBHelpers);
-		JBDirections[6].setSize(200,50); // backspace button
-		State.setButtonAsDisabled(JBTools);
-		for(int i=0; i<JBDigits.length; i++)
-		{
-			p0.add(JBDigits[i]);
-		}
-		for(int i=0; i<JBTools.length; i++)
-		{
-			p0.add(JBTools[i]);
-		}
-		for(int i=0; i<JBDirections.length; i++)
-		{
-			p0.add(JBDirections[i]);
-		}
-		for(int i=0; i<JBHelpers.length; i++)
-		{
-			p0.add(JBHelpers[i]);
-		}
+		State.addButtonToElement(p0, JBDigits);
+		State.addButtonToElement(p0, JBDirections);
+		State.addButtonToElement(p0, JBTools);
+		State.addButtonToElement(p0, JBHelpers);
 		
 		//register listeners
 		//JEnter.addActionListener(exitWelcome1);
@@ -169,6 +152,11 @@ public class GigaCracker extends JFrame //implements KeyListener
 		// opening methods
 	//	welcomeText();
 		//JStore.setVisible(true);
+		State.addButtonToElement(p0,JBDigits);
+		State.addButtonToElement(p0,JBDirections);
+		State.addButtonToElement(p0,JBTools);
+		State.addButtonToElement(p0,JBHelpers);
+		
 		mainWindow.add(p0);
 		mainWindow.setVisible(true); // turn the mainWindow visible
 		//hideButtons();  // Consider removing this method 
