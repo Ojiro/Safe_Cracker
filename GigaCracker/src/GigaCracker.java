@@ -28,7 +28,7 @@ public class GigaCracker extends JFrame //implements KeyListener
 	
 	//data field
 	
-	JFrame mainWindow= new JFrame("GigaCracker"); 
+	JFrame mainWindow= new JFrame("Safe Cracker"); 
 	JFrame helpWindow= new JFrame("How To");
 	JPanel p0 = new JPanel();
 	// create JButtons that act as input
@@ -942,25 +942,9 @@ public class GigaCracker extends JFrame //implements KeyListener
 	//
 		private void welcomeText()
 		{
-			topText.setBackground(Color.WHITE);
-			topText.setText("		 Welcome to SafeCracker V3"
-					+ "\n"
-					+ "\n"
-					+ "The Object of the game is to acquire loot by cracking safes"
-					+ "\n"
-					+ "Your Cracker-Jacker 5000 DLX will tell you how many posistions and digits you get right"
-					+ "\n"
-					+ "However, don't take to long, othewise you'll get busted by the cops"
-					+ "\n"
-					+ "If you run out of loot, or can't make bail, your carrer is over."
-					+ "\n"
-					+ "For more information, click how to"
-					+ "\n"
-					+ "To play, click enter");
-			
+			State.setWelcomeState(topText);
 			p0.add(topText);
-	
-			
+
 		}
 
 	// #2

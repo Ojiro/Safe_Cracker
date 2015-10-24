@@ -1,7 +1,9 @@
 import java.awt.Color;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.tools.JavaFileObject;
 
 /*
@@ -32,6 +34,25 @@ final public class State {
 		
 	}
 
+	public static void setWelcomeState(JTextArea topText)
+	{
+		
+		topText.setBackground(Color.WHITE);
+		topText.setText("		 Welcome to SafeCracker V3"
+				+ "\n"
+				+ "\n"
+				+ "The Object of the game is to acquire loot by cracking safes"
+				+ "\n"
+				+ "Your Cracker-Jacker 5000 DLX will tell you how many posistions and digits you get right"
+				+ "\n"
+				+ "However, don't take to long, othewise you'll get busted by the cops"
+				+ "\n"
+				+ "If you run out of loot, or can't make bail, your carrer is over."
+				+ "\n"
+				+ "For more information, click how to"
+				+ "\n"
+				+ "To play, click enter");
+	}
 	public static void setDefaultLocation(JButton[] JBDigits,
 			JButton[] JBDirections, JButton[] JBTools, JButton[] JBHelpers) {
 		JBDigits[0].setLocation(25, 200);
@@ -103,5 +124,16 @@ final public class State {
 			element.add(arr[i]);
 		}
 	}
-
+	public static void removeListenerFromButton(ActionListener Listener, JButton[] arr )
+	{
+		for (int i = 0; i < arr.length; i++) {
+			arr[i].removeActionListener(Listener);
+		}
+	}
+	public static void AddListenerToButton(ActionListener Listener, JButton[] arr )
+	{
+		for (int i = 0; i < arr.length; i++) {
+			arr[i].addActionListener(Listener);
+		}
+	}
 }
