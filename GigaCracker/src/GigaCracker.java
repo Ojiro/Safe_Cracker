@@ -36,11 +36,10 @@ public class GigaCracker extends JFrame //implements KeyListener
 	// These buttons act as basic inputs, numbers and directions for the game
 	JButton[] JBDigits=new JButton[10];
 	JButton[] JBDirections=new JButton[7];
-	JButton[] JBTools=new JButton[5];
-	JButton[] JBHelpers=new JButton[5];
+	JButton[] JBTools=new JButton[4];
+	JButton[] JBHelpers=new JButton[4];
 	
-	
-	
+	// debug blocks
 	JButton J0 = JBDigits[0];
 	JButton J1 = JBDigits[1];
 	JButton J2 = JBDigits[2];
@@ -58,20 +57,18 @@ public class GigaCracker extends JFrame //implements KeyListener
 	JButton JEnter = JBDirections[4]; // allow the player to advance through the game and enter guesses
 	JButton JClear= JBDirections[5];
 	JButton JBackSpace= JBDirections[6];
-	JButton JInfo= new JButton("Info");
+	JButton JStore= JBTools[0];
+	JButton JTNT=JBTools[1];
+	JButton JSnips= JBTools[2];
+	JButton JPicks= JBTools[3];
+	JButton JInfo= JBHelpers[0];
+	JButton Help=JBHelpers[1];
+	JButton Load= JBHelpers[2];
+	JButton Save= JBHelpers[3];
 	
-	// Extra buttons for cheats
-	JButton JStore= new JButton("Pro Shop"); 
-	JButton JTNT= new JButton("-");
-	JButton JSnips= new JButton("-");
-	JButton JPicks= new JButton("-");
 	
-	// create JButtons for help, referred to as helper buttons throughout the program
-	JButton Help= new JButton("How To"); // opens a box on how to play
-	JButton Load= new JButton("Load");
-	JButton Save= new JButton("Save");
 	JTextArea topText= new JTextArea();
-	//JTextArea bottomText= new JTextArea();
+
 	JLabel name= new JLabel("Cracker-Jacker 5000 DLX");
 	
 	int loot=3000; // Loot is the currency of the game. Player gains and looses loot based on winning/losing safes. default is 3000 
@@ -133,28 +130,22 @@ public class GigaCracker extends JFrame //implements KeyListener
 		// set size and Location of buttons and object
 		State.setButtonToDefaultSize(JBDigits);
 		State.setButtonToDefaultSize(JBDirections);
-	//	State.setButtonToDefaultSize(JBHelpers);
+		State.setButtonToDefaultSize(JBHelpers);
 		State.setButtonToDefaultSize(JBTools);
-		//JBackSpace.setSize(200,50);
+		
+		State.welcomeState(JBDigits,JBDigits,JBTools,JBHelpers);
+		JBackSpace.setSize(200,50);
 	
 		for(int i=0; i<JBDigits.length; i++)
 		{
 			p0.add(JBDigits[i]);
 		}
 		
-	
-		Help.setLocation(550,200);
-		JStore.setLocation(650,200);
-		Load.setLocation(550,250);
-		Save.setLocation(650,250);
-		JTNT.setLocation(550,300);
-		JPicks.setLocation(550,350);
-		JSnips.setLocation(550,400);
-		JInfo.setLocation(650,400);
 		JStore.setForeground(Color.LIGHT_GRAY);
 		JTNT.setForeground(Color.LIGHT_GRAY);
 		JPicks.setForeground(Color.LIGHT_GRAY);
 		JSnips.setForeground(Color.LIGHT_GRAY);
+	
 		
 		
 		//register listeners
