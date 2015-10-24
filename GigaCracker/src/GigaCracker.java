@@ -134,28 +134,33 @@ public class GigaCracker extends JFrame //implements KeyListener
 		State.setButtonToDefaultSize(JBTools);
 		
 		State.welcomeState(JBDigits,JBDigits,JBTools,JBHelpers);
-		JBackSpace.setSize(200,50);
-	
+		JBDirections[6].setSize(200,50); // backspace button
+		State.setButtonAsDisabled(JBTools);
 		for(int i=0; i<JBDigits.length; i++)
 		{
 			p0.add(JBDigits[i]);
+			p0.add(JBTools[i]);
+			p0.add(JBDirections[i]);
+			p0.add(JBHelpers[i]);
 		}
 		
-		JStore.setForeground(Color.LIGHT_GRAY);
-		JTNT.setForeground(Color.LIGHT_GRAY);
-		JPicks.setForeground(Color.LIGHT_GRAY);
-		JSnips.setForeground(Color.LIGHT_GRAY);
+		
+		
+//		JStore.setForeground(Color.LIGHT_GRAY);
+//		JTNT.setForeground(Color.LIGHT_GRAY);
+//		JPicks.setForeground(Color.LIGHT_GRAY);
+//		JSnips.setForeground(Color.LIGHT_GRAY);
 	
 		
 		
 		//register listeners
 		//JEnter.addActionListener(exitWelcome1);
-		Help.addActionListener(help); // note the button "Help" is capitalized, while the listener is lowercase
-		JInfo.addActionListener(infoPress);
-		mainWindow.setFocusable(true); // sets the main window to focusable
-		mainWindow.requestFocus(); // requests focus for the main window
-		mainWindow.setFocusTraversalKeysEnabled(false); // keeps focus from shifting away
-		mainWindow.addKeyListener(key1); // registers the keyListener for the game
+//		Help.addActionListener(help); // note the button "Help" is capitalized, while the listener is lowercase
+//		JInfo.addActionListener(infoPress);
+//		mainWindow.setFocusable(true); // sets the main window to focusable
+//		mainWindow.requestFocus(); // requests focus for the main window
+//		mainWindow.setFocusTraversalKeysEnabled(false); // keeps focus from shifting away
+//		mainWindow.addKeyListener(key1); // registers the keyListener for the game
 		
 		// add buttons to the panel
 		
@@ -163,10 +168,10 @@ public class GigaCracker extends JFrame //implements KeyListener
 		
 		// opening methods
 		welcomeText();
-		JStore.setVisible(true);
+		//JStore.setVisible(true);
 		mainWindow.setVisible(true); // turn the mainWindow visible
 		//hideButtons();  // Consider removing this method 
-		JEnter.setVisible(true);
+	//	JEnter.setVisible(true);
 		JInfo.setVisible(true);
 	
 		

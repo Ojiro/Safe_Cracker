@@ -35,11 +35,17 @@ final public class State {
 		JBDirections[5] = new JButton("");
 		JBDirections[6] = new JButton("");
 
-		JBTools[0] = new JButton("Info");
-		JBTools[1] = new JButton("Pro Shop");
+		JBTools[0] = new JButton("Pro Shop");
+		JBTools[1] = new JButton("-");
 		JBTools[2] = new JButton("-");
 		JBTools[3] = new JButton("-");
-		JBTools[4] = new JButton("-");
+		
+		JBHelpers[0] = new JButton("Info");
+		JBHelpers[0] = new JButton("-");
+		JBHelpers[0] = new JButton("-");
+		JBHelpers[0] = new JButton("Help");
+		
+		
 	}
 
 	public static void setDefaultLocation(JButton[] JBDigits,
@@ -66,6 +72,7 @@ final public class State {
 		JBTools[3].setLocation(550, 400);
 
 	}
+	
 
 	public static void setButtonToDefaultSize(JButton[] arr) {
 		for (int i = 0; i < arr.length; i++) {
