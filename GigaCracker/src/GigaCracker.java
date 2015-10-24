@@ -1397,7 +1397,7 @@ public class GigaCracker extends JFrame // implements KeyListener
 		mainWindow.requestFocus();
 
 		// set text to guess mode
-		//State.setGamePlayState(JBArray, JBArray, JBArray, JBArray);
+		State.setGamePlayState(JBDigits, JBDirections, JBTools, JBHelpers);
 
 		JBDirections[5].setForeground(Color.BLACK);
 		JBDirections[6].setForeground(Color.BLACK);
