@@ -178,7 +178,7 @@ final public class State {
 		JBDirections[3].setText("Right");
 		JBDirections[4].setText("Enter");
 		JBDirections[5].setText("Clear");
-		JBDirections[6].setText("Back Space");
+		JBDirections[6].setText("BackSpace");
 
 	}
 

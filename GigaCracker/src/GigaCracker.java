@@ -341,133 +341,25 @@ public class GigaCracker extends JFrame // implements KeyListener
 
 			// conditions check the button pushed and sets the appropriate
 			// setting
-			if (temp.getText().equals("Easy")) { // sets game to easy
-													// 3 digits with no
-													// direction
-				difficulty = 1;
-				comboSize = 3;
-				guessLimit = 10;
-				directions = 0;
-				timeInSeconds = 0;
-				timeInMinutes = 6;
-
-			} else if (temp.getText().equals("PiggyBank")) { // sets game to
-																// PiggyBank
-																// level
-																// 4 digits with
-																// 1 directions
-				difficulty = 2;
-				comboSize = 4;
-				guessLimit = 10;
-				directions = 1;
-				timeInSeconds = 0;
-				timeInMinutes = 6;
-
-			} else if (temp.getText().equals("KittyBank")) { // sets game to
-																// KittyBank
-																// Level
-																// 4 digits with
-																// 0 directions
-				difficulty = 3;
-				comboSize = 4;
-				guessLimit = 10;
-				directions = 0;
-				timeInSeconds = 0;
-				timeInMinutes = 6;
-			} else if (temp.getText().equals("MotelSafe")) {
-				// 5 Digits with 1 directions
-				difficulty = 4;
-				comboSize = 5;
-				guessLimit = 10;
-				directions = 1;
-				timeInSeconds = 0;
-				timeInMinutes = 6;
-
-			} else if (temp.getText().equals("HotelSafe")) {
-				// 5 Digits with 0 direction
-				difficulty = 5;
-				comboSize = 5;
-				guessLimit = 10;
-				directions = 0;
-				timeInSeconds = 0;
-				timeInMinutes = 6;
-			} else if (temp.getText().equals("Hard")) {
-				// 6 Digits with 2 directions
-				difficulty = 6;
-				comboSize = 6;
-				guessLimit = 9;
-				directions = 2;
-				timeInSeconds = 0;
-				timeInMinutes = 5;
-			} else if (temp.getText().equals("Chinese")) {
-				// 6 directions
-				difficulty = 7;
-				comboSize = 6;
-				guessLimit = 8; // 8 is significant to eastern culture
-				directions = 6;
-				timeInSeconds = 0;
-				timeInMinutes = 5;
-			} else if (temp.getText().equals("BankHeist")) {
-				// 6 Digits with 0 directions
-				difficulty = 8;
-				comboSize = 6;
-				guessLimit = 9;
-				directions = 0;
-				timeInSeconds = 0;
-				timeInMinutes = 5;
-			} else if (temp.getText().equals("JewelHeist")) {
-				// 7 Digits with 3 directions
-				difficulty = 9;
-				comboSize = 7;
-				guessLimit = 9;
-				directions = 3;
-				timeInSeconds = 0;
-				timeInMinutes = 5;
-			} else if (temp.getText().equals("Museum")) {
-				// 7 Digits with 2 directions
-				difficulty = 10;
-				comboSize = 7;
-				guessLimit = 9;
-				directions = 2;
-				timeInSeconds = 0;
-				timeInMinutes = 5;
-			} else if (temp.getText().equals("Extreme")) {
-				// 8 Digits with 3 directions
-				difficulty = 11;
-				comboSize = 8;
-				guessLimit = 9;
-				directions = 3;
-				timeInSeconds = 0;
-				timeInMinutes = 5;
-			} else if (temp.getText().equals("FedHeist")) {
-				// 8 Digits with 2 directions
-				difficulty = 12;
-				comboSize = 8;
-				guessLimit = 8;
-				directions = 2;
-				timeInSeconds = 0;
-				timeInMinutes = 5;
-			} else if (temp.getText().equals("Oceans666")) {
-				// 8 Digits with 1 directions
-				difficulty = 13;
-				comboSize = 8;
-				guessLimit = 8;
-				directions = 1;
-				timeInSeconds = 0;
-				timeInMinutes = 5;
-			} else if (temp.getText().equals("KingPin")) {
-				// 10 Digits with 0 directions
-				difficulty = 100;
-				comboSize = 10;
-				guessLimit = 7;
-				directions = 0;
-				timeInSeconds = 0;
-				timeInMinutes = 5;
-			} else
-				return;
-
+			switch(temp.getText())
+			{
+			case "Easy": difficulty=1; comboSize=3; guessLimit=10; directions=0; timeInSeconds=0; timeInMinutes=6; break;
+			case "PiggyBank": difficulty=2; comboSize=4; guessLimit=10; directions=1; timeInSeconds=0; timeInMinutes=6; break;
+			case "KittyBank": difficulty=3; comboSize=4; guessLimit=10; directions=0; timeInSeconds=0; timeInMinutes=6; break;
+			case "MotelSafe": difficulty=4; comboSize=5; guessLimit=10; directions=1; timeInSeconds=0; timeInMinutes=6; break;
+			case "HotelSafe": difficulty=5; comboSize=5; guessLimit=10; directions=0; timeInSeconds=0; timeInMinutes=6; break;
+			case "Hard": difficulty=5; comboSize=6; guessLimit=9; directions=2; timeInSeconds=0; timeInMinutes=5; break;
+			case "Chinese": difficulty=7; comboSize=6; guessLimit=8; directions=6; timeInSeconds=0; timeInMinutes=5; break;
+			case "BankHeist": difficulty=8; comboSize=6; guessLimit=9; directions=0; timeInSeconds=0; timeInMinutes=5; break;
+			case "JewelHeist": difficulty=9; comboSize=7; guessLimit=9; directions=3; timeInSeconds=0; timeInMinutes=5; break;
+			case "Museum": difficulty=10; comboSize=7; guessLimit=9; directions=2; timeInSeconds=0; timeInMinutes=5; break;
+			case "Extreme": difficulty=11; comboSize=8; guessLimit=9; directions=3; timeInSeconds=0; timeInMinutes=5; break;
+			case "FedHeist": difficulty=12; comboSize=8; guessLimit=8; directions=2; timeInSeconds=0; timeInMinutes=5; break;
+			case "Oceans666": difficulty=13; comboSize=8; guessLimit=8; directions=1; timeInSeconds=0; timeInMinutes=5; break;
+			case "KingPin": difficulty=100; comboSize=10; guessLimit=7; directions=0; timeInSeconds=0; timeInMinutes=5; break;
+			default: return;
+			}
 			makeCombo();
-
 			setGameListener(); // sets the buttons to game mode
 
 		} // ends actionPerformed
@@ -894,7 +786,6 @@ public class GigaCracker extends JFrame // implements KeyListener
 	// welcomeText
 	//
 	private void welcomeText() {
-		State.setWelcomeState(topText);
 		p0.add(topText);
 
 	}
@@ -1395,14 +1286,10 @@ public class GigaCracker extends JFrame // implements KeyListener
 
 		// set text to guess mode
 		State.setGamePlayState(JBDigits, JBDirections, JBTools, JBHelpers);
-
+		State.setButtonsToVisible(JBDirections);
 		JBDirections[5].setForeground(Color.BLACK);
 		JBDirections[6].setForeground(Color.BLACK);
 		
-		State.setProShopButtonState(false, JBArray, totalBreakIns, explosives, snips, picks);
-		// topText.setText("		Loot:  " + loot + "     Wanted Level: " +
-		// wantedLevel+ "      Break-Ins: " + totalBreakIns);
-		// bottomText.setText("");
 		timer.start();
 		printUpdate();
 
