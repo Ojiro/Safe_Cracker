@@ -141,8 +141,17 @@ public class GigaCracker extends JFrame //implements KeyListener
 		for(int i=0; i<JBDigits.length; i++)
 		{
 			p0.add(JBDigits[i]);
+		}
+		for(int i=0; i<JBTools.length; i++)
+		{
 			p0.add(JBTools[i]);
+		}
+		for(int i=0; i<JBDirections.length; i++)
+		{
 			p0.add(JBDirections[i]);
+		}
+		for(int i=0; i<JBHelpers.length; i++)
+		{
 			p0.add(JBHelpers[i]);
 		}
 		
