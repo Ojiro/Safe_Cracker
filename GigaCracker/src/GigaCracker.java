@@ -1294,56 +1294,49 @@ public class GigaCracker extends JFrame //implements KeyListener
 			{
 				
 				// remove listeners that will be called in this phase to avoid repeated registering
-				J0.removeActionListener(cheatListener);
-				J1.removeActionListener(cheatListener);
-				J2.removeActionListener(cheatListener);
+				JButton[] buttonArray={JBDigits[0],JBDigits[1], JBDigits[2]};
+				State.removeListenerFromButton(cheatListener, buttonArray);
+//				J0.removeActionListener(cheatListener);
+//				J1.removeActionListener(cheatListener);
+//				J2.removeActionListener(cheatListener);
 				
 				// remove listeners for the previous stage of the game
-				J0.removeActionListener(numbers1);
-				J1.removeActionListener(numbers1);
-				J2.removeActionListener(numbers1);
-				J3.removeActionListener(numbers1);
-				J4.removeActionListener(numbers1);
-				J5.removeActionListener(numbers1);
-				J6.removeActionListener(numbers1);
-				J7.removeActionListener(numbers1);
-				J8.removeActionListener(numbers1);
-				J9.removeActionListener(numbers1);
-				JUp.removeActionListener(numbers1);
-				JDown.removeActionListener(numbers1);
-				JLeft.removeActionListener(numbers1);
-				JRight.removeActionListener(numbers1);
-				JEnter.removeActionListener(numbers1);
-				JEnter.removeActionListener(exitWelcome1);
+				State.removeListenerFromButton(numbers1,JBDigits);
+				State.removeListenerFromButton(numbers1, JBDirections);
+//				J0.removeActionListener(numbers1);
+//				J1.removeActionListener(numbers1);
+//				J2.removeActionListener(numbers1);
+//				J3.removeActionListener(numbers1);
+//				J4.removeActionListener(numbers1);
+//				J5.removeActionListener(numbers1);
+//				J6.removeActionListener(numbers1);
+//				J7.removeActionListener(numbers1);
+//				J8.removeActionListener(numbers1);
+//				J9.removeActionListener(numbers1);
+//				JUp.removeActionListener(numbers1);
+//				JDown.removeActionListener(numbers1);
+//				JLeft.removeActionListener(numbers1);
+//				JRight.removeActionListener(numbers1);
+//				JEnter.removeActionListener(numbers1);
+//				JEnter.removeActionListener(exitWelcome1);
 				
 				// removes the ability of the tool buttons
-				JTNT.removeActionListener(applyCheat);
-				JSnips.removeActionListener(applyCheat);
-				JPicks.removeActionListener(applyCheat);
+				State.removeListenerFromButton(applyCheat, JBTools);
+//				JTNT.removeActionListener(applyCheat);
+//				JSnips.removeActionListener(applyCheat);
+//				JPicks.removeActionListener(applyCheat);
 				
 				
 				// register listeners with buttons
-				J0.addActionListener(cheatListener);
-				J1.addActionListener(cheatListener);
-				J2.addActionListener(cheatListener);
-				JEnter.addActionListener(exitGame1);
+				State.addListenerToButton(cheatListener, buttonArray);
+				JBDirections[4].addActionListener(exitGame1);
+//				J0.addActionListener(cheatListener);
+//				J1.addActionListener(cheatListener);
+//				J2.addActionListener(cheatListener);
+				
 				
 				// set text for ProShop
-				J0.setText("TNT");
-				J1.setText("Picks");
-				J2.setText("Snips");
-				J3.setText("");
-				J4.setText("");
-				J5.setText("");
-				J6.setText("");
-				J7.setText("");
-				J8.setText("");
-				J9.setText("");
-				JUp.setText("");
-				JDown.setText("");
-				JLeft.setText("");
-				JRight.setText("");
-				JEnter.setText("Exit");
+			State.setProShopWelcomeState(JBDigits, JBDirections);
 				
 				
 				if (loot<3000)  // text shown if the player doesn't have enough money

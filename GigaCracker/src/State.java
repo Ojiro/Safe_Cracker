@@ -53,6 +53,26 @@ final public class State {
 				+ "\n"
 				+ "To play, click enter");
 	}
+	
+	public static void setProShopWelcomeState(JButton[] JBDigits,JButton[] JBDirections)
+	{
+
+		JBDigits[0].setText("TNT");
+		JBDigits[1].setText("Picks");
+		JBDigits[2].setText("Snips");
+		JBDigits[3].setText("");
+		JBDigits[4].setText("");
+		JBDigits[5].setText("");
+		JBDigits[6].setText("");
+		JBDigits[7].setText("");
+		JBDigits[8].setText("");
+		JBDigits[9].setText("");
+		JBDirections[0].setText("");
+		JBDirections[1].setText("");
+		JBDirections[2].setText("");
+		JBDirections[3].setText("");
+		JBDirections[4].setText("Exit");
+	}
 	public static void setDefaultLocation(JButton[] JBDigits,
 			JButton[] JBDirections, JButton[] JBTools, JButton[] JBHelpers) {
 		JBDigits[0].setLocation(25, 200);
@@ -130,7 +150,7 @@ final public class State {
 			arr[i].removeActionListener(Listener);
 		}
 	}
-	public static void AddListenerToButton(ActionListener Listener, JButton[] arr )
+	public static void addListenerToButton(ActionListener Listener, JButton[] arr )
 	{
 		for (int i = 0; i < arr.length; i++) {
 			arr[i].addActionListener(Listener);
