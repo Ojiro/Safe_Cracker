@@ -54,6 +54,50 @@ final public class State {
 				+ "To play, click enter");
 	}
 	
+	public static void setLevelSelectState(JButton[] JBDigits, JButton[] JBDirections, JButton[] JBTools, JButton[] JBHelpers, int explosives, int snips, int picks)
+	{
+		JBDigits[0].setText("Easy");
+		JBDigits[1].setText("PiggyBank");
+		JBDigits[2].setText("KittyBank");
+		JBDigits[3].setText("MotelSafe");
+		JBDigits[4].setText("HotelSafe");
+		JBDigits[5].setText("Hard");
+		JBDigits[6].setText("Chinese");
+		JBDigits[7].setText("BankHeist");
+		JBDigits[8].setText("JewelHeist");
+		JBDigits[9].setText("Museum");
+		JBDirections[0].setText("Extreme");
+		JBDirections[1].setText("FedHeist");
+		JBDirections[2].setText("Oceans666");
+		JBDirections[3].setText("KingPin");
+		JBDirections[4].setText("Enter");
+		JBDirections[5].setText("Back Space");
+		JBDirections[6].setText("Clear");
+		
+		// tools are off during this phase
+				if (explosives > 0) {
+					JBTools[1].setText("TNT (" + explosives + "x)");
+					JBTools[1].setForeground(Color.LIGHT_GRAY);
+				} else {
+					JBTools[1].setText("-");
+					JBTools[1].setForeground(Color.LIGHT_GRAY);
+				}
+				if (picks > 0) {
+					JBTools[2].setText("Picks (" + picks + "x)");
+					JBTools[2].setForeground(Color.LIGHT_GRAY);
+				} else {
+					JBTools[2].setText("-");
+					JBTools[2].setForeground(Color.LIGHT_GRAY);
+				}
+				if (snips > 0) {
+					JBTools[3].setText("Snips (" + snips + "x)");
+					JBTools[3].setForeground(Color.LIGHT_GRAY);
+				} else {
+					JBTools[3].setText("-");
+					JBTools[3].setForeground(Color.LIGHT_GRAY);
+				}
+		
+	}
 	public static void setProShopWelcomeState(JButton[] JBDigits,JButton[] JBDirections, JButton[] JBTools,JTextArea topText, int loot, int wantedLevel,int totalBreakIns,int explosives, int snips,int picks)
 	{
 

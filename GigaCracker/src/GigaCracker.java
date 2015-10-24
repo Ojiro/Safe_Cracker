@@ -1372,89 +1372,21 @@ public class GigaCracker extends JFrame // implements KeyListener
 
 		// Sets the numbers1 listener to the digits and directions, that will
 		// allow the user to select the difficulty
-		J0.addActionListener(numbers1);
-		J1.addActionListener(numbers1);
-		J2.addActionListener(numbers1);
-		J3.addActionListener(numbers1);
-		J4.addActionListener(numbers1);
-		J5.addActionListener(numbers1);
-		J6.addActionListener(numbers1);
-		J7.addActionListener(numbers1);
-		J8.addActionListener(numbers1);
-		J9.addActionListener(numbers1);
-		JUp.addActionListener(numbers1);
-		JDown.addActionListener(numbers1);
-		JLeft.addActionListener(numbers1);
-		JRight.addActionListener(numbers1);
-		JEnter.addActionListener(numbers1);
-		JClear.removeActionListener(clearListener); // turns off the
-													// clearListener so there
-													// are no issues with
-													// selecting a level
-		JBackSpace.removeActionListener(backSpaceListener); // turn off the
-															// backSpaceListener
-															// so there are no
-															// issue with
-															// selecting a level
-		JEnter.removeActionListener(exitGame1); // removes the exitGame listener
-												// which prevents a bug from
-												// occuring when a player
-												// doesn't enter enough digits
+		State.addListenerToButton(numbers1, JBDigits);
+		JButton[] JBArray={JBDirections[0], JBDirections[1], JBDirections[2],JBDirections[3], JBDirections[4]};
+		JBDirections[5].removeActionListener(clearListener);
+		JBDirections[6].removeActionListener(backSpaceListener);
+		JBDirections[4].removeActionListener(exitGame1);
 
-		// Reset the text on the buttons
-		J0.setText("Easy");
-		J1.setText("PiggyBank");
-		J2.setText("KittyBank");
-		J3.setText("MotelSafe");
-		J4.setText("HotelSafe");
-		J5.setText("Hard");
-		J6.setText("Chinese");
-		J7.setText("BankHeist");
-		J8.setText("JewelHeist");
-		J9.setText("Museum");
-		JUp.setText("Extreme");
-		JDown.setText("FedHeist");
-		JLeft.setText("Oceans666");
-		JRight.setText("KingPin");
-		JEnter.setText("Enter");
-		JBackSpace.setText("Back Space");
-		JClear.setText("Clear");
 
 		// Removes the listers that allow cheats to be bought
-		JTNT.removeActionListener(applyCheat);
-		JSnips.removeActionListener(applyCheat);
-		JPicks.removeActionListener(applyCheat);
-		J0.removeActionListener(cheatListener);
-		J1.removeActionListener(cheatListener);
-		J2.removeActionListener(cheatListener);
+		JButton[] JBCheatsArray={JBTools[1], JBTools[2], JBTools[3]};
+		JButton[] JBArrayOfThree={JBDigits[0], JBDigits[1], JBDigits[2]};
+		State.removeListenerFromButton(applyCheat, JBCheatsArray);
+		State.removeListenerFromButton(cheatListener, JBArrayOfThree);
 
-		// hideButtons();
-		// hideTools();
-		JClear.setForeground(Color.LIGHT_GRAY);
-		JBackSpace.setForeground(Color.LIGHT_GRAY);
-
-		// tools are off during this phase
-		if (explosives > 0) {
-			JTNT.setText("TNT (" + explosives + "x)");
-			JTNT.setForeground(Color.LIGHT_GRAY);
-		} else {
-			JTNT.setText("-");
-			JTNT.setForeground(Color.LIGHT_GRAY);
-		}
-		if (picks > 0) {
-			JPicks.setText("Picks (" + picks + "x)");
-			JPicks.setForeground(Color.LIGHT_GRAY);
-		} else {
-			JPicks.setText("-");
-			JPicks.setForeground(Color.LIGHT_GRAY);
-		}
-		if (snips > 0) {
-			JSnips.setText("Snips (" + snips + "x)");
-			JSnips.setForeground(Color.LIGHT_GRAY);
-		} else {
-			JSnips.setText("-");
-			JSnips.setForeground(Color.LIGHT_GRAY);
-		}
+		JButton[] JBDisableArray={JBDirections[5], JBDirections[6]};
+		State.setButtonAsDisabled(JBDisableArray);
 
 		// show the proshop to the player if they have more than 3 break-ins
 		if (totalBreakIns >= 3) // makes the pro shop available if the player
@@ -1469,24 +1401,8 @@ public class GigaCracker extends JFrame // implements KeyListener
 
 		mainWindow.requestFocus();
 
-		J0.setVisible(true);
-		J1.setVisible(true);
-		J2.setVisible(true);
-		J3.setVisible(true);
-		J4.setVisible(true);
-		J5.setVisible(true);
-		J6.setVisible(true);
-		J7.setVisible(true);
-		J8.setVisible(true);
-		J9.setVisible(true);
-		JUp.setVisible(true);
-		JDown.setVisible(true);
-		JLeft.setVisible(true);
-		JRight.setVisible(true);
-		JEnter.setVisible(true);
-		JBackSpace.setVisible(true);
-		JClear.setVisible(true);
-
+		State.setButtonsToVisible(JBDigits);
+		State.setButtonsToVisible(JBDirections);
 	}
 
 	// #19
