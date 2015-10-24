@@ -165,8 +165,8 @@ public class GigaCracker extends JFrame // implements KeyListener
 		State.setDefaultLocation(JBDigits, JBDirections, JBTools, JBHelpers);
 
 		// register listeners
-		// JEnter.addActionListener(exitWelcome1);
-		// Help.addActionListener(help); // note the button "Help" is
+		 JBDirections[4].addActionListener(exitWelcome1);
+		 JBHelpers[3].addActionListener(help); // note the button "Help" is
 		// capitalized, while the listener is lowercase
 		// JInfo.addActionListener(infoPress);
 		// mainWindow.setFocusable(true); // sets the main window to focusable
@@ -183,6 +183,9 @@ public class GigaCracker extends JFrame // implements KeyListener
 		State.addButtonToElement(p0, JBDirections);
 		State.addButtonToElement(p0, JBTools);
 		State.addButtonToElement(p0, JBHelpers);
+		p0.add(topText);
+		topText.setVisible(true);
+		welcomeText();
 		mainWindow.add(p0);
 		mainWindow.setVisible(true); // turn the mainWindow visible
 		// hideButtons(); // Consider removing this method
@@ -1374,10 +1377,10 @@ public class GigaCracker extends JFrame // implements KeyListener
 		// allow the user to select the difficulty
 		State.addListenerToButton(numbers1, JBDigits);
 		JButton[] JBArray={JBDirections[0], JBDirections[1], JBDirections[2],JBDirections[3], JBDirections[4]};
+		State.addListenerToButton(numbers1, JBArray);
 		JBDirections[5].removeActionListener(clearListener);
 		JBDirections[6].removeActionListener(backSpaceListener);
 		JBDirections[4].removeActionListener(exitGame1);
-
 
 		// Removes the listers that allow cheats to be bought
 		JButton[] JBCheatsArray={JBTools[1], JBTools[2], JBTools[3]};
@@ -1392,11 +1395,11 @@ public class GigaCracker extends JFrame // implements KeyListener
 		if (totalBreakIns >= 3) // makes the pro shop available if the player
 								// has broken enough safes
 		{
-			JStore.addActionListener(proShopListener);
-			JStore.setText("Pro Shop");
+			JBTools[0].addActionListener(proShopListener);
+			JBTools[0].setText("Pro Shop");
 		} else {
 
-			JStore.removeActionListener(proShopListener);
+			JBTools[0].removeActionListener(proShopListener);
 		}
 
 		mainWindow.requestFocus();
