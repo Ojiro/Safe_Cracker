@@ -79,6 +79,20 @@ final public class State {
 			arr[i].setSize(100, 50);
 		}
 	}
+	
+	public static void setButtonsToVisible(JButton[] arr)
+	{
+		for (int i = 0; i < arr.length; i++) {
+			arr[i].setVisible(true);
+		}
+	}
+	
+	public static void setButtonsToNotVisible(JButton[] arr)
+	{
+		for (int i = 0; i < arr.length; i++) {
+			arr[i].setVisible(false);
+		}
+	}
 
 	public static void setButtonAsDisabled(JButton[] arr) {
 		for (int i = 0; i < arr.length; i++) {

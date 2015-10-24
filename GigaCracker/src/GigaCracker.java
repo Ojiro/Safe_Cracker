@@ -144,15 +144,6 @@ public class GigaCracker extends JFrame //implements KeyListener
 			p0.add(JBHelpers[i]);
 		}
 		
-		
-		
-//		JStore.setForeground(Color.LIGHT_GRAY);
-//		JTNT.setForeground(Color.LIGHT_GRAY);
-//		JPicks.setForeground(Color.LIGHT_GRAY);
-//		JSnips.setForeground(Color.LIGHT_GRAY);
-	
-		
-		
 		//register listeners
 		//JEnter.addActionListener(exitWelcome1);
 //		Help.addActionListener(help); // note the button "Help" is capitalized, while the listener is lowercase
@@ -163,9 +154,7 @@ public class GigaCracker extends JFrame //implements KeyListener
 //		mainWindow.addKeyListener(key1); // registers the keyListener for the game
 		
 		// add buttons to the panel
-		
-			
-		
+
 		// opening methods
 		welcomeText();
 		//JStore.setVisible(true);
