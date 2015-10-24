@@ -1391,17 +1391,8 @@ public class GigaCracker extends JFrame // implements KeyListener
 		JButton[] JBDisableArray={JBDirections[5], JBDirections[6]};
 		State.setButtonAsDisabled(JBDisableArray);
 
-		// show the proshop to the player if they have more than 3 break-ins
-		if (totalBreakIns >= 3) // makes the pro shop available if the player
-								// has broken enough safes
-		{
-			JBTools[0].addActionListener(proShopListener);
-			JBTools[0].setText("Pro Shop");
-		} else {
-
-			JBTools[0].removeActionListener(proShopListener);
-		}
-
+		State.setProShopButtonState(true, JBDisableArray, totalBreakIns, explosives, snips, picks);
+		State.setLevelSelectState(JBDigits, JBDirections,JBTools, JBHelpers,  explosives, snips, picks);
 		mainWindow.requestFocus();
 
 		State.setButtonsToVisible(JBDigits);
@@ -1414,108 +1405,30 @@ public class GigaCracker extends JFrame // implements KeyListener
 	private void setGameListener() {
 
 		// remove the difficulty phase listeners
-		J0.removeActionListener(numbers1);
-		J1.removeActionListener(numbers1);
-		J2.removeActionListener(numbers1);
-		J3.removeActionListener(numbers1);
-		J4.removeActionListener(numbers1);
-		J5.removeActionListener(numbers1);
-		J6.removeActionListener(numbers1);
-		J7.removeActionListener(numbers1);
-		J8.removeActionListener(numbers1);
-		J9.removeActionListener(numbers1);
-		JUp.removeActionListener(numbers1);
-		JDown.removeActionListener(numbers1);
-		JLeft.removeActionListener(numbers1);
-		JRight.removeActionListener(numbers1);
-		JEnter.removeActionListener(numbers1);
-		JEnter.removeActionListener(exitWelcome1);
+		State.removeListenerFromButton(numbers1, JBDigits);
+		JButton[] JBArray={JBDirections[0],JBDirections[1],JBDirections[2],JBDirections[3],JBDirections[4]};
+		State.removeListenerFromButton(numbers1, JBArray);
+		JBDirections[4].removeActionListener(exitWelcome1);
 
-		J0.removeActionListener(cheatListener);
-		J1.removeActionListener(cheatListener);
-		J2.removeActionListener(cheatListener);
+		JBDigits[0].removeActionListener(cheatListener);
+		JBDigits[1].removeActionListener(cheatListener);
+		JBDigits[3].removeActionListener(cheatListener);
 
 		// register listeners with buttons
-		J0.addActionListener(numbers2);
-		J1.addActionListener(numbers2);
-		J2.addActionListener(numbers2);
-		J3.addActionListener(numbers2);
-		J4.addActionListener(numbers2);
-		J5.addActionListener(numbers2);
-		J6.addActionListener(numbers2);
-		J7.addActionListener(numbers2);
-		J8.addActionListener(numbers2);
-		J9.addActionListener(numbers2);
-		JUp.addActionListener(numbers2);
-		JDown.addActionListener(numbers2);
-		JLeft.addActionListener(numbers2);
-		JRight.addActionListener(numbers2);
-		JEnter.addActionListener(numbers2);
-		JBackSpace.addActionListener(backSpaceListener);
-		JClear.addActionListener(clearListener);
+		State.addListenerToButton(numbers2,JBDigits);
+		State.addListenerToButton(numbers2, JBArray);
+		JBDirections[5].addActionListener(backSpaceListener);
+		JBDirections[6].addActionListener(clearListener);
 
 		mainWindow.requestFocus();
 
 		// set text to guess mode
-		J0.setText("0");
-		J1.setText("1");
-		J2.setText("2");
-		J3.setText("3");
-		J4.setText("4");
-		J5.setText("5");
-		J6.setText("6");
-		J7.setText("7");
-		J8.setText("8");
-		J9.setText("9");
-		JUp.setText("Up");
-		JDown.setText("Down");
-		JLeft.setText("Left");
-		JRight.setText("Right");
-		JClear.setText("Clear");
-		JBackSpace.setText("Back Space");
-		JEnter.setText("Enter");
+		//State.setGamePlayState(JBArray, JBArray, JBArray, JBArray);
 
-		JBackSpace.setForeground(Color.BLACK);
-		JClear.setForeground(Color.BLACK);
-
-		// if the player has more than 3 break-ins show the proshop
-		// proshop will not be accessible during the guess phase
-		if (totalBreakIns >= 3) {
-			JStore.setText("Pro Shop");
-			JStore.setForeground(Color.LIGHT_GRAY);
-			// JStore.setVisible(true);
-		} else {
-			// JStore.setVisible(false);
-		}
-
-		// show tools if they are available,
-		if (explosives > 0) {
-			JTNT.setText("TNT (" + explosives + "x)");
-			JTNT.addActionListener(applyCheat);
-		} else {
-			JTNT.setText("-");
-			JTNT.setForeground(Color.LIGHT_GRAY);
-			JTNT.removeActionListener(applyCheat);
-		}
-
-		if (snips > 0) {
-			JSnips.setText("Snips (" + snips + "x)");
-			JSnips.addActionListener(applyCheat);
-		} else {
-			JSnips.setText("-");
-			JSnips.setForeground(Color.LIGHT_GRAY);
-			JSnips.removeActionListener(applyCheat);
-		}
-
-		if (picks > 0) {
-			JPicks.setText("Picks (" + picks + "x)");
-			JPicks.addActionListener(applyCheat);
-		} else {
-			JPicks.setText("-");
-			JPicks.setForeground(Color.LIGHT_GRAY);
-			JPicks.removeActionListener(applyCheat);
-		}
-
+		JBDirections[5].setForeground(Color.BLACK);
+		JBDirections[6].setForeground(Color.BLACK);
+		
+		State.setProShopButtonState(false, JBArray, totalBreakIns, explosives, snips, picks);
 		// topText.setText("		Loot:  " + loot + "     Wanted Level: " +
 		// wantedLevel+ "      Break-Ins: " + totalBreakIns);
 		// bottomText.setText("");
