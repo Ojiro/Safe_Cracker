@@ -55,7 +55,7 @@ public class GigaCracker extends JFrame // implements KeyListener
 	JButton JDown = JBDirections[1];
 	JButton JLeft = JBDirections[2];
 	JButton JRight = JBDirections[3];
-	JButton JEnter = JBDirections[4]; 
+	JButton JEnter = JBDirections[4];
 	JButton JClear = JBDirections[5];
 	JButton JBackSpace = JBDirections[6];
 	JButton JStore = JBTools[0];
@@ -150,13 +150,14 @@ public class GigaCracker extends JFrame // implements KeyListener
 		name.setLocation(250, 0);
 
 		// set size and Location of buttons and object
-		State.setWelcomeState(JBDigits, JBDirections, JBHelpers, JBTools, topText);
+		State.setWelcomeState(JBDigits, JBDirections, JBHelpers, JBTools,
+				topText);
 		State.setButtonToDefaultSize(JBDigits);
 		State.setButtonToDefaultSize(JBDirections);
-			State.setButtonToDefaultSize(JBHelpers);
+		State.setButtonToDefaultSize(JBHelpers);
 		State.setButtonToDefaultSize(JBTools);
 		JBDirections[4].setSize(100, 100);
-		JBDirections[6].setSize(200, 50); // backspace button	
+		JBDirections[6].setSize(200, 50); // backspace button
 		State.addButtonToElement(p0, JBDigits);
 		State.addButtonToElement(p0, JBDirections);
 		State.addButtonToElement(p0, JBTools);
@@ -164,8 +165,8 @@ public class GigaCracker extends JFrame // implements KeyListener
 		State.setDefaultLocation(JBDigits, JBDirections, JBTools, JBHelpers);
 
 		// register listeners
-		 JBDirections[4].addActionListener(exitWelcome1);
-		 JBHelpers[3].addActionListener(help); // note the button "Help" is
+		JBDirections[4].addActionListener(exitWelcome1);
+		JBHelpers[3].addActionListener(help); // note the button "Help" is
 		// capitalized, while the listener is lowercase
 		// JInfo.addActionListener(infoPress);
 		// mainWindow.setFocusable(true); // sets the main window to focusable
@@ -341,23 +342,121 @@ public class GigaCracker extends JFrame // implements KeyListener
 
 			// conditions check the button pushed and sets the appropriate
 			// setting
-			switch(temp.getText())
-			{
-			case "Easy": difficulty=1; comboSize=3; guessLimit=10; directions=0; timeInSeconds=0; timeInMinutes=6; break;
-			case "PiggyBank": difficulty=2; comboSize=4; guessLimit=10; directions=1; timeInSeconds=0; timeInMinutes=6; break;
-			case "KittyBank": difficulty=3; comboSize=4; guessLimit=10; directions=0; timeInSeconds=0; timeInMinutes=6; break;
-			case "MotelSafe": difficulty=4; comboSize=5; guessLimit=10; directions=1; timeInSeconds=0; timeInMinutes=6; break;
-			case "HotelSafe": difficulty=5; comboSize=5; guessLimit=10; directions=0; timeInSeconds=0; timeInMinutes=6; break;
-			case "Hard": difficulty=5; comboSize=6; guessLimit=9; directions=2; timeInSeconds=0; timeInMinutes=5; break;
-			case "Chinese": difficulty=7; comboSize=6; guessLimit=8; directions=6; timeInSeconds=0; timeInMinutes=5; break;
-			case "BankHeist": difficulty=8; comboSize=6; guessLimit=9; directions=0; timeInSeconds=0; timeInMinutes=5; break;
-			case "JewelHeist": difficulty=9; comboSize=7; guessLimit=9; directions=3; timeInSeconds=0; timeInMinutes=5; break;
-			case "Museum": difficulty=10; comboSize=7; guessLimit=9; directions=2; timeInSeconds=0; timeInMinutes=5; break;
-			case "Extreme": difficulty=11; comboSize=8; guessLimit=9; directions=3; timeInSeconds=0; timeInMinutes=5; break;
-			case "FedHeist": difficulty=12; comboSize=8; guessLimit=8; directions=2; timeInSeconds=0; timeInMinutes=5; break;
-			case "Oceans666": difficulty=13; comboSize=8; guessLimit=8; directions=1; timeInSeconds=0; timeInMinutes=5; break;
-			case "KingPin": difficulty=100; comboSize=10; guessLimit=7; directions=0; timeInSeconds=0; timeInMinutes=5; break;
-			default: return;
+			switch (temp.getText()) {
+			case "Easy":
+				difficulty = 1;
+				comboSize = 3;
+				guessLimit = 10;
+				directions = 0;
+				timeInSeconds = 0;
+				timeInMinutes = 6;
+				break;
+			case "PiggyBank":
+				difficulty = 2;
+				comboSize = 4;
+				guessLimit = 10;
+				directions = 1;
+				timeInSeconds = 0;
+				timeInMinutes = 6;
+				break;
+			case "KittyBank":
+				difficulty = 3;
+				comboSize = 4;
+				guessLimit = 10;
+				directions = 0;
+				timeInSeconds = 0;
+				timeInMinutes = 6;
+				break;
+			case "MotelSafe":
+				difficulty = 4;
+				comboSize = 5;
+				guessLimit = 10;
+				directions = 1;
+				timeInSeconds = 0;
+				timeInMinutes = 6;
+				break;
+			case "HotelSafe":
+				difficulty = 5;
+				comboSize = 5;
+				guessLimit = 10;
+				directions = 0;
+				timeInSeconds = 0;
+				timeInMinutes = 6;
+				break;
+			case "Hard":
+				difficulty = 5;
+				comboSize = 6;
+				guessLimit = 9;
+				directions = 2;
+				timeInSeconds = 0;
+				timeInMinutes = 5;
+				break;
+			case "Chinese":
+				difficulty = 7;
+				comboSize = 6;
+				guessLimit = 8;
+				directions = 6;
+				timeInSeconds = 0;
+				timeInMinutes = 5;
+				break;
+			case "BankHeist":
+				difficulty = 8;
+				comboSize = 6;
+				guessLimit = 9;
+				directions = 0;
+				timeInSeconds = 0;
+				timeInMinutes = 5;
+				break;
+			case "JewelHeist":
+				difficulty = 9;
+				comboSize = 7;
+				guessLimit = 9;
+				directions = 3;
+				timeInSeconds = 0;
+				timeInMinutes = 5;
+				break;
+			case "Museum":
+				difficulty = 10;
+				comboSize = 7;
+				guessLimit = 9;
+				directions = 2;
+				timeInSeconds = 0;
+				timeInMinutes = 5;
+				break;
+			case "Extreme":
+				difficulty = 11;
+				comboSize = 8;
+				guessLimit = 9;
+				directions = 3;
+				timeInSeconds = 0;
+				timeInMinutes = 5;
+				break;
+			case "FedHeist":
+				difficulty = 12;
+				comboSize = 8;
+				guessLimit = 8;
+				directions = 2;
+				timeInSeconds = 0;
+				timeInMinutes = 5;
+				break;
+			case "Oceans666":
+				difficulty = 13;
+				comboSize = 8;
+				guessLimit = 8;
+				directions = 1;
+				timeInSeconds = 0;
+				timeInMinutes = 5;
+				break;
+			case "KingPin":
+				difficulty = 100;
+				comboSize = 10;
+				guessLimit = 7;
+				directions = 0;
+				timeInSeconds = 0;
+				timeInMinutes = 5;
+				break;
+			default:
+				return;
 			}
 			makeCombo();
 			setGameListener(); // sets the buttons to game mode
@@ -576,6 +675,31 @@ public class GigaCracker extends JFrame // implements KeyListener
 
 			StringBuilder holdString = new StringBuilder(e.getKeyChar());
 
+			switch(e.getKeyChar())
+			{
+			case '0': JBDigits[0].doClick(); break;
+			case '1': JBDigits[1].doClick(); break;
+			case '2': JBDigits[2].doClick(); break;
+			case '3': JBDigits[3].doClick(); break;
+			case '4': JBDigits[4].doClick(); break;
+			case '5': JBDigits[5].doClick(); break;
+			case '6': JBDigits[6].doClick(); break;
+			case '7': JBDigits[7].doClick(); break;
+			case '8': JBDigits[8].doClick(); break;
+			case '9': JBDigits[9].doClick(); break;
+			case 'u': JBDirections[0].doClick(); break;
+			case 'U': JBDirections[0].doClick(); break;
+			case 'd': JBDirections[1].doClick(); break;
+			case 'D': JBDirections[1].doClick(); break;
+			case 'l': JBDirections[2].doClick(); break;
+			case 'L': JBDirections[2].doClick(); break;
+			case 'r': JBDirections[3].doClick(); break;
+			case 'R': JBDirections[3].doClick(); break;
+			case 'h': JBHelpers[3].doClick(); break;
+			case 'H': JBHelpers[3].doClick(); break;
+			case 'S': JBHelpers[2].doClick(); break;
+		
+			}
 			if (e.getKeyChar() == '0') {
 				J0.doClick();
 			} else if (e.getKeyChar() == '1') {
@@ -1164,7 +1288,9 @@ public class GigaCracker extends JFrame // implements KeyListener
 		// J2.addActionListener(cheatListener);
 
 		// set text for ProShop
-		State.setProShopWelcomeState(buttonArray, buttonArray, buttonArray, topText, loot, wantedLevel, totalBreakIns, explosives, snips, picks);
+		State.setProShopWelcomeState(buttonArray, buttonArray, buttonArray,
+				topText, loot, wantedLevel, totalBreakIns, explosives, snips,
+				picks);
 
 	}
 
@@ -1222,8 +1348,9 @@ public class GigaCracker extends JFrame // implements KeyListener
 					+ "    Posistions Correct: " + posistionsCorrect);
 
 			// update the tool buttons
-			State.setProShopButtonState(false, JBTools, totalBreakIns, explosives, snips, picks);
-			
+			State.setProShopButtonState(false, JBTools, totalBreakIns,
+					explosives, snips, picks);
+
 		}// ends else
 
 		mainWindow.requestFocus();
@@ -1238,23 +1365,26 @@ public class GigaCracker extends JFrame // implements KeyListener
 		// Sets the numbers1 listener to the digits and directions, that will
 		// allow the user to select the difficulty
 		State.addListenerToButton(numbers1, JBDigits);
-		JButton[] JBArray={JBDirections[0], JBDirections[1], JBDirections[2],JBDirections[3], JBDirections[4]};
+		JButton[] JBArray = { JBDirections[0], JBDirections[1],
+				JBDirections[2], JBDirections[3], JBDirections[4] };
 		State.addListenerToButton(numbers1, JBArray);
 		JBDirections[5].removeActionListener(clearListener);
 		JBDirections[6].removeActionListener(backSpaceListener);
 		JBDirections[4].removeActionListener(exitGame1);
 
 		// Removes the listers that allow cheats to be bought
-		JButton[] JBCheatsArray={JBTools[1], JBTools[2], JBTools[3]};
-		JButton[] JBArrayOfThree={JBDigits[0], JBDigits[1], JBDigits[2]};
+		JButton[] JBCheatsArray = { JBTools[1], JBTools[2], JBTools[3] };
+		JButton[] JBArrayOfThree = { JBDigits[0], JBDigits[1], JBDigits[2] };
 		State.removeListenerFromButton(applyCheat, JBCheatsArray);
 		State.removeListenerFromButton(cheatListener, JBArrayOfThree);
 
-		JButton[] JBDisableArray={JBDirections[5], JBDirections[6]};
+		JButton[] JBDisableArray = { JBDirections[5], JBDirections[6] };
 		State.setButtonAsDisabled(JBDisableArray);
 
-		State.setProShopButtonState(true, JBDisableArray, totalBreakIns, explosives, snips, picks);
-		State.setLevelSelectState(JBDigits, JBDirections,JBTools, JBHelpers,  explosives, snips, picks);
+		State.setProShopButtonState(true, JBDisableArray, totalBreakIns,
+				explosives, snips, picks);
+		State.setLevelSelectState(JBDigits, JBDirections, JBTools, JBHelpers,
+				explosives, snips, picks);
 		mainWindow.requestFocus();
 
 		State.setButtonsToVisible(JBDigits);
@@ -1268,7 +1398,8 @@ public class GigaCracker extends JFrame // implements KeyListener
 
 		// remove the difficulty phase listeners
 		State.removeListenerFromButton(numbers1, JBDigits);
-		JButton[] JBArray={JBDirections[0],JBDirections[1],JBDirections[2],JBDirections[3],JBDirections[4]};
+		JButton[] JBArray = { JBDirections[0], JBDirections[1],
+				JBDirections[2], JBDirections[3], JBDirections[4] };
 		State.removeListenerFromButton(numbers1, JBArray);
 		JBDirections[4].removeActionListener(exitWelcome1);
 
@@ -1277,7 +1408,7 @@ public class GigaCracker extends JFrame // implements KeyListener
 		JBDigits[3].removeActionListener(cheatListener);
 
 		// register listeners with buttons
-		State.addListenerToButton(numbers2,JBDigits);
+		State.addListenerToButton(numbers2, JBDigits);
 		State.addListenerToButton(numbers2, JBArray);
 		JBDirections[5].addActionListener(backSpaceListener);
 		JBDirections[6].addActionListener(clearListener);
@@ -1289,7 +1420,7 @@ public class GigaCracker extends JFrame // implements KeyListener
 		State.setButtonsToVisible(JBDirections);
 		JBDirections[5].setForeground(Color.BLACK);
 		JBDirections[6].setForeground(Color.BLACK);
-		
+
 		timer.start();
 		printUpdate();
 
@@ -1306,12 +1437,14 @@ public class GigaCracker extends JFrame // implements KeyListener
 		bail *= wantedLevel * difficulty; // sets the amount to bail out
 		loot -= bail; // subtracts the bail out from the
 
-		State.setResultsState(topText, false, loot, wantedLevel, totalBreakIns, bail, 0);
+		State.setResultsState(topText, false, loot, wantedLevel, totalBreakIns,
+				bail, 0);
 		// sets listeners for the transition from the end of the game to the
 		// difficulty selection
-		State.removeListenerFromButton(numbers2, JBDigits); // abstract this portion of code
+		State.removeListenerFromButton(numbers2, JBDigits); // abstract this
+															// portion of code
 		State.removeListenerFromButton(numbers2, JBDirections);
-	
+
 		JBDigits[0].removeActionListener(cheatListener);
 		JBDigits[1].removeActionListener(cheatListener);
 		JBDigits[2].removeActionListener(cheatListener);
@@ -1320,7 +1453,8 @@ public class GigaCracker extends JFrame // implements KeyListener
 		JBDirections[5].setForeground(Color.LIGHT_GRAY);
 		JBDirections[6].setForeground(Color.LIGHT_GRAY);
 
-		State.setProShopButtonState(true, JBTools, totalBreakIns, explosives, snips, picks);
+		State.setProShopButtonState(true, JBTools, totalBreakIns, explosives,
+				snips, picks);
 
 		posistionsCorrect = 0;
 		digitsCorrect = 0;
@@ -1338,7 +1472,8 @@ public class GigaCracker extends JFrame // implements KeyListener
 		totalBreakIns++;
 		wantedLevel();
 
-		State.setResultsState(topText, true, loot, wantedLevel, totalBreakIns, bail, payout);
+		State.setResultsState(topText, true, loot, wantedLevel, totalBreakIns,
+				bail, payout);
 
 		turnCount = 0;
 
@@ -1346,7 +1481,7 @@ public class GigaCracker extends JFrame // implements KeyListener
 		// difficulty selection
 		State.removeListenerFromButton(numbers2, JBDigits);
 		State.removeListenerFromButton(numbers2, JBDirections);
-	
+
 		JBDigits[0].removeActionListener(cheatListener);
 		JBDigits[1].removeActionListener(cheatListener);
 		JBDigits[2].removeActionListener(cheatListener);
@@ -1355,11 +1490,11 @@ public class GigaCracker extends JFrame // implements KeyListener
 		JBDirections[5].setForeground(Color.LIGHT_GRAY);
 		JBDirections[6].setForeground(Color.LIGHT_GRAY);
 
-		State.setProShopButtonState(true, JBTools, totalBreakIns, explosives, snips, picks);
+		State.setProShopButtonState(true, JBTools, totalBreakIns, explosives,
+				snips, picks);
 
 		posistionsCorrect = 0;
 		digitsCorrect = 0;
-
 
 	} // ends winning protocol
 
