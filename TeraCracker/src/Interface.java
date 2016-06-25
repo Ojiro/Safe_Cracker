@@ -901,4 +901,213 @@ public class Interface {
 							
 						
 						} // ends printUpdate
+						
+						//
+						// losingProtocol
+						//
+								public void losingProtocol()
+								{
+									timer.stop();
+									
+									// getBail();
+									TeraCracker.bail=500; // holder value, 500 is the default/ minimum bail out value
+									
+									TeraCracker.bail*=TeraCracker.wantedLevel*TeraCracker.difficulty; // sets the amount to bail out
+									TeraCracker.loot-=TeraCracker.bail; // subtracts the bail out from the 
+									
+									GUI.topText.setBackground(Color.RED);
+									GUI.topText.setText("		Loot:  $" + TeraCracker.loot + "     Wanted Level: " + TeraCracker.wantedLevel+ "      Break-Ins: " + TeraCracker.totalBreakIns
+											+ "\n"
+											+ "\n"
+											+ "    	    Busted!"
+											+ "\n"
+											+ "         You Failed To Crack The Safe"
+											+ "\n"
+											+ "         You Bailed Out $" + TeraCracker.bail
+											+ "\n"
+											+ "         Hit Enter To Case Out Your Next Target");
+									
+									
+									
+									// sets listeners for the transition from the end of the game to the difficulty selection
+									GUI.J0.removeActionListener(numbers2);
+									GUI.J1.removeActionListener(numbers2);
+									GUI.J2.removeActionListener(numbers2);
+									GUI.J3.removeActionListener(numbers2);
+									GUI.J4.removeActionListener(numbers2);
+									GUI.J5.removeActionListener(numbers2);
+									GUI.J6.removeActionListener(numbers2);
+									GUI.J7.removeActionListener(numbers2);
+									GUI.J8.removeActionListener(numbers2);
+									GUI.J9.removeActionListener(numbers2);
+									GUI.JUp.removeActionListener(numbers2);
+									GUI.JDown.removeActionListener(numbers2);
+									GUI.JLeft.removeActionListener(numbers2);
+									GUI.JRight.removeActionListener(numbers2);
+									GUI.JEnter.removeActionListener(numbers2);
+									GUI.JBackSpace.removeActionListener(numbers2);
+									GUI.JClear.removeActionListener(numbers2);
+									GUI.J0.removeActionListener(cheatListener);
+									GUI.J1.removeActionListener(cheatListener);
+									GUI.J2.removeActionListener(cheatListener);
+									GUI.JEnter.addActionListener(exitGame1);
+									
+									
+									GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
+									GUI.JClear.setForeground(Color.LIGHT_GRAY);
+									
+									// proshop may be turned on during this phase
+									if(TeraCracker.totalBreakIns>=3)
+									{
+										GUI.JStore.setText("Pro Shop");
+										GUI.JStore.setForeground(Color.BLACK);
+										GUI.JStore.setVisible(true);
+										GUI.JStore.addActionListener(proShopListener);
+									}
+									else
+									{
+										GUI.JStore.setVisible(false);
+									}
+									
+									// show tools if they are available, 
+									if(TeraCracker.explosives>0)
+									{
+										GUI.JTNT.setText("TNT (" +TeraCracker.explosives+"x)");
+										
+									}
+									else 
+									{
+										GUI.JTNT.setText("");
+										
+									}
+									
+									if (TeraCracker.snips>0)
+									{
+										GUI.JSnips.setText("Snips ("+ TeraCracker.snips +"x)" );
+									}
+									else
+									{
+										GUI.JSnips.setText("");
+										
+									}
+									
+									if (TeraCracker.picks>0)
+									{
+										GUI.JPicks.setText("Picks (" + TeraCracker.picks + "x)");
+									}
+									else
+									{
+										GUI.JPicks.setText("");
+									}
+									
+									
+									TeraCracker.posistionsCorrect=0;
+									TeraCracker.digitsCorrect=0;
+									
+								}
+								
+						//
+						// winningProtocol
+						//
+								public void winningProtocol()
+								{
+									timer.stop();
+									
+									TeraCracker.payout=(int)(Math.random()*1000)*TeraCracker.difficulty;
+									TeraCracker.loot+=TeraCracker.payout;
+									TeraCracker.totalBreakIns++;
+									TeraCracker.wantedLevel();
+									
+									GUI.topText.setBackground(Color.GREEN);
+									GUI.topText.setText("		Loot:  $" + TeraCracker.loot + "     Wanted Level: " + TeraCracker.wantedLevel+ "      Break-Ins: " + TeraCracker.totalBreakIns
+											+ "\n"
+											+ "\n"
+											+ "         Nice!  You Cracked The Safe"
+											+ "\n"
+											+ "         You \"Found\"  $"+ TeraCracker.payout
+											+ "\n"
+											+ "         Hit Enter To Case Out Your Next Target");
+									
+									
+									TeraCracker.turnCount=0;
+									
+									// sets listeners for the transition from the end of the game to the difficulty selection
+									GUI.J0.removeActionListener(numbers2);
+									GUI.J1.removeActionListener(numbers2);
+									GUI.J2.removeActionListener(numbers2);
+									GUI.J3.removeActionListener(numbers2);
+									GUI.J4.removeActionListener(numbers2);
+									GUI.J5.removeActionListener(numbers2);
+									GUI.J6.removeActionListener(numbers2);
+									GUI.J7.removeActionListener(numbers2);
+									GUI.J8.removeActionListener(numbers2);
+									GUI.J9.removeActionListener(numbers2);
+									GUI.JUp.removeActionListener(numbers2);
+									GUI.JDown.removeActionListener(numbers2);
+									GUI.JLeft.removeActionListener(numbers2);
+									GUI.JRight.removeActionListener(numbers2);
+									GUI.JEnter.removeActionListener(numbers2);
+									GUI.JBackSpace.removeActionListener(numbers2);
+									GUI.JClear.removeActionListener(numbers2);
+									GUI.JEnter.addActionListener(exitGame1);
+									
+									// turn off tools
+									GUI.JTNT.removeActionListener(applyCheat);
+									GUI.JSnips.removeActionListener(applyCheat);
+									GUI.JPicks.removeActionListener(applyCheat);
+									GUI.J0.removeActionListener(cheatListener);
+									GUI.J1.removeActionListener(cheatListener);
+									GUI.J2.removeActionListener(cheatListener);
+									
+									GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
+									GUI.JClear.setForeground(Color.LIGHT_GRAY);
+									
+									// turn off tools
+									if(TeraCracker.totalBreakIns>=3)
+									{
+										GUI.JStore.setText("Pro Shop");
+										GUI.JStore.setForeground(Color.BLACK);
+										GUI.JStore.setVisible(true);
+										GUI.JStore.addActionListener(proShopListener);
+									}
+									else
+									{
+										GUI.JStore.setVisible(false);
+									}
+									
+									// show tools if they are available, 
+									if(TeraCracker.explosives>0)
+									{
+										GUI.JTNT.setText("TNT (" +TeraCracker.explosives+"x)");
+									}
+									else 
+									{
+										GUI.JTNT.setText("");
+									}
+									
+									if (TeraCracker.snips>0)
+									{
+										GUI.JSnips.setText("Snips ("+ TeraCracker.snips +"x)" );
+									}
+									else
+									{
+										GUI.JSnips.setText("");
+									}
+									
+									if (TeraCracker.picks>0)
+									{
+										GUI.JPicks.setText("Picks (" + TeraCracker.picks + "x)");
+									}
+									else
+									{
+										GUI.JPicks.setText("");
+									}
+									
+									TeraCracker.posistionsCorrect=0;
+									TeraCracker.digitsCorrect=0;
+									
+									
+									
+								} // ends winning protocol
+								
 }
