@@ -311,4 +311,70 @@ public class GUI extends JFrame {
 
 	}
 
+	//
+	// buyStatus
+	// method prints an update for a the user when they try to buy something in the proshop
+			public void buyStatus(boolean sucessful, String item)
+			{
+				if (!sucessful)
+				{
+					// informers the user they couldn't but their item
+					topText.setText("		Loot:  $" + TeraCracker.loot + "     Wanted Level: " + TeraCracker.wantedLevel+ "      Break-Ins: " + TeraCracker.totalBreakIns
+							+ "\n"
+							+ "		You Don't Have Enough Loot To Buy That!"
+							+ "\n"
+							+ "\n"
+							+ "  		Here's What We Got"
+							+ "\n"
+							+ "\n"
+							+ "$4,500 "
+							+ "TNT- Breaks A Safe For You, But May Alert The Cops (Tread Lightly)"
+							+ "\n"
+							+ "$3,500 "
+							+ "Lock Pick- Removes A Digit From A Combo"
+							+ "\n"
+							+ "$3,000 "
+							+ "Snips- Delays The Cops And Gives You An Extra Move ");
+				}
+				else if (sucessful)
+				{
+					// informs the user of a sucessful purchase in the proshop
+					
+					topText.setText("		Loot:  $" + TeraCracker.loot + "     Wanted Level: " + TeraCracker.wantedLevel+ "      Break-Ins: " + TeraCracker.totalBreakIns
+							+ "\n"
+							+ "\n"
+							+ "		Nice! You Sucessfully Bought " + item
+							+ "\n"
+							+ "   		Here's What We Got"
+							+ "\n"
+							+ "\n"
+							+ "$4,500 "
+							+ "TNT- Breaks A Safe For You, But May Alert The Cops (Tread Lightly)"
+							+ "\n"
+							+ "$3,500 "
+							+ "Lock Pick- Removes A Digit From A Combo"
+							+ "\n"
+							+ "$3,000 "
+							+ "Snips- Delays The Cops And Gives You An Extra Move ");
+					
+				} // ends else if
+				
+				// show tools as they are added
+				if (TeraCracker.explosives>0)
+				{
+					JTNT.setText("TNT (" + TeraCracker.explosives + "x)");
+					JTNT.setForeground(Color.GRAY);
+				}
+				if (TeraCracker.picks>0)
+				{
+					JPicks.setText("Picks (" + TeraCracker.picks + "x)");
+					JPicks.setForeground(Color.GRAY);
+				}
+				if (TeraCracker.snips>0)
+				{
+					JSnips.setText("Snips (" + TeraCracker.snips + "x)");
+					JSnips.setForeground(Color.GRAY);
+				}
+			} // ends buy status
+	
 }
