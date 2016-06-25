@@ -225,22 +225,22 @@ public class GUI extends JFrame {
 		JBackSpace.setForeground(Color.LIGHT_GRAY);
 
 		// tools are off during this phase
-		if ((TeraCracker.explosives) > 0) {
-			JTNT.setText("TNT (" + (TeraCracker.explosives) + "x)");
+		if ((CrackerJacker.explosives) > 0) {
+			JTNT.setText("TNT (" + (CrackerJacker.explosives) + "x)");
 			JTNT.setForeground(Color.LIGHT_GRAY);
 		} else {
 			JTNT.setText("-");
 			JTNT.setForeground(Color.LIGHT_GRAY);
 		}
-		if ((TeraCracker.picks) > 0) {
-			JPicks.setText("Picks (" + (TeraCracker.picks) + "x)");
+		if ((CrackerJacker.picks) > 0) {
+			JPicks.setText("Picks (" + (CrackerJacker.picks) + "x)");
 			JPicks.setForeground(Color.LIGHT_GRAY);
 		} else {
 			JPicks.setText("-");
 			JPicks.setForeground(Color.LIGHT_GRAY);
 		}
-		if ((TeraCracker.snips) > 0) {
-			JSnips.setText("Snips (" + (TeraCracker.snips) + "x)");
+		if ((CrackerJacker.snips) > 0) {
+			JSnips.setText("Snips (" + (CrackerJacker.snips) + "x)");
 			JSnips.setForeground(Color.LIGHT_GRAY);
 		} else {
 			JSnips.setText("-");
@@ -288,11 +288,11 @@ public class GUI extends JFrame {
 		// lot of work to line these up properly
 		topText.setBackground(Color.WHITE);
 		topText.setText("		Loot:  $"
-				+ (TeraCracker.loot)
+				+ (CrackerJacker.loot)
 				+ "     Wanted Level: "
-				+ (TeraCracker.wantedLevel)
+				+ (CrackerJacker.wantedLevel)
 				+ "      Break-Ins: "
-				+ (TeraCracker.totalBreakIns)
+				+ (CrackerJacker.totalBreakIns)
 				+ "\n"
 				+ "\n"
 				+ "	                                              Select Difficulty"
@@ -319,7 +319,7 @@ public class GUI extends JFrame {
 				if (!sucessful)
 				{
 					// informers the user they couldn't but their item
-					topText.setText("		Loot:  $" + TeraCracker.loot + "     Wanted Level: " + TeraCracker.wantedLevel+ "      Break-Ins: " + TeraCracker.totalBreakIns
+					topText.setText("		Loot:  $" + CrackerJacker.loot + "     Wanted Level: " + CrackerJacker.wantedLevel+ "      Break-Ins: " + CrackerJacker.totalBreakIns
 							+ "\n"
 							+ "		You Don't Have Enough Loot To Buy That!"
 							+ "\n"
@@ -340,7 +340,7 @@ public class GUI extends JFrame {
 				{
 					// informs the user of a sucessful purchase in the proshop
 					
-					topText.setText("		Loot:  $" + TeraCracker.loot + "     Wanted Level: " + TeraCracker.wantedLevel+ "      Break-Ins: " + TeraCracker.totalBreakIns
+					topText.setText("		Loot:  $" + CrackerJacker.loot + "     Wanted Level: " + CrackerJacker.wantedLevel+ "      Break-Ins: " + CrackerJacker.totalBreakIns
 							+ "\n"
 							+ "\n"
 							+ "		Nice! You Sucessfully Bought " + item
@@ -360,19 +360,19 @@ public class GUI extends JFrame {
 				} // ends else if
 				
 				// show tools as they are added
-				if (TeraCracker.explosives>0)
+				if (CrackerJacker.explosives>0)
 				{
-					JTNT.setText("TNT (" + TeraCracker.explosives + "x)");
+					JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
 					JTNT.setForeground(Color.GRAY);
 				}
-				if (TeraCracker.picks>0)
+				if (CrackerJacker.picks>0)
 				{
-					JPicks.setText("Picks (" + TeraCracker.picks + "x)");
+					JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
 					JPicks.setForeground(Color.GRAY);
 				}
-				if (TeraCracker.snips>0)
+				if (CrackerJacker.snips>0)
 				{
-					JSnips.setText("Snips (" + TeraCracker.snips + "x)");
+					JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
 					JSnips.setForeground(Color.GRAY);
 				}
 			} // ends buy status

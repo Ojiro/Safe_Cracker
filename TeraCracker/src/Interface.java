@@ -25,9 +25,11 @@ public class Interface {
 	private Timer timer = new Timer(1000, new timerListener()); // time event
 																// listener
 	GUI GUI;
-
-	Interface(GUI a) {
+	CrackerJacker CrackerJacker;
+	
+	Interface(GUI a, CrackerJacker b) {
 		GUI = a;
+		CrackerJacker=b;
 		// register listeners
 		(GUI.JEnter).addActionListener(exitWelcome1);
 		// (GUI.Help).addActionListener(help); // note the button "Help" is
@@ -49,87 +51,76 @@ public class Interface {
 	// ========================================================================================================================================
 	// ========================================================================================================================================
 
-	public class numberListener2 implements ActionListener {/*
-															 * This is the main
-															 * listener in the
-															 * game and should
-															 * ideally hold most
-															 * of the logic it
-															 * covers all the
-															 * numbered buttons
-															 * and the
-															 * directions. It
-															 * does not cover
-															 * the enter button
-															 * or the helper
-															 * buttons.
-															 * 
-															 * When the player
-															 * enters a number
-															 * or direction,
-															 * this listener
-															 * adds the
-															 * information to
-															 * the guess and
-															 * applies the guess
-															 * when the proper
-															 * conditions are
-															 * met
+	public class numberListener2 implements ActionListener {
+		/*
+ This is the main listener in the game and should ideally hold most 
+ of the logic it covers all the numbered buttons and the directions. 
+ It does not cover the enter button or the helper  buttons.
+															  
+* When the player enters a number or direction, 
+* this listener adds the information to the guess and applies the guess when the 
+* proper conditions are met
 															 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			/*
-			 * 
-			 * JButton temp=(JButton)e.getSource(); // acquires the input of the
-			 * entered digit or direction
-			 * 
-			 * if((TeraCracker.currentGuess).length()<(TeraCracker.comboSize) &&
-			 * (TeraCracker.turnCount) < (TeraCracker.guessLimit)) { //
-			 * condition does not allow the string to be bigger then the
-			 * combination
-			 * 
-			 * // switch updates the current guess string switch(temp.getText())
-			 * { case "0": (TeraCracker.currentGuess).append(temp.getText());
-			 * break; case "1":
-			 * (TeraCracker.currentGuess).append(temp.getText()); break; case
-			 * "2": (TeraCracker.currentGuess).append(temp.getText()); break;
-			 * case "3": (TeraCracker.currentGuess).append(temp.getText());
-			 * break; case "4":
-			 * (TeraCracker.currentGuess).append(temp.getText()); break; case
-			 * "5": (TeraCracker.currentGuess).append(temp.getText()); break;
-			 * case "6": (TeraCracker.currentGuess).append(temp.getText());
-			 * break; case "7":
-			 * (TeraCracker.currentGuess).append(temp.getText()); break; case
-			 * "8": (TeraCracker.currentGuess).append(temp.getText()); break;
-			 * case "9": (TeraCracker.currentGuess).append(temp.getText());
-			 * break; case "Up": (TeraCracker.currentGuess).append("U"); break;
-			 * case "Down": (TeraCracker.currentGuess).append("D"); break; case
-			 * "Left": (TeraCracker.currentGuess).append("L"); break; case
-			 * "Right": (TeraCracker.currentGuess).append("R"); break; default:
-			 * TeraCracker.printUpdate(); return; } //ends switch
-			 * 
-			 * 
-			 * printUpdate();
-			 * 
-			 * } // ends if
-			 * 
-			 * else if(currentGuess.length()==comboSize &&
-			 * temp.getText().equals("Enter") && turnCount<guessLimit) { //
-			 * process a completed guess
-			 * //guessArray[turnCount].delete(0,comboSize);
-			 * guessArray[turnCount]=currentGuess;
-			 * 
-			 * //check the number of positions and digits correct
-			 * getPosistions();
-			 * 
-			 * currentGuess=new StringBuilder(); // clears out the current guess
-			 * turnCount++; printUpdate();
-			 * 
-			 * 
-			 * } else if(currentGuess.length()==comboSize &&
-			 * !temp.getText().equals("Enter")) { // suggest user hit enter }
-			 * else;
-			 */
+			
+			  
+			  JButton temp=(JButton)e.getSource(); 
+			  // acquires the input of the entered digit or direction
+			  
+			  if((CrackerJacker.currentGuess).length()<(CrackerJacker.comboSize) &&
+			  (CrackerJacker.turnCount) < (CrackerJacker.guessLimit)) {
+				  // condition does not allow the string to be bigger then the combination
+			  
+			  // switch updates the current guess string 
+			 switch(temp.getText())
+			  { 
+			 case "0": (CrackerJacker.currentGuess).append(temp.getText()); break; 
+			 case "1": (CrackerJacker.currentGuess).append(temp.getText()); break;
+			 case "2": (CrackerJacker.currentGuess).append(temp.getText()); break;
+			 case "3": (CrackerJacker.currentGuess).append(temp.getText()); break; 
+			 case "4": (CrackerJacker.currentGuess).append(temp.getText()); break; 
+			 case "5": (CrackerJacker.currentGuess).append(temp.getText()); break;
+			 case "6": (CrackerJacker.currentGuess).append(temp.getText()); break; 
+			 case "7": (CrackerJacker.currentGuess).append(temp.getText()); break; 
+			 case "8": (CrackerJacker.currentGuess).append(temp.getText()); break;
+			  case "9": (CrackerJacker.currentGuess).append(temp.getText()); break; 
+			  case "Up": (CrackerJacker.currentGuess).append("U"); break;
+			  case "Down": (CrackerJacker.currentGuess).append("D"); break; 
+			  case "Left": (CrackerJacker.currentGuess).append("L"); break; 
+			  case "Right": (CrackerJacker.currentGuess).append("R"); break; 
+			  default: printUpdate(); return; 
+			  } 
+			 //ends switch
+			  
+			  
+			  printUpdate();
+			  
+			  } // ends if
+			  
+			  else if(CrackerJacker.currentGuess.length()==CrackerJacker.comboSize &&
+			  temp.getText().equals("Enter") && CrackerJacker.turnCount<CrackerJacker.guessLimit)
+			  { 
+				  //process a completed guess
+			  
+			  //guessArray[turnCount].delete(0,comboSize);
+				  CrackerJacker.guessArray[CrackerJacker.turnCount]=CrackerJacker.currentGuess;
+			  
+			  //check the number of positions and digits correct
+				  CrackerJacker.getPosistions();
+			  
+			  CrackerJacker.currentGuess=new StringBuilder(); // clears out the current guess
+			  CrackerJacker.turnCount++; printUpdate();
+			  
+			  
+			  } else if(CrackerJacker.currentGuess.length()==CrackerJacker.comboSize &&
+			  !temp.getText().equals("Enter")) 
+			  { 
+				  // suggest user hit enter 
+				  }
+			  
+			  else;
+			 
 		} // ends actionPerformed
 
 	} // ends numberListener2
@@ -139,17 +130,21 @@ public class Interface {
 		// they've been playing
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			/*
-			 * timeInSeconds--; // everytime the listener hits, count down 1
-			 * seconds
-			 * 
-			 * if (timeInSeconds==0 && timeInMinutes==0) { // if the timer
-			 * reaches 0, ends the game losingProtocol();
-			 * 
-			 * } else if (timeInSeconds<=0) { // if the seconds reach zero,
-			 * decrements the minutes and reset seconds to 59 timeInSeconds=59;
-			 * timeInMinutes--; printUpdate(); } else { printUpdate(); }
-			 */
+			
+			CrackerJacker.timeInSeconds--; // everytime the listener hits, count down 1 second
+			  
+			  if (CrackerJacker.timeInSeconds==0 && CrackerJacker.timeInMinutes==0) 
+			  { 
+				  // if the timer reaches 0, ends the game 
+				  losingProtocol();
+			  
+			  } 
+			  else if (CrackerJacker.timeInSeconds<=0) 
+			  { 
+				  // if the seconds reach zero, decrements the minutes and reset seconds to 59 
+				  CrackerJacker.timeInSeconds=59;
+				  CrackerJacker.timeInMinutes--; printUpdate(); } else { printUpdate(); }
+			 
 
 		} // ends actionPerformed
 	} // ends timerListener
@@ -250,7 +245,7 @@ public class Interface {
 			// screen
 			// isWinner=false;
 			// requestDifficulty();
-			setDifficultyListener();
+		//	setDifficultyListener();
 
 		}
 	}
@@ -344,11 +339,11 @@ public class Interface {
 			// listener clears the digits on the current guess by clearing
 			// currentGuess
 			try {
-				if (!TeraCracker.isWinner) // only allows the guess to be
+				if (!CrackerJacker.isWinner) // only allows the guess to be
 											// cleared if the game hasn't
 											// already been won
 				{
-					TeraCracker.currentGuess = new StringBuilder();
+					CrackerJacker.currentGuess = new StringBuilder();
 					printUpdate();
 				} else
 					;
@@ -370,8 +365,8 @@ public class Interface {
 														// digit on the current
 														// guess
 			try {
-				int deleteCharLocation = TeraCracker.currentGuess.length() - 1;
-				TeraCracker.currentGuess.deleteCharAt(deleteCharLocation);
+				int deleteCharLocation = CrackerJacker.currentGuess.length() - 1;
+				CrackerJacker.currentGuess.deleteCharAt(deleteCharLocation);
 				printUpdate();
 			} catch (StringIndexOutOfBoundsException ex) { // does nothing if
 															// there is a
@@ -403,9 +398,9 @@ public class Interface {
 
 			System.out.println("cheatListener");
 			if (hold.getText().contains("TNT")) {
-				if (TeraCracker.loot > 4500) {
-					TeraCracker.loot -= 4500;
-					TeraCracker.explosives++;
+				if (CrackerJacker.loot > 4500) {
+					CrackerJacker.loot -= 4500;
+					CrackerJacker.explosives++;
 
 					GUI.buyStatus(true, "TNT");
 				} else { // display message telling user that they don't have
@@ -415,9 +410,9 @@ public class Interface {
 				}
 
 			} else if (hold.getText().contains("Snips")) {
-				if (TeraCracker.loot > 3000) {
-					TeraCracker.loot -= 3000;
-					TeraCracker.snips++;
+				if (CrackerJacker.loot > 3000) {
+					CrackerJacker.loot -= 3000;
+					CrackerJacker.snips++;
 					GUI.buyStatus(true, "Snips");
 				} else {
 					// display a message telling the user that they don't have
@@ -426,9 +421,9 @@ public class Interface {
 
 				}
 			} else if (hold.getText().contains("Picks")) {
-				if (TeraCracker.loot > 3500) {
-					TeraCracker.loot -= 3500;
-					TeraCracker.picks++;
+				if (CrackerJacker.loot > 3500) {
+					CrackerJacker.loot -= 3500;
+					CrackerJacker.picks++;
 					GUI.buyStatus(true, "Picks");
 				} else {
 					// display a message telling the user that they don't have
@@ -557,9 +552,9 @@ public class Interface {
 				// Success rate should be about 75% on easy and medium levels,
 				// and 45% for harder level
 
-				TeraCracker.explosives--;
+				CrackerJacker.explosives--;
 
-				if (TeraCracker.difficulty < 10) {
+				if (CrackerJacker.difficulty < 10) {
 					// select success for easy and medium difficulties 0-9
 					int rand = (int) (Math.random() * 4);
 
@@ -585,22 +580,22 @@ public class Interface {
 			else if (hold.getText().contains("Snips")) { // delay the cops by
 															// adding time and
 															// guesses
-				TeraCracker.timeInMinutes++;
-				TeraCracker.guessLimit += 2;
-				TeraCracker.snips--;
+				CrackerJacker.timeInMinutes++;
+				CrackerJacker.guessLimit += 2;
+				CrackerJacker.snips--;
 				printUpdate();
 
 			} else if (hold.getText().contains("Lock Pick")) { // Remove a digit
 																// from the
 																// combo, make
 																// it random
-				TeraCracker.picks--;
-				int rand = (int) (Math.random() * (TeraCracker.combo.length() + 1));
+				CrackerJacker.picks--;
+				int rand = (int) (Math.random() * (CrackerJacker.combo.length() + 1));
 				// picks a random spot in the char to delete
-				TeraCracker.combo.deleteCharAt(rand); // applies the delete
-				TeraCracker.directions = 0;
+				CrackerJacker.combo.deleteCharAt(rand); // applies the delete
+				CrackerJacker.directions = 0;
 
-				for (int i = 0; i < TeraCracker.combo.length(); i++) // loop
+				for (int i = 0; i < CrackerJacker.combo.length(); i++) // loop
 																		// recounts
 																		// the
 																		// number
@@ -611,15 +606,15 @@ public class Interface {
 																		// combo
 				{
 
-					if (TeraCracker.combo.charAt(i) == 'U'
-							|| TeraCracker.combo.charAt(i) == 'D'
-							|| TeraCracker.combo.charAt(i) == 'L'
-							|| TeraCracker.combo.charAt(i) == 'R') {
-						TeraCracker.directions++;
+					if (CrackerJacker.combo.charAt(i) == 'U'
+							|| CrackerJacker.combo.charAt(i) == 'D'
+							|| CrackerJacker.combo.charAt(i) == 'L'
+							|| CrackerJacker.combo.charAt(i) == 'R') {
+						CrackerJacker.directions++;
 					}
 				} // ends for loop
 
-				TeraCracker.comboSize = TeraCracker.combo.length();
+				CrackerJacker.comboSize = CrackerJacker.combo.length();
 				printUpdate();
 
 			}// ends else if
@@ -690,7 +685,7 @@ public class Interface {
 		// (GUI.J2).removeActionListener(cheatListener);
 
 		// show the proshop to the player if they have more than 3 break-ins
-		if ((TeraCracker.totalBreakIns) >= 3) // makes the pro shop available if
+		if ((CrackerJacker.totalBreakIns) >= 3) // makes the pro shop available if
 												// the player has broken enough
 												// safes
 		{
@@ -774,7 +769,7 @@ public class Interface {
 
 		// if the player has more than 3 break-ins show the proshop
 		// proshop will not be accessible during the guess phase
-		if (TeraCracker.totalBreakIns >= 3) {
+		if (CrackerJacker.totalBreakIns >= 3) {
 			GUI.JStore.setText("Pro Shop");
 			GUI.JStore.setForeground(Color.LIGHT_GRAY);
 			// JStore.setVisible(true);
@@ -783,8 +778,8 @@ public class Interface {
 		}
 
 		// show tools if they are available,
-		if (TeraCracker.explosives > 0) {
-			GUI.JTNT.setText("TNT (" + TeraCracker.explosives + "x)");
+		if (CrackerJacker.explosives > 0) {
+			GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
 			// GUI.JTNT.addActionListener(applyCheat);
 		} else {
 			GUI.JTNT.setText("-");
@@ -792,8 +787,8 @@ public class Interface {
 			// GUI.JTNT.removeActionListener(applyCheat);
 		}
 
-		if (TeraCracker.snips > 0) {
-			GUI.JSnips.setText("Snips (" + TeraCracker.snips + "x)");
+		if (CrackerJacker.snips > 0) {
+			GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
 			// GUI.JSnips.addActionListener(applyCheat);
 		} else {
 			GUI.JSnips.setText("-");
@@ -801,8 +796,8 @@ public class Interface {
 			// GUI.JSnips.removeActionListener(applyCheat);
 		}
 
-		if (TeraCracker.picks > 0) {
-			GUI.JPicks.setText("Picks (" + TeraCracker.picks + "x)");
+		if (CrackerJacker.picks > 0) {
+			GUI.JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
 			// GUI.JPicks.addActionListener(applyCheat);
 		} else {
 			GUI.JPicks.setText("-");
@@ -828,30 +823,30 @@ public class Interface {
 		// it is called by the numberListener and hits under certain conditions
 
 		// checks if the safe has been cracked or not
-		if (TeraCracker.isWinner) {
+		if (CrackerJacker.isWinner) {
 			winningProtocol();
-			TeraCracker.turnCount = 0;
+			CrackerJacker.turnCount = 0;
 			// currentGuess may need to be cleared here
-		} else if (TeraCracker.turnCount == TeraCracker.guessLimit) {
+		} else if (CrackerJacker.turnCount == CrackerJacker.guessLimit) {
 			losingProtocol();
-			TeraCracker.turnCount = 0;
+			CrackerJacker.turnCount = 0;
 		} else {
 			// if the game is neither a winner nor a loser, then it continues to
 			// print the necessary information for gamePlay
 			StringBuilder tempBuilder = new StringBuilder();
 
-			for (int i = 0; i < TeraCracker.turnCount; i++) // for loop strings
+			for (int i = 0; i < CrackerJacker.turnCount; i++) // for loop strings
 															// together all the
 															// previous guesses
 															// for display
 			{
 
-				if (i == TeraCracker.turnCount - 1) {
+				if (i == CrackerJacker.turnCount - 1) {
 					tempBuilder.append("  | "
-							+ TeraCracker.guessArray[i].toString() + " | ");
+							+ CrackerJacker.guessArray[i].toString() + " | ");
 				} else {
 					tempBuilder.append("   "
-							+ TeraCracker.guessArray[i].toString());
+							+ CrackerJacker.guessArray[i].toString());
 				}
 
 			} // ends for loop
@@ -859,24 +854,24 @@ public class Interface {
 			// display top and bottom text area
 			// uncomment the combo portion of the next line to make the combo
 			// visible during play.
-			GUI.topText.setText("		Loot:  $" + TeraCracker.loot
-					+ "     Wanted Level: " + TeraCracker.wantedLevel
-					+ "      Break-Ins: " + TeraCracker.totalBreakIns
-					+ "   combo: " + TeraCracker.combo + "\n" + " Difficulty: "
-					+ TeraCracker.difficulty + "\n" + " Digits: "
-					+ TeraCracker.comboSize + " Directions: "
-					+ TeraCracker.directions + "\n" + " Guesses:  "
-					+ (TeraCracker.guessLimit - TeraCracker.turnCount)
-					+ "    Time: " + TeraCracker.timeInMinutes + ":"
-					+ TeraCracker.timeInSeconds + "\n" + tempBuilder + "\n"
-					+ "\n" + "             " + TeraCracker.currentGuess + "\n"
-					+ "      Digits Correct: " + TeraCracker.digitsCorrect
+			GUI.topText.setText("		Loot:  $" + CrackerJacker.loot
+					+ "     Wanted Level: " + CrackerJacker.wantedLevel
+					+ "      Break-Ins: " + CrackerJacker.totalBreakIns
+					+ "   combo: " + CrackerJacker.combo + "\n" + " Difficulty: "
+					+ CrackerJacker.difficulty + "\n" + " Digits: "
+					+ CrackerJacker.comboSize + " Directions: "
+					+ CrackerJacker.directions + "\n" + " Guesses:  "
+					+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
+					+ "    Time: " + CrackerJacker.timeInMinutes + ":"
+					+ CrackerJacker.timeInSeconds + "\n" + tempBuilder + "\n"
+					+ "\n" + "             " + CrackerJacker.currentGuess + "\n"
+					+ "      Digits Correct: " + CrackerJacker.digitsCorrect
 					+ "    Posistions Correct: "
-					+ TeraCracker.posistionsCorrect);
+					+ CrackerJacker.posistionsCorrect);
 
 			// update the tool buttons
-			if (TeraCracker.explosives > 0) {
-				GUI.JTNT.setText("TNT (" + TeraCracker.explosives + "x)");
+			if (CrackerJacker.explosives > 0) {
+				GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
 				GUI.JTNT.setForeground(Color.BLACK);
 				GUI.JTNT.addActionListener(applyCheat);
 			} else {
@@ -884,8 +879,8 @@ public class Interface {
 				GUI.JTNT.removeActionListener(applyCheat);
 			}
 
-			if (TeraCracker.snips > 0) {
-				GUI.JSnips.setText("Snips (" + TeraCracker.snips + "x)");
+			if (CrackerJacker.snips > 0) {
+				GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
 				GUI.JSnips.setForeground(Color.BLACK);
 				GUI.JSnips.addActionListener(applyCheat);
 			} else {
@@ -893,8 +888,8 @@ public class Interface {
 				GUI.JSnips.removeActionListener(applyCheat);
 			}
 
-			if (TeraCracker.picks > 0) {
-				GUI.JPicks.setText("Lock Pick (" + TeraCracker.picks + "x)");
+			if (CrackerJacker.picks > 0) {
+				GUI.JPicks.setText("Lock Pick (" + CrackerJacker.picks + "x)");
 				GUI.JPicks.setForeground(Color.BLACK);
 				GUI.JPicks.addActionListener(applyCheat);
 			} else {
@@ -915,24 +910,24 @@ public class Interface {
 		timer.stop();
 
 		// getBail();
-		TeraCracker.bail = 500; // holder value, 500 is the default/ minimum
+		CrackerJacker.bail = 500; // holder value, 500 is the default/ minimum
 								// bail out value
 
-		TeraCracker.bail *= TeraCracker.wantedLevel * TeraCracker.difficulty; // sets
+		CrackerJacker.bail *= CrackerJacker.wantedLevel * CrackerJacker.difficulty; // sets
 																				// the
 																				// amount
 																				// to
 																				// bail
 																				// out
-		TeraCracker.loot -= TeraCracker.bail; // subtracts the bail out from the
+		CrackerJacker.loot -= CrackerJacker.bail; // subtracts the bail out from the
 
 		GUI.topText.setBackground(Color.RED);
-		GUI.topText.setText("		Loot:  $" + TeraCracker.loot
-				+ "     Wanted Level: " + TeraCracker.wantedLevel
-				+ "      Break-Ins: " + TeraCracker.totalBreakIns + "\n" + "\n"
+		GUI.topText.setText("		Loot:  $" + CrackerJacker.loot
+				+ "     Wanted Level: " + CrackerJacker.wantedLevel
+				+ "      Break-Ins: " + CrackerJacker.totalBreakIns + "\n" + "\n"
 				+ "    	    Busted!" + "\n"
 				+ "         You Failed To Crack The Safe" + "\n"
-				+ "         You Bailed Out $" + TeraCracker.bail + "\n"
+				+ "         You Bailed Out $" + CrackerJacker.bail + "\n"
 				+ "         Hit Enter To Case Out Your Next Target");
 
 		// sets listeners for the transition from the end of the game to the
@@ -963,7 +958,7 @@ public class Interface {
 		GUI.JClear.setForeground(Color.LIGHT_GRAY);
 
 		// proshop may be turned on during this phase
-		if (TeraCracker.totalBreakIns >= 3) {
+		if (CrackerJacker.totalBreakIns >= 3) {
 			GUI.JStore.setText("Pro Shop");
 			GUI.JStore.setForeground(Color.BLACK);
 			GUI.JStore.setVisible(true);
@@ -973,29 +968,29 @@ public class Interface {
 		}
 
 		// show tools if they are available,
-		if (TeraCracker.explosives > 0) {
-			GUI.JTNT.setText("TNT (" + TeraCracker.explosives + "x)");
+		if (CrackerJacker.explosives > 0) {
+			GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
 
 		} else {
 			GUI.JTNT.setText("");
 
 		}
 
-		if (TeraCracker.snips > 0) {
-			GUI.JSnips.setText("Snips (" + TeraCracker.snips + "x)");
+		if (CrackerJacker.snips > 0) {
+			GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
 		} else {
 			GUI.JSnips.setText("");
 
 		}
 
-		if (TeraCracker.picks > 0) {
-			GUI.JPicks.setText("Picks (" + TeraCracker.picks + "x)");
+		if (CrackerJacker.picks > 0) {
+			GUI.JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
 		} else {
 			GUI.JPicks.setText("");
 		}
 
-		TeraCracker.posistionsCorrect = 0;
-		TeraCracker.digitsCorrect = 0;
+		CrackerJacker.posistionsCorrect = 0;
+		CrackerJacker.digitsCorrect = 0;
 
 	}
 
@@ -1005,21 +1000,21 @@ public class Interface {
 	public void winningProtocol() {
 		timer.stop();
 
-		TeraCracker.payout = (int) (Math.random() * 1000)
-				* TeraCracker.difficulty;
-		TeraCracker.loot += TeraCracker.payout;
-		TeraCracker.totalBreakIns++;
-		TeraCracker.wantedLevel();
+		CrackerJacker.payout = (int) (Math.random() * 1000)
+				* CrackerJacker.difficulty;
+		CrackerJacker.loot += CrackerJacker.payout;
+		CrackerJacker.totalBreakIns++;
+		CrackerJacker.wantedLevel();
 
 		GUI.topText.setBackground(Color.GREEN);
-		GUI.topText.setText("		Loot:  $" + TeraCracker.loot
-				+ "     Wanted Level: " + TeraCracker.wantedLevel
-				+ "      Break-Ins: " + TeraCracker.totalBreakIns + "\n" + "\n"
+		GUI.topText.setText("		Loot:  $" + CrackerJacker.loot
+				+ "     Wanted Level: " + CrackerJacker.wantedLevel
+				+ "      Break-Ins: " + CrackerJacker.totalBreakIns + "\n" + "\n"
 				+ "         Nice!  You Cracked The Safe" + "\n"
-				+ "         You \"Found\"  $" + TeraCracker.payout + "\n"
+				+ "         You \"Found\"  $" + CrackerJacker.payout + "\n"
 				+ "         Hit Enter To Case Out Your Next Target");
 
-		TeraCracker.turnCount = 0;
+		CrackerJacker.turnCount = 0;
 
 		// sets listeners for the transition from the end of the game to the
 		// difficulty selection
@@ -1054,7 +1049,7 @@ public class Interface {
 		GUI.JClear.setForeground(Color.LIGHT_GRAY);
 
 		// turn off tools
-		if (TeraCracker.totalBreakIns >= 3) {
+		if (CrackerJacker.totalBreakIns >= 3) {
 			GUI.JStore.setText("Pro Shop");
 			GUI.JStore.setForeground(Color.BLACK);
 			GUI.JStore.setVisible(true);
@@ -1064,26 +1059,26 @@ public class Interface {
 		}
 
 		// show tools if they are available,
-		if (TeraCracker.explosives > 0) {
-			GUI.JTNT.setText("TNT (" + TeraCracker.explosives + "x)");
+		if (CrackerJacker.explosives > 0) {
+			GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
 		} else {
 			GUI.JTNT.setText("");
 		}
 
-		if (TeraCracker.snips > 0) {
-			GUI.JSnips.setText("Snips (" + TeraCracker.snips + "x)");
+		if (CrackerJacker.snips > 0) {
+			GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
 		} else {
 			GUI.JSnips.setText("");
 		}
 
-		if (TeraCracker.picks > 0) {
-			GUI.JPicks.setText("Picks (" + TeraCracker.picks + "x)");
+		if (CrackerJacker.picks > 0) {
+			GUI.JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
 		} else {
 			GUI.JPicks.setText("");
 		}
 
-		TeraCracker.posistionsCorrect = 0;
-		TeraCracker.digitsCorrect = 0;
+		CrackerJacker.posistionsCorrect = 0;
+		CrackerJacker.digitsCorrect = 0;
 
 	} // ends winning protocol
 
@@ -1146,10 +1141,10 @@ public class Interface {
 					GUI.JEnter.setText("Exit");
 					
 					
-					if (TeraCracker.loot<3000)  // text shown if the player doesn't have enough money
+					if (CrackerJacker.loot<3000)  // text shown if the player doesn't have enough money
 					{
 						
-						GUI.topText.setText("		Loot:  $" + TeraCracker.loot + "     Wanted Level: " + TeraCracker.wantedLevel+ "      Break-Ins: " + TeraCracker.totalBreakIns
+						GUI.topText.setText("		Loot:  $" + CrackerJacker.loot + "     Wanted Level: " + CrackerJacker.wantedLevel+ "      Break-Ins: " + CrackerJacker.totalBreakIns
 								+ "\n"
 								+ "\n"
 								+ "        We Aint Got Anything For You Right Now!"
@@ -1157,7 +1152,7 @@ public class Interface {
 					}
 					else 	// text shown if the player has enough money
 					{
-						GUI.topText.setText("		Loot:  $" + TeraCracker.loot + "     Wanted Level: " + TeraCracker.wantedLevel+ "      Break-Ins: " + TeraCracker.totalBreakIns
+						GUI.topText.setText("		Loot:  $" + CrackerJacker.loot + "     Wanted Level: " + CrackerJacker.wantedLevel+ "      Break-Ins: " + CrackerJacker.totalBreakIns
 								+ "\n"
 								+ "\n"
 								+ "            		Psst, Welcome To The Pro-Shop"   
@@ -1177,19 +1172,19 @@ public class Interface {
 					
 					
 					// check if there are any quantities of tools and displays the number is they do
-					if (TeraCracker.explosives>0)  
+					if (CrackerJacker.explosives>0)  
 					{
-						GUI.JTNT.setText("TNT (" + TeraCracker.explosives + "x)");
+						GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
 						GUI.JTNT.setForeground(Color.GRAY);
 					}
-					if (TeraCracker.picks>0)
+					if (CrackerJacker.picks>0)
 					{
-						GUI.JPicks.setText("Picks (" + TeraCracker.picks + "x)");
+						GUI.JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
 						GUI.JPicks.setForeground(Color.GRAY);
 					}
-					if (TeraCracker.snips>0)
+					if (CrackerJacker.snips>0)
 					{
-						GUI.JSnips.setText("Snips (" + TeraCracker.snips + "x)");
+						GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
 						GUI.JSnips.setForeground(Color.GRAY);
 					}
 					
