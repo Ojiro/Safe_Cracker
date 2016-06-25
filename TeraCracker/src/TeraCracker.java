@@ -89,27 +89,10 @@ public class TeraCracker
 	static GUI GUI = new GUI();
 	static Interface Interface= new Interface(GUI);
 
-	/*
-	public  TeraCracker() 
-	{
-			
-				
-		
-		// opening methods
-		welcomeText();
-		JStore.setVisible(true);
-		mainWindow.setVisible(true); // turn the mainWindow visible
-		//hideButtons();  // Consider removing this method 
-		JEnter.setVisible(true);
-		JInfo.setVisible(true);
-	
-		
-	} // ends constructor
-	*/
+
 	public static void main(String[] args)
 	{
 		GUI.welcomeScreen();
-		Interface.welcomeScreen();
 		
 	} // ends main Method
 	
@@ -121,7 +104,7 @@ public class TeraCracker
 //=========================================================================================================================================
 	
 	
-/*
+
 
 
 
@@ -134,7 +117,7 @@ public class TeraCracker
 			/* each time a safe is played the appropriate number of digits will be appended into a StringBuilder called combo
 			 * for each spot, use the randomNumber method to return a digit, the no-arg method will return 0-9, the integer arg(use any number)
 			 * will return 1-9 but no zeros, this is required for the first digit in the combination. and use a character to return a direction
-			 
+			 */
 
            combo= new StringBuilder();  // clears the old combination, for a new StringBuilder
 			
@@ -370,7 +353,7 @@ public class TeraCracker
 				 *  1 Position correct
 				 *  
 				 *  finally it checks if the combination is correct, if it is, isWinner will be set to true
-				 *
+				 */
 				
 				// reset the number of digits and positions to zero
 				posistionsCorrect=0;
@@ -435,7 +418,7 @@ public class TeraCracker
 				
 			} // ends posistionsCorrect method
 	
-	// #16
+/*	// #16
 	// proShop
 	//
 			public void proShop()
@@ -543,11 +526,11 @@ public class TeraCracker
 				
 				
 			}
-			
+*/			
 	// #17
 	// printUpdate
 	//
-			private void printUpdate()
+			public void printUpdate()
 			{
 			
 				// method is responsible for updating the board during the guessing phase
@@ -652,135 +635,7 @@ public class TeraCracker
 	
 			
 			
-	// #19
-	// setGameListeners
-	// sets the listeners for the guessing phase of the game
-			private void setGameListener()
-			{
-				
-				// remove the difficulty phase listeners
-				J0.removeActionListener(numbers1);
-				J1.removeActionListener(numbers1);
-				J2.removeActionListener(numbers1);
-				J3.removeActionListener(numbers1);
-				J4.removeActionListener(numbers1);
-				J5.removeActionListener(numbers1);
-				J6.removeActionListener(numbers1);
-				J7.removeActionListener(numbers1);
-				J8.removeActionListener(numbers1);
-				J9.removeActionListener(numbers1);
-				JUp.removeActionListener(numbers1);
-				JDown.removeActionListener(numbers1);
-				JLeft.removeActionListener(numbers1);
-				JRight.removeActionListener(numbers1);
-				JEnter.removeActionListener(numbers1);
-				JEnter.removeActionListener(exitWelcome1);
-			
-				J0.removeActionListener(cheatListener);
-				J1.removeActionListener(cheatListener);
-				J2.removeActionListener(cheatListener);
-				
-				
-				// register listeners with buttons
-				J0.addActionListener(numbers2);
-				J1.addActionListener(numbers2);
-				J2.addActionListener(numbers2);
-				J3.addActionListener(numbers2);
-				J4.addActionListener(numbers2);
-				J5.addActionListener(numbers2);
-				J6.addActionListener(numbers2);
-				J7.addActionListener(numbers2);
-				J8.addActionListener(numbers2);
-				J9.addActionListener(numbers2);
-				JUp.addActionListener(numbers2);
-				JDown.addActionListener(numbers2);
-				JLeft.addActionListener(numbers2);
-				JRight.addActionListener(numbers2);
-				JEnter.addActionListener(numbers2);
-				JBackSpace.addActionListener(backSpaceListener);
-				JClear.addActionListener(clearListener);
-				
-				mainWindow.requestFocus();
-					
-				//set text to guess mode
-				J0.setText("0");
-				J1.setText("1");
-				J2.setText("2");
-				J3.setText("3");
-				J4.setText("4");
-				J5.setText("5");
-				J6.setText("6");
-				J7.setText("7");
-				J8.setText("8");
-				J9.setText("9");
-				JUp.setText("Up");
-				JDown.setText("Down");
-				JLeft.setText("Left");
-				JRight.setText("Right");
-				JClear.setText("Clear");
-				JBackSpace.setText("Back Space");
-				JEnter.setText("Enter");
-				
-				
-				JBackSpace.setForeground(Color.BLACK);
-				JClear.setForeground(Color.BLACK);
-				
-				// if the player has more than 3 break-ins show the proshop
-				// proshop will not be accessible during the guess phase
-				if(totalBreakIns>=3)
-				{
-					JStore.setText("Pro Shop");
-					JStore.setForeground(Color.LIGHT_GRAY);
-					//JStore.setVisible(true);
-				}
-				else
-				{
-					//JStore.setVisible(false);
-				}
-				
-				// show tools if they are available, 
-				if(explosives>0)
-				{
-					JTNT.setText("TNT (" +explosives+"x)");
-					JTNT.addActionListener(applyCheat);
-				}
-				else 
-				{
-					JTNT.setText("-");
-					JTNT.setForeground(Color.LIGHT_GRAY);
-					JTNT.removeActionListener(applyCheat);
-				}
-				
-				if (snips>0)
-				{
-					JSnips.setText("Snips ("+ snips +"x)" );
-					JSnips.addActionListener(applyCheat);
-				}
-				else
-				{
-					JSnips.setText("-");
-					JSnips.setForeground(Color.LIGHT_GRAY);
-					JSnips.removeActionListener(applyCheat);
-				}
-				
-				if (picks>0)
-				{
-					JPicks.setText("Picks (" + picks + "x)");
-					JPicks.addActionListener(applyCheat);
-				}
-				else
-				{
-					JPicks.setText("-");
-					JPicks.setForeground(Color.LIGHT_GRAY);
-					JPicks.removeActionListener(applyCheat);
-				}
-					
-				//topText.setText("		Loot:  " + loot + "     Wanted Level: " + wantedLevel+ "      Break-Ins: " + totalBreakIns);
-				//bottomText.setText("");
-				timer.start();
-				printUpdate();
-				
-			}// ends setGameListener
+	
 			
 	//
 	// losingProtocol
@@ -1056,7 +911,7 @@ public class TeraCracker
 				}
 			} // ends buy status
 		
-*/
+
 	
 } // ends class
 
