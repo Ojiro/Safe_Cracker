@@ -22,8 +22,7 @@ public class Interface {
 	applyCheat applyCheat = new applyCheat();
 	infoPress infoPress = new infoPress();
 
-	private Timer timer = new Timer(1000, new timerListener()); // time event
-																// listener
+	private Timer timer = new Timer(1000, new timerListener()); // time event listener
 	GUI GUI;
 	CrackerJacker CrackerJacker;
 
@@ -32,17 +31,12 @@ public class Interface {
 		CrackerJacker = b;
 		// register listeners
 		(GUI.JEnter).addActionListener(exitWelcome1);
-		(GUI.Help).addActionListener(help); // note the button "Help" is
-		// capitalized, while the listener is lowercase
+		(GUI.Help).addActionListener(help); // note the button "Help" is capitalized, while the listener is lowercase
 		(GUI.JInfo).addActionListener(infoPress);
-		(GUI.mainWindow).setFocusable(true); // sets the main window to
-												// focusable
+		(GUI.mainWindow).setFocusable(true); // sets the main window to focusable
 		(GUI.mainWindow).requestFocus(); // requests focus for the main window
-		(GUI.mainWindow).setFocusTraversalKeysEnabled(false); // keeps focus
-																// from shifting
-																// away
-		(GUI.mainWindow).addKeyListener(key1); // registers the keyListener
-		// for the game
+		(GUI.mainWindow).setFocusTraversalKeysEnabled(false); // keeps focus from shifting away
+		(GUI.mainWindow).addKeyListener(key1); // registers the keyListener for the game
 	}
 
 	// ========================================================================================================================================
@@ -342,9 +336,8 @@ public class Interface {
 
 			// exits the welcome screen and implements setDifficultyListener
 			GUI.requestDifficulty(); // sets the text to request difficulty
-			GUI.setDifficultyListener(); // method sets the needed button text
-											// // and listeners
-			setDifficultyListeners();
+			setDifficultyListeners();// method sets the needed button text and listeners
+			
 		}
 	}
 
@@ -355,9 +348,7 @@ public class Interface {
 			 CrackerJacker.isWinner=false;
 			 GUI.requestDifficulty();
 			 setDifficultyListeners();
-			 GUI.setDifficultyListener();
 			 
-
 		}
 	}
 
@@ -806,6 +797,8 @@ public class Interface {
 
 			(GUI.JStore).removeActionListener(proShopListener);
 		}
+		
+		GUI.setDifficultyListener(); 
 	}
 
 	// #19
@@ -855,72 +848,36 @@ public class Interface {
 		GUI.JClear.addActionListener(clearListener);
 
 		GUI.mainWindow.requestFocus();
-
-		// set text to guess mode
-		GUI.J0.setText("0");
-		GUI.J1.setText("1");
-		GUI.J2.setText("2");
-		GUI.J3.setText("3");
-		GUI.J4.setText("4");
-		GUI.J5.setText("5");
-		GUI.J6.setText("6");
-		GUI.J7.setText("7");
-		GUI.J8.setText("8");
-		GUI.J9.setText("9");
-		GUI.JUp.setText("Up");
-		GUI.JDown.setText("Down");
-		GUI.JLeft.setText("Left");
-		GUI.JRight.setText("Right");
-		GUI.JClear.setText("Clear");
-		GUI.JBackSpace.setText("Back Space");
-		GUI.JEnter.setText("Enter");
-
-		GUI.JBackSpace.setForeground(Color.BLACK);
-		GUI.JClear.setForeground(Color.BLACK);
-
-		// if the player has more than 3 break-ins show the proshop
-		// proshop will not be accessible during the guess phase
-		if (CrackerJacker.totalBreakIns >= 3) {
-			GUI.JStore.setText("Pro Shop");
-			GUI.JStore.setForeground(Color.LIGHT_GRAY);
-			GUI.JStore.setVisible(true);
-		} else {
-			GUI.JStore.setVisible(false);
-		}
-
+		GUI.setGameText();
+		
 		// show tools if they are available,
 		if (CrackerJacker.explosives > 0) {
-			GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
+			//JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
 			GUI.JTNT.addActionListener(applyCheat);
 		} else {
-			GUI.JTNT.setText("-");
-			GUI.JTNT.setForeground(Color.LIGHT_GRAY);
-			GUI.JTNT.removeActionListener(applyCheat);
+		//	JTNT.setText("-");
+		//	JTNT.setForeground(Color.LIGHT_GRAY);
+		GUI.JTNT.removeActionListener(applyCheat);
 		}
 
 		if (CrackerJacker.snips > 0) {
-			GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
+			//JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
 			GUI.JSnips.addActionListener(applyCheat);
 		} else {
-			GUI.JSnips.setText("-");
-			GUI.JSnips.setForeground(Color.LIGHT_GRAY);
+			//JSnips.setText("-");
+			//JSnips.setForeground(Color.LIGHT_GRAY);
 			GUI.JSnips.removeActionListener(applyCheat);
 		}
 
 		if (CrackerJacker.picks > 0) {
-			GUI.JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
+			//JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
 			GUI.JPicks.addActionListener(applyCheat);
 		} else {
-			GUI.JPicks.setText("-");
-			GUI.JPicks.setForeground(Color.LIGHT_GRAY);
+			//JPicks.setText("-");
+			//JPicks.setForeground(Color.LIGHT_GRAY);
 			GUI.JPicks.removeActionListener(applyCheat);
 		}
-
-		//
-		GUI.topText.setText("		Loot:  " + CrackerJacker.loot
-				+ "     Wanted Level: " + CrackerJacker.wantedLevel
-				+ "      Break-Ins: " + CrackerJacker.totalBreakIns);
-		// bottomText.setText("");
+		
 		timer.start();
 		printUpdate();
 
@@ -932,90 +889,90 @@ public class Interface {
 	public void printUpdate() {
 
 		// method is responsible for updating the board during the guessing
-		// phase
-		// it is called by the numberListener and hits under certain conditions
+				// phase
+				// it is called by the numberListener and hits under certain conditions
 
-		// checks if the safe has been cracked or not
-		if (CrackerJacker.isWinner) {
-			winningProtocol();
-			CrackerJacker.turnCount = 0;
-			// currentGuess may need to be cleared here
-		} else if (CrackerJacker.turnCount == CrackerJacker.guessLimit) {
-			losingProtocol();
-			CrackerJacker.turnCount = 0;
-		} else {
-			// if the game is neither a winner nor a loser, then it continues to
-			// print the necessary information for gamePlay
-			StringBuilder tempBuilder = new StringBuilder();
-
-			for (int i = 0; i < CrackerJacker.turnCount; i++) // for loop
-																// strings
-																// together all
-																// the
-																// previous
-																// guesses
-																// for display
-			{
-
-				if (i == CrackerJacker.turnCount - 1) {
-					tempBuilder.append("  | "
-							+ CrackerJacker.guessArray[i].toString() + " | ");
+				// checks if the safe has been cracked or not
+				if (CrackerJacker.isWinner) {
+					winningProtocol();
+					CrackerJacker.turnCount = 0;
+					// currentGuess may need to be cleared here
+				} else if (CrackerJacker.turnCount == CrackerJacker.guessLimit) {
+					losingProtocol();
+					CrackerJacker.turnCount = 0;
 				} else {
-					tempBuilder.append("   "
-							+ CrackerJacker.guessArray[i].toString());
-				}
+					// if the game is neither a winner nor a loser, then it continues to
+					// print the necessary information for gamePlay
+					StringBuilder tempBuilder = new StringBuilder();
 
-			} // ends for loop
+					for (int i = 0; i < CrackerJacker.turnCount; i++) // for loop
+																		// strings
+																		// together all
+																		// the
+																		// previous
+																		// guesses
+																		// for display
+					{
 
-			// display top and bottom text area
-			// uncomment the combo portion of the next line to make the combo
-			// visible during play.
-			GUI.topText.setText("		Loot:  $" + CrackerJacker.loot
-					+ "     Wanted Level: " + CrackerJacker.wantedLevel
-					+ "      Break-Ins: " + CrackerJacker.totalBreakIns
-					+ "   combo: " + CrackerJacker.combo + "\n"
-					+ " Difficulty: " + CrackerJacker.difficulty + "\n"
-					+ " Digits: " + CrackerJacker.comboSize + " Directions: "
-					+ CrackerJacker.directions + "\n" + " Guesses:  "
-					+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
-					+ "    Time: " + CrackerJacker.timeInMinutes + ":"
-					+ CrackerJacker.timeInSeconds + "\n" + tempBuilder + "\n"
-					+ "\n" + "             " + CrackerJacker.currentGuess
-					+ "\n" + "      Digits Correct: "
-					+ CrackerJacker.digitsCorrect + "    Posistions Correct: "
-					+ CrackerJacker.posistionsCorrect);
+						if (i == CrackerJacker.turnCount - 1) {
+							tempBuilder.append("  | "
+									+ CrackerJacker.guessArray[i].toString() + " | ");
+						} else {
+							tempBuilder.append("   "
+									+ CrackerJacker.guessArray[i].toString());
+						}
 
-			// update the tool buttons
-			if (CrackerJacker.explosives > 0) {
-				GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
-				GUI.JTNT.setForeground(Color.BLACK);
-				GUI.JTNT.addActionListener(applyCheat);
-			} else {
-				GUI.JTNT.setText("");
-				GUI.JTNT.removeActionListener(applyCheat);
-			}
+					} // ends for loop
 
-			if (CrackerJacker.snips > 0) {
-				GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
-				GUI.JSnips.setForeground(Color.BLACK);
-				GUI.JSnips.addActionListener(applyCheat);
-			} else {
-				GUI.JSnips.setText("");
-				GUI.JSnips.removeActionListener(applyCheat);
-			}
+					// display top and bottom text area
+					// uncomment the combo portion of the next line to make the combo
+					// visible during play.
+					GUI.topText.setText("		Loot:  $" + CrackerJacker.loot
+							+ "     Wanted Level: " + CrackerJacker.wantedLevel
+							+ "      Break-Ins: " + CrackerJacker.totalBreakIns
+							+ "   combo: " + CrackerJacker.combo + "\n"
+							+ " Difficulty: " + CrackerJacker.difficulty + "\n"
+							+ " Digits: " + CrackerJacker.comboSize + " Directions: "
+							+ CrackerJacker.directions + "\n" + " Guesses:  "
+							+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
+							+ "    Time: " + CrackerJacker.timeInMinutes + ":"
+							+ CrackerJacker.timeInSeconds + "\n" + tempBuilder + "\n"
+							+ "\n" + "             " + CrackerJacker.currentGuess
+							+ "\n" + "      Digits Correct: "
+							+ CrackerJacker.digitsCorrect + "    Posistions Correct: "
+							+ CrackerJacker.posistionsCorrect);
 
-			if (CrackerJacker.picks > 0) {
-				GUI.JPicks.setText("Lock Pick (" + CrackerJacker.picks + "x)");
-				GUI.JPicks.setForeground(Color.BLACK);
-				GUI.JPicks.addActionListener(applyCheat);
-			} else {
-				GUI.JPicks.setText("");
-				GUI.JPicks.removeActionListener(applyCheat);
-			}
+					// update the tool buttons
+					if (CrackerJacker.explosives > 0) {
+						GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
+						GUI.JTNT.setForeground(Color.BLACK);
+						GUI.JTNT.addActionListener(applyCheat);
+					} else {
+						GUI.JTNT.setText("");
+						GUI.JTNT.removeActionListener(applyCheat);
+					}
 
-		}// ends else
+					if (CrackerJacker.snips > 0) {
+						GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
+						GUI.JSnips.setForeground(Color.BLACK);
+						GUI.JSnips.addActionListener(applyCheat);
+					} else {
+						GUI.JSnips.setText("");
+						GUI.JSnips.removeActionListener(applyCheat);
+					}
 
-		GUI.mainWindow.requestFocus();
+					if (CrackerJacker.picks > 0) {
+						GUI.JPicks.setText("Lock Pick (" + CrackerJacker.picks + "x)");
+						GUI.JPicks.setForeground(Color.BLACK);
+						GUI.JPicks.addActionListener(applyCheat);
+					} else {
+						GUI.JPicks.setText("");
+						GUI.JPicks.removeActionListener(applyCheat);
+					}
+
+				}// ends else
+
+				GUI.mainWindow.requestFocus();
 
 	} // ends printUpdate
 

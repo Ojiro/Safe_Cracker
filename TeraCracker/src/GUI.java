@@ -312,6 +312,79 @@ public class GUI extends JFrame {
 	}
 
 	//
+	//setGameText
+	public static void setGameText()
+	{
+		// set text to guess mode
+				J0.setText("0");
+				J1.setText("1");
+				J2.setText("2");
+				J3.setText("3");
+				J4.setText("4");
+				J5.setText("5");
+				J6.setText("6");
+				J7.setText("7");
+				J8.setText("8");
+				J9.setText("9");
+				JUp.setText("Up");
+				JDown.setText("Down");
+				JLeft.setText("Left");
+				JRight.setText("Right");
+				JClear.setText("Clear");
+				JBackSpace.setText("Back Space");
+				JEnter.setText("Enter");
+
+				JBackSpace.setForeground(Color.BLACK);
+				JClear.setForeground(Color.BLACK);
+
+				// if the player has more than 3 break-ins show the proshop
+				// proshop will not be accessible during the guess phase
+				if (CrackerJacker.totalBreakIns >= 3) {
+					JStore.setText("Pro Shop");
+					JStore.setForeground(Color.LIGHT_GRAY);
+					JStore.setVisible(true);
+				} else {
+					JStore.setVisible(false);
+				}
+
+				// show tools if they are available,
+				if (CrackerJacker.explosives > 0) {
+					JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
+					//JTNT.addActionListener(applyCheat);
+				} else {
+					JTNT.setText("-");
+					JTNT.setForeground(Color.LIGHT_GRAY);
+					//JTNT.removeActionListener(applyCheat);
+				}
+
+				if (CrackerJacker.snips > 0) {
+					JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
+					//JSnips.addActionListener(applyCheat);
+				} else {
+					JSnips.setText("-");
+					JSnips.setForeground(Color.LIGHT_GRAY);
+					//JSnips.removeActionListener(applyCheat);
+				}
+
+				if (CrackerJacker.picks > 0) {
+					JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
+					//GUI.JPicks.addActionListener(applyCheat);
+				} else {
+					JPicks.setText("-");
+					JPicks.setForeground(Color.LIGHT_GRAY);
+					//JPicks.removeActionListener(applyCheat);
+				}
+
+				//
+				GUI.topText.setText("		Loot:  " + CrackerJacker.loot
+						+ "     Wanted Level: " + CrackerJacker.wantedLevel
+						+ "      Break-Ins: " + CrackerJacker.totalBreakIns);
+				// bottomText.setText("");
+	
+	}
+	
+	
+	//
 	// buyStatus
 	// method prints an update for a the user when they try to buy something in the proshop
 			public void buyStatus(boolean sucessful, String item)
