@@ -21,14 +21,13 @@ public class Interface {
 	//public applyCheat applyCheat= new applyCheat();
 	//infoPress infoPress= new infoPress();
 	
-	GUI GUI = new GUI();
 	
 	private Timer timer= new Timer(1000, new timerListener());  // time event listener
-
+	GUI GUI;
 	
-	Interface()
+	Interface(GUI a)
 	{
-
+		GUI=a;
 		//register listeners
 		(GUI.JEnter).addActionListener(exitWelcome1);
 		//(GUI.Help).addActionListener(help); // note the button "Help" is capitalized, while the listener is lowercase
@@ -848,5 +847,9 @@ public class Interface {
 			}
 		}
 		
+	public void welcomeScreen()
+	{
 		
+	}
+	
 }

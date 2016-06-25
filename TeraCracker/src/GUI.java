@@ -50,7 +50,7 @@ public class GUI extends JFrame {
 	// JTextArea bottomText= new JTextArea();
 	static JLabel name = new JLabel("Cracker-Jacker 5000 DLX");
 
-	public GUI() {
+	 GUI() {
 		// instantiate a new game board
 		mainWindow.setSize(775, 500);
 		p0.setSize(750, 500);
@@ -121,7 +121,13 @@ public class GUI extends JFrame {
 		JTNT.setForeground(Color.LIGHT_GRAY);
 		JPicks.setForeground(Color.LIGHT_GRAY);
 		JSnips.setForeground(Color.LIGHT_GRAY);
-
+		
+		welcomeScreen();
+		JStore.setVisible(true);
+		mainWindow.setVisible(true); // turn the mainWindow visible
+		//hideButtons();  // Consider removing this method 
+		JEnter.setVisible(true);
+		JInfo.setVisible(true);
 	}
 
 	public void welcomeScreen() {

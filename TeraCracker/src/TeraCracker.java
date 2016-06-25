@@ -86,8 +86,8 @@ public class TeraCracker
 	static StringBuilder currentGuess= new StringBuilder(); // hold the parts of a current guess, before it is added to the guessArray
 	static StringBuilder combo= new StringBuilder();
 	
-	GUI GUI = new GUI();
-	Interface Interface= new Interface();
+	static GUI GUI = new GUI();
+	static Interface Interface= new Interface(GUI);
 
 	/*
 	public  TeraCracker() 
@@ -108,7 +108,8 @@ public class TeraCracker
 	*/
 	public static void main(String[] args)
 	{
-		
+		GUI.welcomeScreen();
+		Interface.welcomeScreen();
 		
 	} // ends main Method
 	
