@@ -325,7 +325,7 @@ public class Interface {
 				return;
 
 			setGameListener(); // sets the buttons to game mode
-
+			CrackerJacker.makeCombo();
 		} // ends actionPerformed
 
 	} // ends numberListener1
