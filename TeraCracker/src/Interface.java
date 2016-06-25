@@ -32,9 +32,9 @@ public class Interface {
 		CrackerJacker = b;
 		// register listeners
 		(GUI.JEnter).addActionListener(exitWelcome1);
-		// (GUI.Help).addActionListener(help); // note the button "Help" is
+		 (GUI.Help).addActionListener(help); // note the button "Help" is
 		// capitalized, while the listener is lowercase
-		// (GUI.JInfo).addActionListener(infoPress);
+		 (GUI.JInfo).addActionListener(infoPress);
 		(GUI.mainWindow).setFocusable(true); // sets the main window to
 												// focusable
 		(GUI.mainWindow).requestFocus(); // requests focus for the main window
@@ -343,8 +343,7 @@ public class Interface {
 
 			// exits the welcome screen and implements setDifficultyListener
 			GUI.requestDifficulty(); // sets the text to request difficulty
-			// setDifficultyListener(); // method sets the needed button text
-			// and listeners
+			GUI.setDifficultyListener(); // method sets the needed button text // and listeners
 
 		}
 	}
@@ -779,21 +778,21 @@ public class Interface {
 		(GUI.JLeft).addActionListener(numbers1);
 		(GUI.JRight).addActionListener(numbers1);
 		(GUI.JEnter).addActionListener(numbers1);
-		// (GUI.JClear).removeActionListener(clearListener); // turns off the
+		 (GUI.JClear).removeActionListener(clearListener); // turns off the
 		// clearListener so there are no issues with selecting a level
-		// (GUI.JBackSpace).removeActionListener(backSpaceListener); // turn off
-		// the backSpaceListener so there are no issue with selecting a level
-		// (GUI.JEnter).removeActionListener(exitGame1); // removes the exitGame
+		 (GUI.JBackSpace).removeActionListener(backSpaceListener); // turn off
+		 //the backSpaceListener so there are no issue with selecting a level
+		 (GUI.JEnter).removeActionListener(exitGame1); // removes the exitGame
 		// listener which prevents a bug from occuring when a player doesn't
 		// enter enough digits
 
 		// Removes the listers that allow cheats to be bought
-		// (GUI.JTNT).removeActionListener((applyCheat);
-		// (GUI.JSnips).removeActionListener(applyCheat);
-		// (GUI.JPicks).removeActionListener(applyCheat);
-		// (GUI.J0).removeActionListener(cheatListener);
-		// (GUI.J1).removeActionListener(cheatListener);
-		// (GUI.J2).removeActionListener(cheatListener);
+		 (GUI.JTNT).removeActionListener(applyCheat);
+		 (GUI.JSnips).removeActionListener(applyCheat);
+		 (GUI.JPicks).removeActionListener(applyCheat);
+	     (GUI.J0).removeActionListener(cheatListener);
+		 (GUI.J1).removeActionListener(cheatListener);
+		 (GUI.J2).removeActionListener(cheatListener);
 
 		// show the proshop to the player if they have more than 3 break-ins
 		if ((CrackerJacker.totalBreakIns) >= 3) // makes the pro shop available
@@ -801,11 +800,11 @@ public class Interface {
 												// the player has broken enough
 												// safes
 		{
-			// (GUI.JStore).addActionListener(proShopListener);
+			 (GUI.JStore).addActionListener(proShopListener);
 			(GUI.JStore).setText("Pro Shop");
 		} else {
 
-			// (GUI.JStore).removeActionListener(proShopListener);
+		 (GUI.JStore).removeActionListener(proShopListener);
 		}
 	}
 
@@ -832,9 +831,9 @@ public class Interface {
 		GUI.JEnter.removeActionListener(numbers1);
 		GUI.JEnter.removeActionListener(exitWelcome1);
 
-		// GUI.J0.removeActionListener(cheatListener);
-		// GUI.J1.removeActionListener(cheatListener);
-		// GUI.J2.removeActionListener(cheatListener);
+		 GUI.J0.removeActionListener(cheatListener);
+		 GUI.J1.removeActionListener(cheatListener);
+		 GUI.J2.removeActionListener(cheatListener);
 
 		// register listeners with buttons
 		GUI.J0.addActionListener(numbers2);
@@ -884,44 +883,45 @@ public class Interface {
 		if (CrackerJacker.totalBreakIns >= 3) {
 			GUI.JStore.setText("Pro Shop");
 			GUI.JStore.setForeground(Color.LIGHT_GRAY);
-			// JStore.setVisible(true);
+			 GUI.JStore.setVisible(true);
 		} else {
-			// JStore.setVisible(false);
+			 GUI.JStore.setVisible(false);
 		}
 
 		// show tools if they are available,
 		if (CrackerJacker.explosives > 0) {
 			GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
-			// GUI.JTNT.addActionListener(applyCheat);
+			 GUI.JTNT.addActionListener(applyCheat);
 		} else {
 			GUI.JTNT.setText("-");
 			GUI.JTNT.setForeground(Color.LIGHT_GRAY);
-			// GUI.JTNT.removeActionListener(applyCheat);
+			 GUI.JTNT.removeActionListener(applyCheat);
 		}
 
 		if (CrackerJacker.snips > 0) {
 			GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
-			// GUI.JSnips.addActionListener(applyCheat);
+		 GUI.JSnips.addActionListener(applyCheat);
 		} else {
 			GUI.JSnips.setText("-");
 			GUI.JSnips.setForeground(Color.LIGHT_GRAY);
-			// GUI.JSnips.removeActionListener(applyCheat);
+			GUI.JSnips.removeActionListener(applyCheat);
 		}
 
 		if (CrackerJacker.picks > 0) {
 			GUI.JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
-			// GUI.JPicks.addActionListener(applyCheat);
+			 GUI.JPicks.addActionListener(applyCheat);
 		} else {
 			GUI.JPicks.setText("-");
 			GUI.JPicks.setForeground(Color.LIGHT_GRAY);
-			// GUI.JPicks.removeActionListener(applyCheat);
+		 GUI.JPicks.removeActionListener(applyCheat);
 		}
 
-		// topText.setText("		Loot:  " + loot + "     Wanted Level: " +
-		// wantedLevel+ "      Break-Ins: " + totalBreakIns);
-		// bottomText.setText("");
+		//
+		 GUI.topText.setText("		Loot:  " + CrackerJacker.loot + "     Wanted Level: " +
+		 CrackerJacker.wantedLevel+ "      Break-Ins: " + CrackerJacker.totalBreakIns);
+		 //bottomText.setText("");
 		timer.start();
-		// printUpdate();
+		 printUpdate();
 
 	}// ends setGameListener
 

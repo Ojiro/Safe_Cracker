@@ -197,7 +197,7 @@ public class GUI extends JFrame {
 	// #18
 	// setDifficultyListener
 	// sets the listeners for the select difficulty selection phase of the game
-	private void setDifficultyListener() {
+	public void setDifficultyListener() {
 
 		// Interface.setDifficultyListeners();
 		// Reset the text on the buttons
