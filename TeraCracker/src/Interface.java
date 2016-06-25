@@ -38,10 +38,8 @@ public class Interface {
 		(GUI.mainWindow).setFocusable(true); // sets the main window to
 												// focusable
 		(GUI.mainWindow).requestFocus(); // requests focus for the main window
-		(GUI.mainWindow).setFocusTraversalKeysEnabled(false); // keeps focus
-																// from shifting
-																// away
-		// (GUI.mainWindow).addKeyListener(key1); // registers the keyListener
+		(GUI.mainWindow).setFocusTraversalKeysEnabled(false); // keeps focus from shifting away
+		 (GUI.mainWindow).addKeyListener(key1); // registers the keyListener
 		// for the game
 	}
 
@@ -198,7 +196,6 @@ public class Interface {
 			 */
 
 			JButton temp = (JButton) e.getSource();
-
 			// conditions check the button pushed and sets the appropriate
 			// setting
 			if (temp.getText().equals("Easy")) { // sets game to easy
@@ -344,7 +341,7 @@ public class Interface {
 			// exits the welcome screen and implements setDifficultyListener
 			GUI.requestDifficulty(); // sets the text to request difficulty
 			GUI.setDifficultyListener(); // method sets the needed button text // and listeners
-
+			setDifficultyListeners();
 		}
 	}
 
