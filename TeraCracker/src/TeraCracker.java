@@ -69,9 +69,9 @@ public class TeraCracker
 		GUI GUI=new GUI();
 		Interface Interface=new Interface(GUI,board);
 		
-		GUI.welcomeScreen();
-		TeraCracker game=new TeraCracker();
-		GUI.welcomeScreen();
+	//	GUI.welcomeScreen();
+	//	TeraCracker game=new TeraCracker();
+	//	GUI.welcomeScreen();
 		
 	} // ends main Method
 	
