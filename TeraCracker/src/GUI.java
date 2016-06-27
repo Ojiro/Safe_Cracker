@@ -207,6 +207,11 @@ public class GUI extends JFrame {
 				+ "To play, click enter");
 
 		p0.add(topText);
+		JEnter.setText("Play");
+		JInfo.setText("Info");
+		Load.setText("Load");
+		Help.setText("How To");
+		
 
 	}
 
@@ -541,6 +546,11 @@ public class GUI extends JFrame {
 			JPicks.setVisible(isVisible);
 			JSnips.setVisible(isVisible);
 			JStore.setVisible(isVisible);
+			
+			JInfo.setVisible(isVisible);
+			Help.setVisible(isVisible);
+			Load.setVisible(isVisible);
+			Save.setVisible(isVisible);
 			
 		}
 		

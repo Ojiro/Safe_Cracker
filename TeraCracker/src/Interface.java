@@ -152,8 +152,7 @@ public class Interface {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
-			CrackerJacker.timeInSeconds--; // everytime the listener hits, count
-											// down 1 second
+			CrackerJacker.timeInSeconds--; // everytime the listener hits, count down 1 second
 
 			if (CrackerJacker.timeInSeconds == 0
 					&& CrackerJacker.timeInMinutes == 0) {
@@ -161,8 +160,7 @@ public class Interface {
 				losingProtocol();
 
 			} else if (CrackerJacker.timeInSeconds <= 0) {
-				// if the seconds reach zero, decrements the minutes and reset
-				// seconds to 59
+				// if the seconds reach zero, decrements the minutes and reset seconds to 59
 				CrackerJacker.timeInSeconds = 59;
 				CrackerJacker.timeInMinutes--;
 				printUpdate();
@@ -703,15 +701,7 @@ public class Interface {
 				CrackerJacker.combo.deleteCharAt(rand); // applies the delete
 				CrackerJacker.directions = 0;
 
-				for (int i = 0; i < CrackerJacker.combo.length(); i++) // loop
-																		// recounts
-																		// the
-																		// number
-																		// of
-																		// directions
-																		// in
-																		// the
-																		// combo
+				for (int i = 0; i < CrackerJacker.combo.length(); i++) // loop recounts the number of directions in the combo
 				{
 
 					if (CrackerJacker.combo.charAt(i) == 'U'
@@ -761,6 +751,9 @@ public class Interface {
 	public void setDifficultyListeners() {
 		// Sets the numbers1 listener to the digits and directions, that will
 		// allow the user to select the difficulty
+		
+		clearListeners();
+		
 		(GUI.J0).addActionListener(difficultyListener);
 		(GUI.J1).addActionListener(difficultyListener);
 		(GUI.J2).addActionListener(difficultyListener);
@@ -776,22 +769,22 @@ public class Interface {
 		(GUI.JLeft).addActionListener(difficultyListener);
 		(GUI.JRight).addActionListener(difficultyListener);
 		(GUI.JEnter).addActionListener(difficultyListener);
-		(GUI.JClear).removeActionListener(clearListener); // turns off the
-		// clearListener so there are no issues with selecting a level
-		(GUI.JBackSpace).removeActionListener(backSpaceListener); // turn off
+		//(GUI.JClear).removeActionListener(clearListener); // turns off the clearListener so there are no issues with selecting a level
+		//(GUI.JBackSpace).removeActionListener(backSpaceListener); // turn off
 		// the backSpaceListener so there are no issue with selecting a level
 		(GUI.JEnter).removeActionListener(exitRound1); // removes the exitGame
 		// listener which prevents a bug from occuring when a player doesn't
 		// enter enough digits
-
+		
 		// Removes the listers that allow cheats to be bought
+		/*
 		(GUI.JTNT).removeActionListener(applyCheat);
 		(GUI.JSnips).removeActionListener(applyCheat);
 		(GUI.JPicks).removeActionListener(applyCheat);
 		(GUI.J0).removeActionListener(cheatListener);
 		(GUI.J1).removeActionListener(cheatListener);
 		(GUI.J2).removeActionListener(cheatListener);
-
+*/
 		// show the proshop to the player if they have more than 3 break-ins
 		if ((CrackerJacker.totalBreakIns) >= 3) // makes the pro shop available
 												// if
@@ -814,26 +807,7 @@ public class Interface {
 	private void setGameListener() {
 
 		// remove the difficulty phase listeners
-		GUI.J0.removeActionListener(difficultyListener);
-		GUI.J1.removeActionListener(difficultyListener);
-		GUI.J2.removeActionListener(difficultyListener);
-		GUI.J3.removeActionListener(difficultyListener);
-		GUI.J4.removeActionListener(difficultyListener);
-		GUI.J5.removeActionListener(difficultyListener);
-		GUI.J6.removeActionListener(difficultyListener);
-		GUI.J7.removeActionListener(difficultyListener);
-		GUI.J8.removeActionListener(difficultyListener);
-		GUI.J9.removeActionListener(difficultyListener);
-		GUI.JUp.removeActionListener(difficultyListener);
-		GUI.JDown.removeActionListener(difficultyListener);
-		GUI.JLeft.removeActionListener(difficultyListener);
-		GUI.JRight.removeActionListener(difficultyListener);
-		GUI.JEnter.removeActionListener(difficultyListener);
-		GUI.JEnter.removeActionListener(exitWelcome);
-
-		GUI.J0.removeActionListener(cheatListener);
-		GUI.J1.removeActionListener(cheatListener);
-		GUI.J2.removeActionListener(cheatListener);
+		clearListeners();
 
 		// register listeners with buttons
 		GUI.J0.addActionListener(gameListener);
@@ -1018,26 +992,8 @@ public class Interface {
 
 		// sets listeners for the transition from the end of the game to the
 		// difficulty selection
-		GUI.J0.removeActionListener(gameListener);
-		GUI.J1.removeActionListener(gameListener);
-		GUI.J2.removeActionListener(gameListener);
-		GUI.J3.removeActionListener(gameListener);
-		GUI.J4.removeActionListener(gameListener);
-		GUI.J5.removeActionListener(gameListener);
-		GUI.J6.removeActionListener(gameListener);
-		GUI.J7.removeActionListener(gameListener);
-		GUI.J8.removeActionListener(gameListener);
-		GUI.J9.removeActionListener(gameListener);
-		GUI.JUp.removeActionListener(gameListener);
-		GUI.JDown.removeActionListener(gameListener);
-		GUI.JLeft.removeActionListener(gameListener);
-		GUI.JRight.removeActionListener(gameListener);
-		GUI.JEnter.removeActionListener(gameListener);
-		GUI.JBackSpace.removeActionListener(gameListener);
-		GUI.JClear.removeActionListener(gameListener);
-		GUI.J0.removeActionListener(cheatListener);
-		GUI.J1.removeActionListener(cheatListener);
-		GUI.J2.removeActionListener(cheatListener);
+		clearListeners();
+
 		GUI.JEnter.addActionListener(exitRound1);
 
 		GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
@@ -1104,6 +1060,8 @@ public class Interface {
 
 		// sets listeners for the transition from the end of the game to the
 		// difficulty selection
+		clearListeners();
+		/*
 		GUI.J0.removeActionListener(gameListener);
 		GUI.J1.removeActionListener(gameListener);
 		GUI.J2.removeActionListener(gameListener);
@@ -1121,15 +1079,18 @@ public class Interface {
 		GUI.JEnter.removeActionListener(gameListener);
 		GUI.JBackSpace.removeActionListener(gameListener);
 		GUI.JClear.removeActionListener(gameListener);
+		*/
 		GUI.JEnter.addActionListener(exitRound1);
 
 		// turn off tools
+		/*
 		GUI.JTNT.removeActionListener(applyCheat);
 		GUI.JSnips.removeActionListener(applyCheat);
 		GUI.JPicks.removeActionListener(applyCheat);
 		GUI.J0.removeActionListener(cheatListener);
 		GUI.J1.removeActionListener(cheatListener);
 		GUI.J2.removeActionListener(cheatListener);
+		*/
 
 		GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
 		GUI.JClear.setForeground(Color.LIGHT_GRAY);
@@ -1169,47 +1130,22 @@ public class Interface {
 	} // ends winning protocol
 
 	public void setWelcomeListeners() {
+		clearListeners();
 		(GUI.JEnter).addActionListener(exitWelcome);
-		(GUI.Help).addActionListener(helpListener); // note the button "Help" is
-											// capitalized, while the listener
-											// is lowercase
+		(GUI.Help).addActionListener(helpListener); // note the button "Help" is capitalized, while the listener is lowercase
 		(GUI.JInfo).addActionListener(infoPress);
-		(GUI.mainWindow).setFocusable(true); // sets the main window to
-												// focusable
+		(GUI.mainWindow).setFocusable(true); // sets the main window to  focusable
 		(GUI.mainWindow).requestFocus(); // requests focus for the main window
-		(GUI.mainWindow).setFocusTraversalKeysEnabled(false); // keeps focus
-																// from shifting
-																// away
-		(GUI.mainWindow).addKeyListener(keyBoardListener); // registers the keyListener for
-												// the game
-
+		(GUI.mainWindow).setFocusTraversalKeysEnabled(false); // keeps focus from shifting away
+		(GUI.mainWindow).addKeyListener(keyBoardListener); // registers the keyListener for the game
 		GUI.welcomeScreen();
 	}
 
 	public void gameOverProtocol() {
 		// When the game is over, the only button the user will have a is
 		// restart button
-		GUI.J0.removeActionListener(gameListener);
-		GUI.J1.removeActionListener(gameListener);
-		GUI.J2.removeActionListener(gameListener);
-		GUI.J3.removeActionListener(gameListener);
-		GUI.J4.removeActionListener(gameListener);
-		GUI.J5.removeActionListener(gameListener);
-		GUI.J6.removeActionListener(gameListener);
-		GUI.J7.removeActionListener(gameListener);
-		GUI.J8.removeActionListener(gameListener);
-		GUI.J9.removeActionListener(gameListener);
-		GUI.JUp.removeActionListener(gameListener);
-		GUI.JDown.removeActionListener(gameListener);
-		GUI.JLeft.removeActionListener(gameListener);
-		GUI.JRight.removeActionListener(gameListener);
-		GUI.JEnter.removeActionListener(gameListener);
-		GUI.JBackSpace.removeActionListener(gameListener);
-		GUI.JClear.removeActionListener(gameListener);
-		GUI.J0.removeActionListener(cheatListener);
-		GUI.J1.removeActionListener(cheatListener);
-		GUI.J2.removeActionListener(cheatListener);
-		
+		CrackerJacker.carreer=false; //carrer is over
+		clearListeners();
 		GUI.J7.addActionListener(exitGame);
 
 		// set the listener for a button to go the welcome screen
@@ -1220,35 +1156,8 @@ public class Interface {
 	//
 	public void proShop() {
 
-		// remove listeners that will be called in this phase to avoid repeated
-		// registering
-		GUI.J0.removeActionListener(cheatListener);
-		GUI.J1.removeActionListener(cheatListener);
-		GUI.J2.removeActionListener(cheatListener);
-
-		// remove listeners for the previous stage of the game
-		GUI.J0.removeActionListener(difficultyListener);
-		GUI.J1.removeActionListener(difficultyListener);
-		GUI.J2.removeActionListener(difficultyListener);
-		GUI.J3.removeActionListener(difficultyListener);
-		GUI.J4.removeActionListener(difficultyListener);
-		GUI.J5.removeActionListener(difficultyListener);
-		GUI.J6.removeActionListener(difficultyListener);
-		GUI.J7.removeActionListener(difficultyListener);
-		GUI.J8.removeActionListener(difficultyListener);
-		GUI.J9.removeActionListener(difficultyListener);
-		GUI.JUp.removeActionListener(difficultyListener);
-		GUI.JDown.removeActionListener(difficultyListener);
-		GUI.JLeft.removeActionListener(difficultyListener);
-		GUI.JRight.removeActionListener(difficultyListener);
-		GUI.JEnter.removeActionListener(difficultyListener);
-		GUI.JEnter.removeActionListener(exitWelcome);
-
-		// removes the ability of the tool buttons
-		GUI.JTNT.removeActionListener(applyCheat);
-		GUI.JSnips.removeActionListener(applyCheat);
-		GUI.JPicks.removeActionListener(applyCheat);
-
+		clearListeners();
+	
 		// register listeners with buttons
 		GUI.J0.addActionListener(cheatListener);
 		GUI.J1.addActionListener(cheatListener);
@@ -1323,4 +1232,24 @@ public class Interface {
 		}
 
 	}
+
+	public void clearListeners()
+	{
+		JButton[] buttonArr={GUI.J0,GUI.J1,GUI.J2,GUI.J3,GUI.J4,GUI.J5,GUI.J6,GUI.J7,GUI.J8,GUI.J9,
+				GUI.JTNT,GUI.JSnips,GUI.JStore,GUI.JPicks,GUI.Help,GUI.Load,GUI.Save,GUI.JBackSpace,
+				GUI.JClear,GUI.JEnter,GUI.JUp,GUI.JDown,GUI.JLeft,GUI.JRight,GUI.JInfo
+				
+		};
+		
+		
+		for(int i=0; i<buttonArr.length; i++)
+		{
+			ActionListener[] arr=buttonArr[i].getActionListeners();
+			for (int j=0; j<arr.length; j++)
+			{
+				buttonArr[i].removeActionListener(arr[j]);
+			}
+		}
+	}
+
 }
