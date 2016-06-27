@@ -139,8 +139,7 @@ public class Interface {
 				// suggest user hit enter
 			}
 
-			else
-				;
+			else;
 
 		} // ends actionPerformed
 
@@ -344,7 +343,6 @@ public class Interface {
 			CrackerJacker.isWinner = false;
 			GUI.requestDifficulty();
 			setDifficultyListeners();
-
 		}
 	}
 
@@ -359,82 +357,9 @@ public class Interface {
 
 	public class helpListener implements ActionListener {
 		@Override
-		public void actionPerformed(ActionEvent e) { // brings up a box to help
-														// explain the game to
-														// the player
-
-			GUI.helpWindow.setSize(815, 700);
-			JTextArea helpText = new JTextArea(
-					"		How To Play SafeCracker"
-							+ "\n"
-							+ "\n"
-							+ "Choosing a Safe"
-							+ "\n"
-							+ "--Cracking safes can be a very lucrative but dangerous carrer. "
-							+ "\n"
-							+ "There are many different types of safes just waiting to have their loot liberated from them."
-							+ "\n"
-							+ "However, it is important to choose wisely. There are two number associated with each safe, the number of digits and the number of directions."
-							+ "\n"
-							+ "The number of digits tells you have many slots are in a combo, obviously a safe with 7 digits will be harder to crack than a safe with 4"
-							+ "\n"
-							+ "The number of directions are counted in the number of digits, but there are only 4 directions; U,D,L and R."
-							+ "\n"
-							+ "Any Digit that is not a directions, is a number from 0-9"
-							+ "\n"
-							+ "To pick a safe as your next target, you can press the button with its name, or the number or letter labeled to the very left of the name"
-							+ "\n"
-							+ "\n"
-							+ "Cracking a Safe"
-							+ "\n"
-							+ "--When you try to crack a safe, you must guess the numbers and directions involved in the safe."
-							+ "\n"
-							+ " All safes have numbers, but some will not have any directions."
-							+ "\n"
-							+ "The directions will always be the last set of digits in the combo, so for example a JewelHeist safe will have 7 digits, 3 of which are directions"
-							+ "\n"
-							+ "so a JewelHeist combo may look like 1234LRU but never L123R4U."
-							+ "\n"
-							+ "\n"
-							+ "Using Your Cracker-Jacker 5000 DLX"
-							+ "\n"
-							+ "--When you attempt to crack a safe, the Cracker-Jacker 5000 DLX will tell you how many posistions and how many digits you've gotten correct."
-							+ "\n"
-							+ "The digits correct tell you how many of the numbers and directions you guesses are used within the combo, but not if they are in the right location"
-							+ "\n"
-							+ "The posistions correct tell you how many locations within the combo are matched correctly, but not which digits are right."
-							+ "\n"
-							+ "Say a combonation is 123UD, and you guess 321RU. There will be 4 digits correct, but only 1 posistion correct."
-							+ "\n"
-							+ "Your Cracker-Jacker 5000 DLX will give you a history of all your previous guesses, but is unable to keep track of the posistions and digits correct"
-							+ "\n"
-							+ "\n"
-							+ "Wanted Level and Bail"
-							+ "\n"
-							+ "--Your wanted level tells you how bad the cops want to catch you, it is based not only on the number of safes you have cracked, but how difficult they were"
-							+ "\n"
-							+ "While your wanted level won't lead cops to you, it will affect how much your bail is if you get caught."
-							+ "\n"
-							+ "Bail is how much loot you loose if you get caught by the cops. You can be caught if you take to much time to crack a safe"
-							+ "\n"
-							+ "or you use to many guesses. You can also get caught when you try unothadoxed methods to crack a safe quickly"
-							+ "\n"
-							+ " How much you have to bail out is dependant on how difficult the safe was to crack as well as your wanted level"
-							+ "\n"
-							+ "Be careful choosing a safe, the cost of bail can quickly skyrocket. Of course, safes that are harder to crack probably have more loot"
-							+ "\n"
-							+ "\n"
-							+ "Loading and Saving You Carrer"
-							+ "\n"
-							+ "--The Save button will save your current carrer. You can click the save button or use Shift+S"
-							+ "\n"
-							+ "The Load button will load a previous carrer, you can click the Load button or use Shift+L"
-							+ "\n"
-							+ "While you can load and save a carrer that has ended (has run out of loot), you won't be able to play anymore safes with that carrer");
-			helpText.setEditable(false);
-
-			GUI.helpWindow.add(helpText);
-			GUI.helpWindow.setVisible(true);
+		public void actionPerformed(ActionEvent e) { 
+			// brings up a box to help explain the game to the player
+			GUI.setHelpText();
 
 		}
 
@@ -443,17 +368,13 @@ public class Interface {
 	public class clearGuess implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// listener clears the digits on the current guess by clearing
-			// currentGuess
+			// listener clears the digits on the current guess by clearing currentGuess
 			try {
-				if (!CrackerJacker.isWinner) // only allows the guess to be
-												// cleared if the game hasn't
-												// already been won
+				if (!CrackerJacker.isWinner) // only allows the guess to be cleared if the game hasn't already been won
 				{
 					CrackerJacker.currentGuess = new StringBuilder();
 					printUpdate();
-				} else
-					;
+				} else;
 			}
 			// ends try
 			catch (StringIndexOutOfBoundsException ex) {
@@ -719,27 +640,11 @@ public class Interface {
 		} // ends actionPerformed method
 	} // ends applyCheat class
 
-	public class infoPress implements ActionListener { // opens a window to
-														// identify special
-														// information about the
-														// creation of this
-														// program
-
+	public class infoPress implements ActionListener { 
+		// opens a window to identify special information about the creation of this program
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			JFrame infoWindow = new JFrame();
-			infoWindow.setSize(250, 250);
-			JTextArea infoText = new JTextArea(
-					"Thank You For Playing Safe Cracker \n"
-							+ "\n"
-							+ "Created By: Steven Paytosh \n"
-							+ "\n"
-							+ "Computer Science and Engineering @ Univeristy of Toledo \n"
-							+ "\n" + "Spring 2014" + "\n"
-							+ "https://github.com/StevePaytosh/SafeCracker");
-			infoWindow.setSize(500, 250);
-			infoWindow.add(infoText);
-			infoWindow.setVisible(true);
+			GUI.setInfoText();
 		}
 	} // end infoPress
 		// public class
@@ -769,28 +674,14 @@ public class Interface {
 		(GUI.JLeft).addActionListener(difficultyListener);
 		(GUI.JRight).addActionListener(difficultyListener);
 		(GUI.JEnter).addActionListener(difficultyListener);
-		//(GUI.JClear).removeActionListener(clearListener); // turns off the clearListener so there are no issues with selecting a level
-		//(GUI.JBackSpace).removeActionListener(backSpaceListener); // turn off
 		// the backSpaceListener so there are no issue with selecting a level
 		(GUI.JEnter).removeActionListener(exitRound1); // removes the exitGame
 		// listener which prevents a bug from occuring when a player doesn't
 		// enter enough digits
 		
-		// Removes the listers that allow cheats to be bought
-		/*
-		(GUI.JTNT).removeActionListener(applyCheat);
-		(GUI.JSnips).removeActionListener(applyCheat);
-		(GUI.JPicks).removeActionListener(applyCheat);
-		(GUI.J0).removeActionListener(cheatListener);
-		(GUI.J1).removeActionListener(cheatListener);
-		(GUI.J2).removeActionListener(cheatListener);
-*/
 		// show the proshop to the player if they have more than 3 break-ins
-		if ((CrackerJacker.totalBreakIns) >= 3) // makes the pro shop available
-												// if
-												// the player has broken enough
-												// safes
-		{
+		if ((CrackerJacker.totalBreakIns) >= 3) 
+		{// makes the pro shop available if the player has broken enough safes
 			(GUI.JStore).addActionListener(proShopListener);
 			(GUI.JStore).setText("Pro Shop");
 		} else {
@@ -1061,37 +952,8 @@ public class Interface {
 		// sets listeners for the transition from the end of the game to the
 		// difficulty selection
 		clearListeners();
-		/*
-		GUI.J0.removeActionListener(gameListener);
-		GUI.J1.removeActionListener(gameListener);
-		GUI.J2.removeActionListener(gameListener);
-		GUI.J3.removeActionListener(gameListener);
-		GUI.J4.removeActionListener(gameListener);
-		GUI.J5.removeActionListener(gameListener);
-		GUI.J6.removeActionListener(gameListener);
-		GUI.J7.removeActionListener(gameListener);
-		GUI.J8.removeActionListener(gameListener);
-		GUI.J9.removeActionListener(gameListener);
-		GUI.JUp.removeActionListener(gameListener);
-		GUI.JDown.removeActionListener(gameListener);
-		GUI.JLeft.removeActionListener(gameListener);
-		GUI.JRight.removeActionListener(gameListener);
-		GUI.JEnter.removeActionListener(gameListener);
-		GUI.JBackSpace.removeActionListener(gameListener);
-		GUI.JClear.removeActionListener(gameListener);
-		*/
+
 		GUI.JEnter.addActionListener(exitRound1);
-
-		// turn off tools
-		/*
-		GUI.JTNT.removeActionListener(applyCheat);
-		GUI.JSnips.removeActionListener(applyCheat);
-		GUI.JPicks.removeActionListener(applyCheat);
-		GUI.J0.removeActionListener(cheatListener);
-		GUI.J1.removeActionListener(cheatListener);
-		GUI.J2.removeActionListener(cheatListener);
-		*/
-
 		GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
 		GUI.JClear.setForeground(Color.LIGHT_GRAY);
 
@@ -1164,72 +1026,7 @@ public class Interface {
 		GUI.J2.addActionListener(cheatListener);
 		GUI.JEnter.addActionListener(exitRound1);
 
-		// set text for ProShop
-		GUI.J0.setText("TNT");
-		GUI.J1.setText("Picks");
-		GUI.J2.setText("Snips");
-		GUI.J3.setText("");
-		GUI.J4.setText("");
-		GUI.J5.setText("");
-		GUI.J6.setText("");
-		GUI.J7.setText("");
-		GUI.J8.setText("");
-		GUI.J9.setText("");
-		GUI.JUp.setText("");
-		GUI.JDown.setText("");
-		GUI.JLeft.setText("");
-		GUI.JRight.setText("");
-		GUI.JEnter.setText("Exit");
-
-		if (CrackerJacker.loot < 3000) // text shown if the player doesn't have
-										// enough money
-		{
-
-			GUI.topText.setText("		Loot:  $" + CrackerJacker.loot
-					+ "     Wanted Level: " + CrackerJacker.wantedLevel
-					+ "      Break-Ins: " + CrackerJacker.totalBreakIns + "\n"
-					+ "\n" + "        We Aint Got Anything For You Right Now!"
-					+ "\n");
-		} else // text shown if the player has enough money
-		{
-			GUI.topText
-					.setText("		Loot:  $"
-							+ CrackerJacker.loot
-							+ "     Wanted Level: "
-							+ CrackerJacker.wantedLevel
-							+ "      Break-Ins: "
-							+ CrackerJacker.totalBreakIns
-							+ "\n"
-							+ "\n"
-							+ "            		Psst, Welcome To The Pro-Shop"
-							+ "\n"
-							+ "              		     Here's What We Got"
-							+ "\n"
-							+ "\n"
-							+ "$4,500 "
-							+ "TNT- Breaks A Safe For You, But May Alert The Cops (Tread Lightly)"
-							+ "\n"
-							+ "$3,500 "
-							+ "Lock Pick- Removes A Digit From A Combo"
-							+ "\n"
-							+ "$3,000 "
-							+ "Snips- Delays The Cops And Gives You An Extra Move ");
-		}
-
-		// check if there are any quantities of tools and displays the number is
-		// they do
-		if (CrackerJacker.explosives > 0) {
-			GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
-			GUI.JTNT.setForeground(Color.GRAY);
-		}
-		if (CrackerJacker.picks > 0) {
-			GUI.JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
-			GUI.JPicks.setForeground(Color.GRAY);
-		}
-		if (CrackerJacker.snips > 0) {
-			GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
-			GUI.JSnips.setForeground(Color.GRAY);
-		}
+		GUI.setProShopText();
 
 	}
 

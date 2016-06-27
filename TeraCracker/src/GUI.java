@@ -554,5 +554,158 @@ public class GUI extends JFrame {
 			
 		}
 		
-			
+		public static void setHelpText()
+		{
+			helpWindow.setSize(815, 700);
+			JTextArea helpText = new JTextArea(
+					"		How To Play SafeCracker"
+							+ "\n"
+							+ "\n"
+							+ "Choosing a Safe"
+							+ "\n"
+							+ "--Cracking safes can be a very lucrative but dangerous carrer. "
+							+ "\n"
+							+ "There are many different types of safes just waiting to have their loot liberated from them."
+							+ "\n"
+							+ "However, it is important to choose wisely. There are two number associated with each safe, the number of digits and the number of directions."
+							+ "\n"
+							+ "The number of digits tells you have many slots are in a combo, obviously a safe with 7 digits will be harder to crack than a safe with 4"
+							+ "\n"
+							+ "The number of directions are counted in the number of digits, but there are only 4 directions; U,D,L and R."
+							+ "\n"
+							+ "Any Digit that is not a directions, is a number from 0-9"
+							+ "\n"
+							+ "To pick a safe as your next target, you can press the button with its name, or the number or letter labeled to the very left of the name"
+							+ "\n"
+							+ "\n"
+							+ "Cracking a Safe"
+							+ "\n"
+							+ "--When you try to crack a safe, you must guess the numbers and directions involved in the safe."
+							+ "\n"
+							+ " All safes have numbers, but some will not have any directions."
+							+ "\n"
+							+ "The directions will always be the last set of digits in the combo, so for example a JewelHeist safe will have 7 digits, 3 of which are directions"
+							+ "\n"
+							+ "so a JewelHeist combo may look like 1234LRU but never L123R4U."
+							+ "\n"
+							+ "\n"
+							+ "Using Your Cracker-Jacker 5000 DLX"
+							+ "\n"
+							+ "--When you attempt to crack a safe, the Cracker-Jacker 5000 DLX will tell you how many posistions and how many digits you've gotten correct."
+							+ "\n"
+							+ "The digits correct tell you how many of the numbers and directions you guesses are used within the combo, but not if they are in the right location"
+							+ "\n"
+							+ "The posistions correct tell you how many locations within the combo are matched correctly, but not which digits are right."
+							+ "\n"
+							+ "Say a combonation is 123UD, and you guess 321RU. There will be 4 digits correct, but only 1 posistion correct."
+							+ "\n"
+							+ "Your Cracker-Jacker 5000 DLX will give you a history of all your previous guesses, but is unable to keep track of the posistions and digits correct"
+							+ "\n"
+							+ "\n"
+							+ "Wanted Level and Bail"
+							+ "\n"
+							+ "--Your wanted level tells you how bad the cops want to catch you, it is based not only on the number of safes you have cracked, but how difficult they were"
+							+ "\n"
+							+ "While your wanted level won't lead cops to you, it will affect how much your bail is if you get caught."
+							+ "\n"
+							+ "Bail is how much loot you loose if you get caught by the cops. You can be caught if you take to much time to crack a safe"
+							+ "\n"
+							+ "or you use to many guesses. You can also get caught when you try unothadoxed methods to crack a safe quickly"
+							+ "\n"
+							+ " How much you have to bail out is dependant on how difficult the safe was to crack as well as your wanted level"
+							+ "\n"
+							+ "Be careful choosing a safe, the cost of bail can quickly skyrocket. Of course, safes that are harder to crack probably have more loot"
+							+ "\n"
+							+ "\n"
+							+ "Loading and Saving You Carrer"
+							+ "\n"
+							+ "--The Save button will save your current carrer. You can click the save button or use Shift+S"
+							+ "\n"
+							+ "The Load button will load a previous carrer, you can click the Load button or use Shift+L"
+							+ "\n"
+							+ "While you can load and save a carrer that has ended (has run out of loot), you won't be able to play anymore safes with that carrer");
+			helpText.setEditable(false);
+
+			helpWindow.add(helpText);
+			helpWindow.setVisible(true);
+		}
+
+		public static void setProShopText()
+		{
+			// set text for ProShop
+			clearAllButtons(true);
+			J0.setText("TNT");
+			J1.setText("Picks");
+			J2.setText("Snips");
+	
+			JEnter.setText("Exit");
+
+			if (CrackerJacker.loot < 3000) // text shown if the player doesn't have
+											// enough money
+			{
+
+				topText.setText("		Loot:  $" + CrackerJacker.loot
+						+ "     Wanted Level: " + CrackerJacker.wantedLevel
+						+ "      Break-Ins: " + CrackerJacker.totalBreakIns + "\n"
+						+ "\n" + "        We Aint Got Anything For You Right Now!"
+						+ "\n");
+			} else // text shown if the player has enough money
+			{
+				topText
+						.setText("		Loot:  $"
+								+ CrackerJacker.loot
+								+ "     Wanted Level: "
+								+ CrackerJacker.wantedLevel
+								+ "      Break-Ins: "
+								+ CrackerJacker.totalBreakIns
+								+ "\n"
+								+ "\n"
+								+ "            		Psst, Welcome To The Pro-Shop"
+								+ "\n"
+								+ "              		     Here's What We Got"
+								+ "\n"
+								+ "\n"
+								+ "$4,500 "
+								+ "TNT- Breaks A Safe For You, But May Alert The Cops (Tread Lightly)"
+								+ "\n"
+								+ "$3,500 "
+								+ "Lock Pick- Removes A Digit From A Combo"
+								+ "\n"
+								+ "$3,000 "
+								+ "Snips- Delays The Cops And Gives You An Extra Move ");
+			}
+
+			// check if there are any quantities of tools and displays the number is
+			// they do
+			if (CrackerJacker.explosives > 0) {
+				JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
+				JTNT.setForeground(Color.GRAY);
+			}
+			if (CrackerJacker.picks > 0) {
+				JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
+				JPicks.setForeground(Color.GRAY);
+			}
+			if (CrackerJacker.snips > 0) {
+				JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
+				JSnips.setForeground(Color.GRAY);
+			}
+		}
+
+		public static void setInfoText()
+		{
+			//brings up a new text box with infomation about the game and creation
+			JFrame infoWindow = new JFrame();
+			infoWindow.setSize(250, 250);
+			JTextArea infoText = new JTextArea(
+					"Thank You For Playing Safe Cracker \n"
+							+ "\n"
+							+ "Created By: Steven Paytosh \n"
+							+ "\n"
+							+ "Computer Science and Engineering @ Univeristy of Toledo \n"
+							+ "\n" + "Spring 2014" + "\n"
+							+ "https://github.com/StevePaytosh/SafeCracker");
+			infoWindow.setSize(500, 250);
+			infoWindow.add(infoText);
+			infoWindow.setVisible(true);
+		}
 }
