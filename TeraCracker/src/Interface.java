@@ -9,20 +9,22 @@ import javax.swing.Timer;
 public class Interface {
 	// listeners are instantiated here because they will be repeatedly turned on
 	// an off
-	numberListener1 numbers1 = new numberListener1();
-	numberListener2 numbers2 = new numberListener2();
-	exitWelcome exitWelcome1 = new exitWelcome();
-	exitGame exitGame1 = new exitGame();
-	helpListener help = new helpListener();
+	difficultySelectionListener difficultyListener = new difficultySelectionListener();
+	gameListener gameListener = new gameListener();
+	exitWelcome exitWelcome = new exitWelcome();
+	exitRound exitRound1 = new exitRound();
+	exitGame exitGame=new exitGame();
+	helpListener helpListener = new helpListener();
 	clearGuess clearListener = new clearGuess();
 	backSpace backSpaceListener = new backSpace();
 	proShopListener proShopListener = new proShopListener();
 	cheatListener cheatListener = new cheatListener();
-	keyListener key1 = new keyListener();
+	keyListener keyBoardListener = new keyListener();
 	applyCheat applyCheat = new applyCheat();
 	infoPress infoPress = new infoPress();
 
-	private Timer timer = new Timer(1000, new timerListener()); // time event listener
+	private Timer timer = new Timer(1000, new timerListener()); // time event
+																// listener
 	GUI GUI;
 	CrackerJacker CrackerJacker;
 
@@ -30,13 +32,7 @@ public class Interface {
 		GUI = a;
 		CrackerJacker = b;
 		// register listeners
-		(GUI.JEnter).addActionListener(exitWelcome1);
-		(GUI.Help).addActionListener(help); // note the button "Help" is capitalized, while the listener is lowercase
-		(GUI.JInfo).addActionListener(infoPress);
-		(GUI.mainWindow).setFocusable(true); // sets the main window to focusable
-		(GUI.mainWindow).requestFocus(); // requests focus for the main window
-		(GUI.mainWindow).setFocusTraversalKeysEnabled(false); // keeps focus from shifting away
-		(GUI.mainWindow).addKeyListener(key1); // registers the keyListener for the game
+		setWelcomeListeners();
 	}
 
 	// ========================================================================================================================================
@@ -45,7 +41,7 @@ public class Interface {
 	// ========================================================================================================================================
 	// ========================================================================================================================================
 
-	public class numberListener2 implements ActionListener {
+	public class gameListener implements ActionListener {
 		/*
 		 * This is the main listener in the game and should ideally hold most of
 		 * the logic it covers all the numbered buttons and the directions. It
@@ -177,7 +173,7 @@ public class Interface {
 		} // ends actionPerformed
 	} // ends timerListener
 
-	public class numberListener1 implements ActionListener {
+	public class difficultySelectionListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
 			/*
@@ -336,19 +332,30 @@ public class Interface {
 
 			// exits the welcome screen and implements setDifficultyListener
 			GUI.requestDifficulty(); // sets the text to request difficulty
-			setDifficultyListeners();// method sets the needed button text and listeners
-			
+			setDifficultyListeners();// method sets the needed button text and
+										// listeners
+
+		}
+	}
+
+	public class exitRound implements ActionListener {
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			// Transitions from the end of a game to the select difficulty
+			// screen
+			CrackerJacker.isWinner = false;
+			GUI.requestDifficulty();
+			setDifficultyListeners();
+
 		}
 	}
 
 	public class exitGame implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// Transitions from the end of a game to the select difficulty screen
-			 CrackerJacker.isWinner=false;
-			 GUI.requestDifficulty();
-			 setDifficultyListeners();
-			 
+			// When the game is over, take the player back to the welcome screen
+			setWelcomeListeners();
+
 		}
 	}
 
@@ -754,26 +761,26 @@ public class Interface {
 	public void setDifficultyListeners() {
 		// Sets the numbers1 listener to the digits and directions, that will
 		// allow the user to select the difficulty
-		(GUI.J0).addActionListener(numbers1);
-		(GUI.J1).addActionListener(numbers1);
-		(GUI.J2).addActionListener(numbers1);
-		(GUI.J3).addActionListener(numbers1);
-		(GUI.J4).addActionListener(numbers1);
-		(GUI.J5).addActionListener(numbers1);
-		(GUI.J6).addActionListener(numbers1);
-		(GUI.J7).addActionListener(numbers1);
-		(GUI.J8).addActionListener(numbers1);
-		(GUI.J9).addActionListener(numbers1);
-		(GUI.JUp).addActionListener(numbers1);
-		(GUI.JDown).addActionListener(numbers1);
-		(GUI.JLeft).addActionListener(numbers1);
-		(GUI.JRight).addActionListener(numbers1);
-		(GUI.JEnter).addActionListener(numbers1);
+		(GUI.J0).addActionListener(difficultyListener);
+		(GUI.J1).addActionListener(difficultyListener);
+		(GUI.J2).addActionListener(difficultyListener);
+		(GUI.J3).addActionListener(difficultyListener);
+		(GUI.J4).addActionListener(difficultyListener);
+		(GUI.J5).addActionListener(difficultyListener);
+		(GUI.J6).addActionListener(difficultyListener);
+		(GUI.J7).addActionListener(difficultyListener);
+		(GUI.J8).addActionListener(difficultyListener);
+		(GUI.J9).addActionListener(difficultyListener);
+		(GUI.JUp).addActionListener(difficultyListener);
+		(GUI.JDown).addActionListener(difficultyListener);
+		(GUI.JLeft).addActionListener(difficultyListener);
+		(GUI.JRight).addActionListener(difficultyListener);
+		(GUI.JEnter).addActionListener(difficultyListener);
 		(GUI.JClear).removeActionListener(clearListener); // turns off the
 		// clearListener so there are no issues with selecting a level
 		(GUI.JBackSpace).removeActionListener(backSpaceListener); // turn off
 		// the backSpaceListener so there are no issue with selecting a level
-		(GUI.JEnter).removeActionListener(exitGame1); // removes the exitGame
+		(GUI.JEnter).removeActionListener(exitRound1); // removes the exitGame
 		// listener which prevents a bug from occuring when a player doesn't
 		// enter enough digits
 
@@ -797,8 +804,8 @@ public class Interface {
 
 			(GUI.JStore).removeActionListener(proShopListener);
 		}
-		
-		GUI.setDifficultyListener(); 
+
+		GUI.setDifficultyListener();
 	}
 
 	// #19
@@ -807,77 +814,77 @@ public class Interface {
 	private void setGameListener() {
 
 		// remove the difficulty phase listeners
-		GUI.J0.removeActionListener(numbers1);
-		GUI.J1.removeActionListener(numbers1);
-		GUI.J2.removeActionListener(numbers1);
-		GUI.J3.removeActionListener(numbers1);
-		GUI.J4.removeActionListener(numbers1);
-		GUI.J5.removeActionListener(numbers1);
-		GUI.J6.removeActionListener(numbers1);
-		GUI.J7.removeActionListener(numbers1);
-		GUI.J8.removeActionListener(numbers1);
-		GUI.J9.removeActionListener(numbers1);
-		GUI.JUp.removeActionListener(numbers1);
-		GUI.JDown.removeActionListener(numbers1);
-		GUI.JLeft.removeActionListener(numbers1);
-		GUI.JRight.removeActionListener(numbers1);
-		GUI.JEnter.removeActionListener(numbers1);
-		GUI.JEnter.removeActionListener(exitWelcome1);
+		GUI.J0.removeActionListener(difficultyListener);
+		GUI.J1.removeActionListener(difficultyListener);
+		GUI.J2.removeActionListener(difficultyListener);
+		GUI.J3.removeActionListener(difficultyListener);
+		GUI.J4.removeActionListener(difficultyListener);
+		GUI.J5.removeActionListener(difficultyListener);
+		GUI.J6.removeActionListener(difficultyListener);
+		GUI.J7.removeActionListener(difficultyListener);
+		GUI.J8.removeActionListener(difficultyListener);
+		GUI.J9.removeActionListener(difficultyListener);
+		GUI.JUp.removeActionListener(difficultyListener);
+		GUI.JDown.removeActionListener(difficultyListener);
+		GUI.JLeft.removeActionListener(difficultyListener);
+		GUI.JRight.removeActionListener(difficultyListener);
+		GUI.JEnter.removeActionListener(difficultyListener);
+		GUI.JEnter.removeActionListener(exitWelcome);
 
 		GUI.J0.removeActionListener(cheatListener);
 		GUI.J1.removeActionListener(cheatListener);
 		GUI.J2.removeActionListener(cheatListener);
 
 		// register listeners with buttons
-		GUI.J0.addActionListener(numbers2);
-		GUI.J1.addActionListener(numbers2);
-		GUI.J2.addActionListener(numbers2);
-		GUI.J3.addActionListener(numbers2);
-		GUI.J4.addActionListener(numbers2);
-		GUI.J5.addActionListener(numbers2);
-		GUI.J6.addActionListener(numbers2);
-		GUI.J7.addActionListener(numbers2);
-		GUI.J8.addActionListener(numbers2);
-		GUI.J9.addActionListener(numbers2);
-		GUI.JUp.addActionListener(numbers2);
-		GUI.JDown.addActionListener(numbers2);
-		GUI.JLeft.addActionListener(numbers2);
-		GUI.JRight.addActionListener(numbers2);
-		GUI.JEnter.addActionListener(numbers2);
+		GUI.J0.addActionListener(gameListener);
+		GUI.J1.addActionListener(gameListener);
+		GUI.J2.addActionListener(gameListener);
+		GUI.J3.addActionListener(gameListener);
+		GUI.J4.addActionListener(gameListener);
+		GUI.J5.addActionListener(gameListener);
+		GUI.J6.addActionListener(gameListener);
+		GUI.J7.addActionListener(gameListener);
+		GUI.J8.addActionListener(gameListener);
+		GUI.J9.addActionListener(gameListener);
+		GUI.JUp.addActionListener(gameListener);
+		GUI.JDown.addActionListener(gameListener);
+		GUI.JLeft.addActionListener(gameListener);
+		GUI.JRight.addActionListener(gameListener);
+		GUI.JEnter.addActionListener(gameListener);
 		GUI.JBackSpace.addActionListener(backSpaceListener);
 		GUI.JClear.addActionListener(clearListener);
 
 		GUI.mainWindow.requestFocus();
 		GUI.setGameText();
-		
+
 		// show tools if they are available,
 		if (CrackerJacker.explosives > 0) {
-			//JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
+			// JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
 			GUI.JTNT.addActionListener(applyCheat);
 		} else {
-		//	JTNT.setText("-");
-		//	JTNT.setForeground(Color.LIGHT_GRAY);
-		GUI.JTNT.removeActionListener(applyCheat);
+			// JTNT.setText("-");
+			// JTNT.setForeground(Color.LIGHT_GRAY);
+			GUI.JTNT.removeActionListener(applyCheat);
 		}
 
 		if (CrackerJacker.snips > 0) {
-			//JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
+			// JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
 			GUI.JSnips.addActionListener(applyCheat);
 		} else {
-			//JSnips.setText("-");
-			//JSnips.setForeground(Color.LIGHT_GRAY);
+			// JSnips.setText("-");
+			// JSnips.setForeground(Color.LIGHT_GRAY);
 			GUI.JSnips.removeActionListener(applyCheat);
 		}
 
 		if (CrackerJacker.picks > 0) {
-			//JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
+			// JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
 			GUI.JPicks.addActionListener(applyCheat);
 		} else {
-			//JPicks.setText("-");
-			//JPicks.setForeground(Color.LIGHT_GRAY);
+			// JPicks.setText("-");
+			// JPicks.setForeground(Color.LIGHT_GRAY);
 			GUI.JPicks.removeActionListener(applyCheat);
 		}
-		
+
 		timer.start();
 		printUpdate();
 
@@ -889,90 +896,90 @@ public class Interface {
 	public void printUpdate() {
 
 		// method is responsible for updating the board during the guessing
-				// phase
-				// it is called by the numberListener and hits under certain conditions
+		// phase
+		// it is called by the numberListener and hits under certain conditions
 
-				// checks if the safe has been cracked or not
-				if (CrackerJacker.isWinner) {
-					winningProtocol();
-					CrackerJacker.turnCount = 0;
-					// currentGuess may need to be cleared here
-				} else if (CrackerJacker.turnCount == CrackerJacker.guessLimit) {
-					losingProtocol();
-					CrackerJacker.turnCount = 0;
+		// checks if the safe has been cracked or not
+		if (CrackerJacker.isWinner) {
+			winningProtocol();
+			CrackerJacker.turnCount = 0;
+			// currentGuess may need to be cleared here
+		} else if (CrackerJacker.turnCount == CrackerJacker.guessLimit) {
+			losingProtocol();
+			CrackerJacker.turnCount = 0;
+		} else {
+			// if the game is neither a winner nor a loser, then it continues to
+			// print the necessary information for gamePlay
+			StringBuilder tempBuilder = new StringBuilder();
+
+			for (int i = 0; i < CrackerJacker.turnCount; i++) // for loop
+																// strings
+																// together all
+																// the
+																// previous
+																// guesses
+																// for display
+			{
+
+				if (i == CrackerJacker.turnCount - 1) {
+					tempBuilder.append("  | "
+							+ CrackerJacker.guessArray[i].toString() + " | ");
 				} else {
-					// if the game is neither a winner nor a loser, then it continues to
-					// print the necessary information for gamePlay
-					StringBuilder tempBuilder = new StringBuilder();
+					tempBuilder.append("   "
+							+ CrackerJacker.guessArray[i].toString());
+				}
 
-					for (int i = 0; i < CrackerJacker.turnCount; i++) // for loop
-																		// strings
-																		// together all
-																		// the
-																		// previous
-																		// guesses
-																		// for display
-					{
+			} // ends for loop
 
-						if (i == CrackerJacker.turnCount - 1) {
-							tempBuilder.append("  | "
-									+ CrackerJacker.guessArray[i].toString() + " | ");
-						} else {
-							tempBuilder.append("   "
-									+ CrackerJacker.guessArray[i].toString());
-						}
+			// display top and bottom text area
+			// uncomment the combo portion of the next line to make the combo
+			// visible during play.
+			GUI.topText.setText("		Loot:  $" + CrackerJacker.loot
+					+ "     Wanted Level: " + CrackerJacker.wantedLevel
+					+ "      Break-Ins: " + CrackerJacker.totalBreakIns
+					+ "   combo: " + CrackerJacker.combo + "\n"
+					+ " Difficulty: " + CrackerJacker.difficulty + "\n"
+					+ " Digits: " + CrackerJacker.comboSize + " Directions: "
+					+ CrackerJacker.directions + "\n" + " Guesses:  "
+					+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
+					+ "    Time: " + CrackerJacker.timeInMinutes + ":"
+					+ CrackerJacker.timeInSeconds + "\n" + tempBuilder + "\n"
+					+ "\n" + "             " + CrackerJacker.currentGuess
+					+ "\n" + "      Digits Correct: "
+					+ CrackerJacker.digitsCorrect + "    Posistions Correct: "
+					+ CrackerJacker.posistionsCorrect);
 
-					} // ends for loop
+			// update the tool buttons
+			if (CrackerJacker.explosives > 0) {
+				GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
+				GUI.JTNT.setForeground(Color.BLACK);
+				GUI.JTNT.addActionListener(applyCheat);
+			} else {
+				GUI.JTNT.setText("");
+				GUI.JTNT.removeActionListener(applyCheat);
+			}
 
-					// display top and bottom text area
-					// uncomment the combo portion of the next line to make the combo
-					// visible during play.
-					GUI.topText.setText("		Loot:  $" + CrackerJacker.loot
-							+ "     Wanted Level: " + CrackerJacker.wantedLevel
-							+ "      Break-Ins: " + CrackerJacker.totalBreakIns
-							+ "   combo: " + CrackerJacker.combo + "\n"
-							+ " Difficulty: " + CrackerJacker.difficulty + "\n"
-							+ " Digits: " + CrackerJacker.comboSize + " Directions: "
-							+ CrackerJacker.directions + "\n" + " Guesses:  "
-							+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
-							+ "    Time: " + CrackerJacker.timeInMinutes + ":"
-							+ CrackerJacker.timeInSeconds + "\n" + tempBuilder + "\n"
-							+ "\n" + "             " + CrackerJacker.currentGuess
-							+ "\n" + "      Digits Correct: "
-							+ CrackerJacker.digitsCorrect + "    Posistions Correct: "
-							+ CrackerJacker.posistionsCorrect);
+			if (CrackerJacker.snips > 0) {
+				GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
+				GUI.JSnips.setForeground(Color.BLACK);
+				GUI.JSnips.addActionListener(applyCheat);
+			} else {
+				GUI.JSnips.setText("");
+				GUI.JSnips.removeActionListener(applyCheat);
+			}
 
-					// update the tool buttons
-					if (CrackerJacker.explosives > 0) {
-						GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
-						GUI.JTNT.setForeground(Color.BLACK);
-						GUI.JTNT.addActionListener(applyCheat);
-					} else {
-						GUI.JTNT.setText("");
-						GUI.JTNT.removeActionListener(applyCheat);
-					}
+			if (CrackerJacker.picks > 0) {
+				GUI.JPicks.setText("Lock Pick (" + CrackerJacker.picks + "x)");
+				GUI.JPicks.setForeground(Color.BLACK);
+				GUI.JPicks.addActionListener(applyCheat);
+			} else {
+				GUI.JPicks.setText("");
+				GUI.JPicks.removeActionListener(applyCheat);
+			}
 
-					if (CrackerJacker.snips > 0) {
-						GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
-						GUI.JSnips.setForeground(Color.BLACK);
-						GUI.JSnips.addActionListener(applyCheat);
-					} else {
-						GUI.JSnips.setText("");
-						GUI.JSnips.removeActionListener(applyCheat);
-					}
+		}// ends else
 
-					if (CrackerJacker.picks > 0) {
-						GUI.JPicks.setText("Lock Pick (" + CrackerJacker.picks + "x)");
-						GUI.JPicks.setForeground(Color.BLACK);
-						GUI.JPicks.addActionListener(applyCheat);
-					} else {
-						GUI.JPicks.setText("");
-						GUI.JPicks.removeActionListener(applyCheat);
-					}
-
-				}// ends else
-
-				GUI.mainWindow.requestFocus();
+		GUI.mainWindow.requestFocus();
 
 	} // ends printUpdate
 
@@ -987,14 +994,18 @@ public class Interface {
 									// bail out value
 
 		CrackerJacker.bail *= CrackerJacker.wantedLevel
-				* CrackerJacker.difficulty; // sets
-		// the
-		// amount
-		// to
-		// bail
-		// out
-		CrackerJacker.loot -= CrackerJacker.bail; // subtracts the bail out from
-													// the
+				* CrackerJacker.difficulty; // sets the amount to bail out
+
+		// check if the player has enough to bail out
+		if (CrackerJacker.bail > CrackerJacker.loot) {
+			// initiate the end of game protocol
+			GUI.setGameOver();
+			gameOverProtocol();
+			
+		} else{
+
+			CrackerJacker.loot -= CrackerJacker.bail; // subtracts the bail out
+														// from loot
 
 		GUI.topText.setBackground(Color.RED);
 		GUI.topText.setText("		Loot:  $" + CrackerJacker.loot
@@ -1007,27 +1018,27 @@ public class Interface {
 
 		// sets listeners for the transition from the end of the game to the
 		// difficulty selection
-		GUI.J0.removeActionListener(numbers2);
-		GUI.J1.removeActionListener(numbers2);
-		GUI.J2.removeActionListener(numbers2);
-		GUI.J3.removeActionListener(numbers2);
-		GUI.J4.removeActionListener(numbers2);
-		GUI.J5.removeActionListener(numbers2);
-		GUI.J6.removeActionListener(numbers2);
-		GUI.J7.removeActionListener(numbers2);
-		GUI.J8.removeActionListener(numbers2);
-		GUI.J9.removeActionListener(numbers2);
-		GUI.JUp.removeActionListener(numbers2);
-		GUI.JDown.removeActionListener(numbers2);
-		GUI.JLeft.removeActionListener(numbers2);
-		GUI.JRight.removeActionListener(numbers2);
-		GUI.JEnter.removeActionListener(numbers2);
-		GUI.JBackSpace.removeActionListener(numbers2);
-		GUI.JClear.removeActionListener(numbers2);
+		GUI.J0.removeActionListener(gameListener);
+		GUI.J1.removeActionListener(gameListener);
+		GUI.J2.removeActionListener(gameListener);
+		GUI.J3.removeActionListener(gameListener);
+		GUI.J4.removeActionListener(gameListener);
+		GUI.J5.removeActionListener(gameListener);
+		GUI.J6.removeActionListener(gameListener);
+		GUI.J7.removeActionListener(gameListener);
+		GUI.J8.removeActionListener(gameListener);
+		GUI.J9.removeActionListener(gameListener);
+		GUI.JUp.removeActionListener(gameListener);
+		GUI.JDown.removeActionListener(gameListener);
+		GUI.JLeft.removeActionListener(gameListener);
+		GUI.JRight.removeActionListener(gameListener);
+		GUI.JEnter.removeActionListener(gameListener);
+		GUI.JBackSpace.removeActionListener(gameListener);
+		GUI.JClear.removeActionListener(gameListener);
 		GUI.J0.removeActionListener(cheatListener);
 		GUI.J1.removeActionListener(cheatListener);
 		GUI.J2.removeActionListener(cheatListener);
-		GUI.JEnter.addActionListener(exitGame1);
+		GUI.JEnter.addActionListener(exitRound1);
 
 		GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
 		GUI.JClear.setForeground(Color.LIGHT_GRAY);
@@ -1066,7 +1077,7 @@ public class Interface {
 
 		CrackerJacker.posistionsCorrect = 0;
 		CrackerJacker.digitsCorrect = 0;
-
+		}
 	}
 
 	//
@@ -1075,7 +1086,8 @@ public class Interface {
 	public void winningProtocol() {
 		timer.stop();
 
-		CrackerJacker.payout = (int) (Math.random() * 1000)	* CrackerJacker.difficulty;
+		CrackerJacker.payout = (int) (Math.random() * 1000)
+				* CrackerJacker.difficulty;
 		CrackerJacker.loot += CrackerJacker.payout;
 		CrackerJacker.totalBreakIns++;
 		CrackerJacker.wantedLevel();
@@ -1092,24 +1104,24 @@ public class Interface {
 
 		// sets listeners for the transition from the end of the game to the
 		// difficulty selection
-		GUI.J0.removeActionListener(numbers2);
-		GUI.J1.removeActionListener(numbers2);
-		GUI.J2.removeActionListener(numbers2);
-		GUI.J3.removeActionListener(numbers2);
-		GUI.J4.removeActionListener(numbers2);
-		GUI.J5.removeActionListener(numbers2);
-		GUI.J6.removeActionListener(numbers2);
-		GUI.J7.removeActionListener(numbers2);
-		GUI.J8.removeActionListener(numbers2);
-		GUI.J9.removeActionListener(numbers2);
-		GUI.JUp.removeActionListener(numbers2);
-		GUI.JDown.removeActionListener(numbers2);
-		GUI.JLeft.removeActionListener(numbers2);
-		GUI.JRight.removeActionListener(numbers2);
-		GUI.JEnter.removeActionListener(numbers2);
-		GUI.JBackSpace.removeActionListener(numbers2);
-		GUI.JClear.removeActionListener(numbers2);
-		GUI.JEnter.addActionListener(exitGame1);
+		GUI.J0.removeActionListener(gameListener);
+		GUI.J1.removeActionListener(gameListener);
+		GUI.J2.removeActionListener(gameListener);
+		GUI.J3.removeActionListener(gameListener);
+		GUI.J4.removeActionListener(gameListener);
+		GUI.J5.removeActionListener(gameListener);
+		GUI.J6.removeActionListener(gameListener);
+		GUI.J7.removeActionListener(gameListener);
+		GUI.J8.removeActionListener(gameListener);
+		GUI.J9.removeActionListener(gameListener);
+		GUI.JUp.removeActionListener(gameListener);
+		GUI.JDown.removeActionListener(gameListener);
+		GUI.JLeft.removeActionListener(gameListener);
+		GUI.JRight.removeActionListener(gameListener);
+		GUI.JEnter.removeActionListener(gameListener);
+		GUI.JBackSpace.removeActionListener(gameListener);
+		GUI.JClear.removeActionListener(gameListener);
+		GUI.JEnter.addActionListener(exitRound1);
 
 		// turn off tools
 		GUI.JTNT.removeActionListener(applyCheat);
@@ -1156,6 +1168,53 @@ public class Interface {
 
 	} // ends winning protocol
 
+	public void setWelcomeListeners() {
+		(GUI.JEnter).addActionListener(exitWelcome);
+		(GUI.Help).addActionListener(helpListener); // note the button "Help" is
+											// capitalized, while the listener
+											// is lowercase
+		(GUI.JInfo).addActionListener(infoPress);
+		(GUI.mainWindow).setFocusable(true); // sets the main window to
+												// focusable
+		(GUI.mainWindow).requestFocus(); // requests focus for the main window
+		(GUI.mainWindow).setFocusTraversalKeysEnabled(false); // keeps focus
+																// from shifting
+																// away
+		(GUI.mainWindow).addKeyListener(keyBoardListener); // registers the keyListener for
+												// the game
+
+		GUI.welcomeScreen();
+	}
+
+	public void gameOverProtocol() {
+		// When the game is over, the only button the user will have a is
+		// restart button
+		GUI.J0.removeActionListener(gameListener);
+		GUI.J1.removeActionListener(gameListener);
+		GUI.J2.removeActionListener(gameListener);
+		GUI.J3.removeActionListener(gameListener);
+		GUI.J4.removeActionListener(gameListener);
+		GUI.J5.removeActionListener(gameListener);
+		GUI.J6.removeActionListener(gameListener);
+		GUI.J7.removeActionListener(gameListener);
+		GUI.J8.removeActionListener(gameListener);
+		GUI.J9.removeActionListener(gameListener);
+		GUI.JUp.removeActionListener(gameListener);
+		GUI.JDown.removeActionListener(gameListener);
+		GUI.JLeft.removeActionListener(gameListener);
+		GUI.JRight.removeActionListener(gameListener);
+		GUI.JEnter.removeActionListener(gameListener);
+		GUI.JBackSpace.removeActionListener(gameListener);
+		GUI.JClear.removeActionListener(gameListener);
+		GUI.J0.removeActionListener(cheatListener);
+		GUI.J1.removeActionListener(cheatListener);
+		GUI.J2.removeActionListener(cheatListener);
+		
+		GUI.J7.addActionListener(exitGame);
+
+		// set the listener for a button to go the welcome screen
+	}
+
 	// #16
 	// proShop
 	//
@@ -1168,22 +1227,22 @@ public class Interface {
 		GUI.J2.removeActionListener(cheatListener);
 
 		// remove listeners for the previous stage of the game
-		GUI.J0.removeActionListener(numbers1);
-		GUI.J1.removeActionListener(numbers1);
-		GUI.J2.removeActionListener(numbers1);
-		GUI.J3.removeActionListener(numbers1);
-		GUI.J4.removeActionListener(numbers1);
-		GUI.J5.removeActionListener(numbers1);
-		GUI.J6.removeActionListener(numbers1);
-		GUI.J7.removeActionListener(numbers1);
-		GUI.J8.removeActionListener(numbers1);
-		GUI.J9.removeActionListener(numbers1);
-		GUI.JUp.removeActionListener(numbers1);
-		GUI.JDown.removeActionListener(numbers1);
-		GUI.JLeft.removeActionListener(numbers1);
-		GUI.JRight.removeActionListener(numbers1);
-		GUI.JEnter.removeActionListener(numbers1);
-		GUI.JEnter.removeActionListener(exitWelcome1);
+		GUI.J0.removeActionListener(difficultyListener);
+		GUI.J1.removeActionListener(difficultyListener);
+		GUI.J2.removeActionListener(difficultyListener);
+		GUI.J3.removeActionListener(difficultyListener);
+		GUI.J4.removeActionListener(difficultyListener);
+		GUI.J5.removeActionListener(difficultyListener);
+		GUI.J6.removeActionListener(difficultyListener);
+		GUI.J7.removeActionListener(difficultyListener);
+		GUI.J8.removeActionListener(difficultyListener);
+		GUI.J9.removeActionListener(difficultyListener);
+		GUI.JUp.removeActionListener(difficultyListener);
+		GUI.JDown.removeActionListener(difficultyListener);
+		GUI.JLeft.removeActionListener(difficultyListener);
+		GUI.JRight.removeActionListener(difficultyListener);
+		GUI.JEnter.removeActionListener(difficultyListener);
+		GUI.JEnter.removeActionListener(exitWelcome);
 
 		// removes the ability of the tool buttons
 		GUI.JTNT.removeActionListener(applyCheat);
@@ -1194,7 +1253,7 @@ public class Interface {
 		GUI.J0.addActionListener(cheatListener);
 		GUI.J1.addActionListener(cheatListener);
 		GUI.J2.addActionListener(cheatListener);
-		GUI.JEnter.addActionListener(exitGame1);
+		GUI.JEnter.addActionListener(exitRound1);
 
 		// set text for ProShop
 		GUI.J0.setText("TNT");

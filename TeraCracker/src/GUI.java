@@ -399,7 +399,22 @@ public class GUI extends JFrame {
 	
 	}
 	
+	//
+	// Game Over
+	public static void setGameOver()
+	{
+		//display shown if the player has lost the game
+		topText.setBackground(Color.RED);
+		topText.setText(" Busted!!!"
+				+ "\n"
+				+"You Failed To Make Bail \n It Looks Like It's Game Over For You"
+				);
+		
+		clearAllButtons(true);
+		J7.setText("Restart Game");
 	
+		
+	}
 	//
 	// buyStatus
 	// method prints an update for a the user when they try to buy something in the proshop
@@ -466,4 +481,68 @@ public class GUI extends JFrame {
 				}
 			} // ends buy status
 	
+		
+	//
+	// Clear All Buttons
+		public static void clearAllButtons(boolean isVisible)	
+		{
+			//method clears the text from all JButtons, and sets the visibility to isVisible
+			J0.setText("");
+			J1.setText("");
+			J2.setText("");
+			J3.setText("");
+			J4.setText("");
+			J5.setText("");
+			J6.setText("");
+			J7.setText("");
+			J8.setText("");
+			J9.setText("");
+			JUp.setText("");
+			JDown.setText("");
+			JLeft.setText("");
+			JRight.setText("");
+			JClear.setText("");
+			JBackSpace.setText("");
+			JEnter.setText("");
+			JTNT.setText("");
+			JSnips.setText("");
+			JPicks.setText("");
+			JStore.setText("");
+			JInfo.setText("");
+			Help.setText("");
+			Load.setText("");
+			Save.setText("");
+			
+			setButtonVisibility(isVisible);
+		}
+		
+	//Set Button Visisblilty
+		public static void setButtonVisibility(boolean isVisible)
+		{
+			J0.setVisible(isVisible);
+			J1.setVisible(isVisible);
+			J2.setVisible(isVisible);
+			J3.setVisible(isVisible);
+			J4.setVisible(isVisible);
+			J5.setVisible(isVisible);
+			J6.setVisible(isVisible);
+			J7.setVisible(isVisible);
+			J8.setVisible(isVisible);
+			J9.setVisible(isVisible);
+			JUp.setVisible(isVisible);
+			JDown.setVisible(isVisible);
+			JLeft.setVisible(isVisible);
+			JRight.setVisible(isVisible);
+			JEnter.setVisible(isVisible);
+			JBackSpace.setVisible(isVisible);
+			JClear.setVisible(isVisible);
+			
+			JTNT.setVisible(isVisible);
+			JPicks.setVisible(isVisible);
+			JSnips.setVisible(isVisible);
+			JStore.setVisible(isVisible);
+			
+		}
+		
+			
 }
