@@ -1,6 +1,5 @@
 import java.awt.Color;
 import java.awt.event.*;
-
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
@@ -41,6 +40,8 @@ public class Interface {
 	// ========================================================================================================================================
 	// ========================================================================================================================================
 
+	
+	
 	public class gameListener implements ActionListener {
 		/*
 		 * This is the main listener in the game and should ideally hold most of
@@ -658,7 +659,7 @@ public class Interface {
 		// allow the user to select the difficulty
 		
 		clearListeners();
-		
+	//	GUI.setButtonListener("0",difficultyListener);
 		(GUI.J0).addActionListener(difficultyListener);
 		(GUI.J1).addActionListener(difficultyListener);
 		(GUI.J2).addActionListener(difficultyListener);

@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+import java.awt.event.*;
+
 
 public class GUI extends JFrame {
 
@@ -707,5 +709,71 @@ public class GUI extends JFrame {
 			infoWindow.setSize(500, 250);
 			infoWindow.add(infoText);
 			infoWindow.setVisible(true);
+		}
+		
+		public static void setButtonListener(String buttonID, ActionListener a)
+		{
+			switch(buttonID)
+			{
+			case "0": J0.addActionListener(a);
+			case "1": J0.addActionListener(a);
+			case "2": J0.addActionListener(a);
+			case "3": J0.addActionListener(a);
+			case "4": J0.addActionListener(a);
+			case "5": J0.addActionListener(a);
+			case "6": J0.addActionListener(a);
+			case "7": J0.addActionListener(a);
+			case "8": J0.addActionListener(a);
+			case "9": J0.addActionListener(a);
+			case "Up": J0.addActionListener(a);
+			case "Down": J0.addActionListener(a);
+			case "Left": J0.addActionListener(a);
+			case "Right": J0.addActionListener(a);
+			case "BackSpace": J0.addActionListener(a);
+			case "Clear": J0.addActionListener(a);
+			case "Info": J0.addActionListener(a);
+			case "Store": J0.addActionListener(a);
+			case "Help": J0.addActionListener(a);
+			case "TNT": J0.addActionListener(a);
+			case "Picks": J0.addActionListener(a);
+			case "Snips": J0.addActionListener(a);
+			case "Enter": J0.addActionListener(a);
+			case "Save": J0.addActionListener(a);
+			case "Load": J0.addActionListener(a);
+			
+			}
+		}
+		
+		public static void removeButtonListeners(String buttonID, ActionListener a)
+		{
+			switch(buttonID)
+			{
+			case "0": J0.addActionListener(a);
+			case "1": J0.addActionListener(a);
+			case "2": J0.addActionListener(a);
+			case "3": J0.addActionListener(a);
+			case "4": J0.addActionListener(a);
+			case "5": J0.addActionListener(a);
+			case "6": J0.addActionListener(a);
+			case "7": J0.addActionListener(a);
+			case "8": J0.addActionListener(a);
+			case "9": J0.addActionListener(a);
+			case "Up": J0.addActionListener(a);
+			case "Down": J0.addActionListener(a);
+			case "Left": J0.addActionListener(a);
+			case "Right": J0.addActionListener(a);
+			case "BackSpace": J0.addActionListener(a);
+			case "Clear": J0.addActionListener(a);
+			case "Info": J0.addActionListener(a);
+			case "Store": J0.addActionListener(a);
+			case "Help": J0.addActionListener(a);
+			case "TNT": J0.addActionListener(a);
+			case "Picks": J0.addActionListener(a);
+			case "Snips": J0.addActionListener(a);
+			case "Enter": J0.addActionListener(a);
+			case "Save": J0.addActionListener(a);
+			case "Load": J0.addActionListener(a);
+			
+			}
 		}
 }
