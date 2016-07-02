@@ -1,5 +1,10 @@
 import java.awt.Color;
 import java.awt.event.*;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
@@ -648,7 +653,15 @@ public class Interface {
 			GUI.setInfoText();
 		}
 	} // end infoPress
-		// public class
+
+	public class saveListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			//Save a carrer file, or update a carrer file if it already exists
+		}
+	}
+	// public class
 
 	// ===================================================
 	// METHODS
@@ -1007,7 +1020,7 @@ public class Interface {
 	public void gameOverProtocol() {
 		// When the game is over, the only button the user will have a is
 		// restart button
-		CrackerJacker.carreer=false; //carrer is over
+		CrackerJacker.career=false; //carrer is over
 		clearListeners();
 		GUI.J7.addActionListener(exitGame);
 
@@ -1050,4 +1063,49 @@ public class Interface {
 		}
 	}
 
+	public void saveFile() throws FileNotFoundException, IOException
+	{
+		//if a carrer is still active, it can be saved. Otherwise it can only be saved if the 
+		// if the .cjx file already exists. If the file doesn't exist allow the player to select a save location
+		
+		//player(int loot, int totalBreakIns, int wantedLevel, int explosives, int snips, int picks, boolean career)
+		player player=new player(CrackerJacker.loot, CrackerJacker.totalBreakIns,CrackerJacker.wantedLevel,
+				CrackerJacker.explosives,CrackerJacker.snips,CrackerJacker.picks, CrackerJacker.career);
+		
+		ObjectOutputStream output;//= new ObjectOutputStream(new FileOutputStream("save.dat"));
+		if(CrackerJacker.career)
+		{
+			// if the career is still alive, it can be saved regardless
+			if(CrackerJacker.career_file!="")
+			{
+				//save to the location indicated by career_file
+				output=new ObjectOutputStream(new FileOutputStream(CrackerJacker.career_file));
+				output.writeObject(player);
+				output.close();
+			}
+			else
+			{
+				//allow the user to select a save location
+			}
+			}
+		else
+		{
+			//if the career is over, it can only be saved to an existing save file
+			if(CrackerJacker.career_file!="")
+			{
+				//save the file
+				output=new ObjectOutputStream(new FileOutputStream(CrackerJacker.career_file));
+				output.writeObject(player);
+				output.close();
+			}
+			else
+			{
+				//do nothing
+			}
+			
+		}
+		
+		
+		}
+	
 }

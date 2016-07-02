@@ -19,7 +19,8 @@ public class CrackerJacker {
 	static int snips=0;  // hold the number of snips owned by the player
 	static int picks=0; // hold the number of lock picks owned by the player
 	static boolean isWinner=false; // hold if the current safe has been solved
-	static boolean carreer=true;  // boolean keeps a dead carer from playing by turning it false and saving it in load file
+	static boolean career=true;  // boolean keeps a dead carer from playing by turning it false and saving it in load file
+	static String career_file=""; //file location of .cjx file for loading and saving a carreer
 	static StringBuilder[] guessArray= new StringBuilder[10];  // holds all the guesses in a single game
 	static StringBuilder currentGuess= new StringBuilder(); // hold the parts of a current guess, before it is added to the guessArray
 	static StringBuilder combo= new StringBuilder();
