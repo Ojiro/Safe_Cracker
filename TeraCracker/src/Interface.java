@@ -4,6 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.time.LocalDateTime;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -26,6 +27,7 @@ public class Interface {
 	keyListener keyBoardListener = new keyListener();
 	applyCheat applyCheat = new applyCheat();
 	infoPress infoPress = new infoPress();
+	saveListener saveListener=new saveListener();
 
 	private Timer timer = new Timer(1000, new timerListener()); // time event
 																// listener
@@ -659,6 +661,17 @@ public class Interface {
 		public void actionPerformed(ActionEvent e)
 		{
 			//Save a carrer file, or update a carrer file if it already exists
+			try {
+				saveFile();
+			} 
+			catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} 
+			catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 		}
 	}
 	// public class
@@ -688,6 +701,7 @@ public class Interface {
 		(GUI.JLeft).addActionListener(difficultyListener);
 		(GUI.JRight).addActionListener(difficultyListener);
 		(GUI.JEnter).addActionListener(difficultyListener);
+		(GUI.Save).addActionListener(saveListener);
 		// the backSpaceListener so there are no issue with selecting a level
 		(GUI.JEnter).removeActionListener(exitRound1); // removes the exitGame
 		// listener which prevents a bug from occuring when a player doesn't
@@ -1082,10 +1096,16 @@ public class Interface {
 				output=new ObjectOutputStream(new FileOutputStream(CrackerJacker.career_file));
 				output.writeObject(player);
 				output.close();
+				GUI.setSaveConfirm();
 			}
 			else
 			{
 				//allow the user to select a save location
+				CrackerJacker.career_file=LocalDateTime.now().toString()+".cjx";
+				output=new ObjectOutputStream(new FileOutputStream(CrackerJacker.career_file));
+				output.writeObject(player);
+				output.close();
+				GUI.setSaveConfirm();
 			}
 			}
 		else

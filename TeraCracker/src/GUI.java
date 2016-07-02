@@ -710,6 +710,17 @@ public class GUI extends JFrame {
 			infoWindow.add(infoText);
 			infoWindow.setVisible(true);
 		}
+
+		public static void setSaveConfirm()
+		{
+			//brings up a new text box with infomation about the game and creation
+			JFrame infoWindow = new JFrame();
+			infoWindow.setSize(250, 250);
+			JTextArea infoText = new JTextArea("Carrer Saved");
+			infoWindow.setSize(500, 250);
+			infoWindow.add(infoText);
+			infoWindow.setVisible(true);
+		}
 		
 		public static void setButtonListener(String buttonID, ActionListener a)
 		{
@@ -776,4 +787,10 @@ public class GUI extends JFrame {
 			
 			}
 		}
+		
+		public static void openFileSelector()
+		{
+			
+		}
+
 }
