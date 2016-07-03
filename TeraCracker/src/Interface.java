@@ -1,8 +1,10 @@
 import java.awt.Color;
 import java.awt.event.*;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
@@ -33,6 +35,7 @@ public class Interface {
 	applyCheat applyCheat = new applyCheat();
 	infoPress infoPress = new infoPress();
 	saveListener saveListener=new saveListener();
+	loadListener loadListener= new loadListener();
 
 	private Timer timer = new Timer(1000, new timerListener()); // time event
 																// listener
@@ -679,6 +682,22 @@ public class Interface {
 			}
 		}
 	}
+	
+	public class loadListener implements ActionListener{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			try {
+				loadFile();
+			} catch (FileNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+	}
 	// public class
 
 	// ===================================================
@@ -707,6 +726,7 @@ public class Interface {
 		(GUI.JRight).addActionListener(difficultyListener);
 		(GUI.JEnter).addActionListener(difficultyListener);
 		(GUI.Save).addActionListener(saveListener);
+		(GUI.Load).addActionListener(loadListener);
 		// the backSpaceListener so there are no issue with selecting a level
 		(GUI.JEnter).removeActionListener(exitRound1); // removes the exitGame
 		// listener which prevents a bug from occuring when a player doesn't
@@ -1150,5 +1170,28 @@ public class Interface {
 		
 		
 		}
+
+	public void loadFile() throws FileNotFoundException, IOException, ClassNotFoundException
+	{
+		if(CrackerJacker.career_file=="")
+		{
+			GUI.openFileSelector();
+			
+			if(CrackerJacker.career_file!="")
+			{
+				loadFile();
+			}
+		}
+		else
+		{
+			ObjectInputStream input= new ObjectInputStream(new FileInputStream(CrackerJacker.career_file));
+			Object a;
+			a=input.readObject();
+			
+		}
+	
+		
+		
+	}
 	
 }

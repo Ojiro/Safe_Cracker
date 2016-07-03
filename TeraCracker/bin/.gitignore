@@ -19,3 +19,5 @@
 /Interface$saveListener.class
 /player.class
 *.cjx
+/Interface$loadListener.class
+/GUI$cjx.class

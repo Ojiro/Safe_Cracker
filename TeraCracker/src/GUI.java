@@ -1,11 +1,15 @@
 import java.awt.Color;
 
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
+
 import java.awt.event.*;
+import java.io.File;
+import java.io.FileFilter;
 
 
 public class GUI extends JFrame {
@@ -790,7 +794,25 @@ public class GUI extends JFrame {
 		
 		public static void openFileSelector()
 		{
-			
+			final JFileChooser fc = new JFileChooser();
+			//fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+			fc.setAcceptAllFileFilterUsed(false); //set all file types to not appear (only .cjx should appear)
+		//	cjx cjx= new cjx();
+		//	fc.setFileFilter(cjx);
+			int returnVal = fc.showOpenDialog(mainWindow);
+			//System.out.println(fc.getSelectedFile().getAbsolutePath());
+			CrackerJacker.career_file=fc.getSelectedFile().getAbsolutePath();
 		}
 
+		private class cjx implements FileFilter{
+
+			@Override
+			public boolean accept(File arg0) {
+				String extension=arg0.getPath();
+				System.out.println(extension);
+				
+				return false;
+			}
+			
+		}
 }
