@@ -4,12 +4,17 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutputStream;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.time.LocalDateTime;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JTextArea;
 import javax.swing.Timer;
+
 
 public class Interface {
 	// listeners are instantiated here because they will be repeatedly turned on
@@ -1101,11 +1106,29 @@ public class Interface {
 			else
 			{
 				//allow the user to select a save location
-				CrackerJacker.career_file=LocalDateTime.now().toString()+".cjx";
-				output=new ObjectOutputStream(new FileOutputStream(CrackerJacker.career_file));
-				output.writeObject(player);
-				output.close();
-				GUI.setSaveConfirm();
+				LocalDateTime t=LocalDateTime.now();
+				Integer n=t.getYear();
+				CrackerJacker.career_file+=n.toString();
+			    n=(t.getDayOfYear());
+				CrackerJacker.career_file+=n.toString();
+				n=t.getHour();
+				CrackerJacker.career_file+=n.toString();
+				n=t.getMinute();
+				CrackerJacker.career_file+=n.toString();
+				n=t.getSecond();
+				CrackerJacker.career_file+=".cjx";
+				
+				//CrackerJacker.career_file=LocalDateTime.now().toString()+".cjx";
+			//	System.out.println(CrackerJacker.career_file);
+				//output=new ObjectOutputStream(new FileOutputStream(CrackerJacker.career_file));
+				//output.writeObject(player);
+				//output.close();
+				//GUI.setSaveConfirm();
+				
+				Path path=Paths.get(CrackerJacker.career_file);
+				//Files.write(path, 0, Charset.forName("UTF-8"));
+				Files.createFile(path);
+				saveFile();
 			}
 			}
 		else

@@ -1,5 +1,7 @@
+import java.io.Serializable;
 
-public class player {
+
+public class player implements Serializable{
 
 	static int loot; // Loot is the currency of the game. Player gains and looses loot based on winning/losing safes. default is 3000 
 	static int totalBreakIns; // Counts the number of safes cracked in a players career default is 0
