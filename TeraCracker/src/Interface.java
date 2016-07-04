@@ -695,6 +695,9 @@ public class Interface {
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
+			} catch (ClassNotFoundException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
 			}
 		}
 	}
@@ -1173,22 +1176,21 @@ public class Interface {
 
 	public void loadFile() throws FileNotFoundException, IOException, ClassNotFoundException
 	{
-		if(CrackerJacker.career_file=="")
-		{
+		
 			GUI.openFileSelector();
 			
-			if(CrackerJacker.career_file!="")
-			{
-				loadFile();
-			}
-		}
-		else
-		{
+		
 			ObjectInputStream input= new ObjectInputStream(new FileInputStream(CrackerJacker.career_file));
 			Object a;
 			a=input.readObject();
+			player p=(player)a;
+			CrackerJacker.setPlayer(p);
+			setDifficultyListeners();
 			
-		}
+			System.out.println(CrackerJacker.career_file);
+			System.out.println(p.wantedLevel + " : " + CrackerJacker.wantedLevel);
+			System.out.println(p.loot +" : "+CrackerJacker.loot);
+		
 	
 		
 		

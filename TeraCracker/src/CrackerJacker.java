@@ -347,6 +347,16 @@ public class CrackerJacker {
 					
 				} // ends posistionsCorrect method
 		
-		
+		public void setPlayer(player p)
+		{
+			loot=p.loot;
+			totalBreakIns=p.totalBreakIns;
+			wantedLevel=p.wantedLevel;
+			explosives=p.explosives;
+			snips=p.snips;
+			picks=p.snips;
+			career=p.career;
+		}
 				
+		
 }
