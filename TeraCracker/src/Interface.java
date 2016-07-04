@@ -1185,13 +1185,9 @@ public class Interface {
 			a=input.readObject();
 			player p=(player)a;
 			CrackerJacker.setPlayer(p);
+			//GUI=new GUI();
 			setDifficultyListeners();
-			
-			System.out.println(CrackerJacker.career_file);
-			System.out.println(p.wantedLevel + " : " + CrackerJacker.wantedLevel);
-			System.out.println(p.loot +" : "+CrackerJacker.loot);
-		
-	
+			GUI.setDifficultyListener();
 		
 		
 	}

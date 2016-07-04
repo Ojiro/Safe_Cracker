@@ -304,6 +304,7 @@ public class GUI extends JFrame {
 		JBackSpace.setVisible(true);
 		JClear.setVisible(true);
 
+		requestDifficulty();
 	}
 
 	// #2
