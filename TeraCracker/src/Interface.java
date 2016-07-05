@@ -484,10 +484,39 @@ public class Interface {
 		public void keyTyped(KeyEvent e) {
 			// press appropriate button based on the key typed
 
-			StringBuilder holdString = new StringBuilder(e.getKeyChar());
+		//	StringBuilder holdString = new StringBuilder(e.getKeyChar());
 
-			if (e.getKeyChar() == '0') {
+			switch(e.getKeyChar())
+			{
+			case KeyEvent.VK_0: GUI.J0.doClick(); break;
+			case KeyEvent.VK_1: GUI.J1.doClick(); break;
+			case KeyEvent.VK_2: GUI.J2.doClick(); break;
+			case KeyEvent.VK_3: GUI.J3.doClick(); break;
+			case KeyEvent.VK_4: GUI.J4.doClick(); break;
+			case KeyEvent.VK_5: GUI.J5.doClick(); break;
+			case KeyEvent.VK_6: GUI.J6.doClick(); break;
+			case KeyEvent.VK_7: GUI.J7.doClick(); break;
+			case KeyEvent.VK_8: GUI.J8.doClick(); break;
+			case KeyEvent.VK_9: GUI.J9.doClick(); break;
+			
+			case KeyEvent.VK_C: GUI.JClear.doClick(); break;
+			case KeyEvent.VK_H: GUI.Help.doClick(); break;
+			case KeyEvent.VK_L: GUI.Load.doClick(); break;
+			case KeyEvent.VK_P: GUI.JPicks.doClick(); break;
+			case KeyEvent.VK_S: GUI.Save.doClick(); break;
+			case KeyEvent.VK_X: GUI.JTNT.doClick(); break;
+			
+			case KeyEvent.VK_ENTER: GUI.JEnter.doClick(); break;
+			case KeyEvent.VK_BACK_SPACE: GUI.JBackSpace.doClick(); break;
+			
+			
+			}
+			
+			
+			/*
+			if (e.getKeyCode() == KeyEvent.VK_0) {
 				GUI.J0.doClick();
+				System.out.println("hit key event code");
 			} else if (e.getKeyChar() == '1') {
 				GUI.J1.doClick();
 			} else if (e.getKeyChar() == '2') {
@@ -548,10 +577,27 @@ public class Interface {
 				// System.out.println((int)e.getKeyChar());
 				// print typed character for debugging
 			}
+			*/
 
 		}
 
 		public void keyPressed(KeyEvent e) { // do nothing
+			
+			switch(e.getKeyCode())
+			{
+			case KeyEvent.VK_KP_UP: GUI.JUp.doClick(); break;
+			case KeyEvent.VK_DOWN: GUI.JDown.doClick(); break;
+			case KeyEvent.VK_LEFT: GUI.JLeft.doClick(); break;
+			case KeyEvent.VK_RIGHT: GUI.JRight.doClick(); break;
+			
+			case KeyEvent.VK_H: GUI.Help.doClick(); break;
+			case KeyEvent.VK_P: GUI.JPicks.doClick(); break;
+			case KeyEvent.VK_S: GUI.JSnips.doClick(); break;
+			case KeyEvent.VK_X: GUI.JTNT.doClick(); break;
+		
+		//	case KeyEvent.VK_SHIFT: GUI.Help.doClick(); break;
+			
+			}
 
 		}
 
