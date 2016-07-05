@@ -21,3 +21,4 @@
 *.cjx
 /Interface$loadListener.class
 /GUI$cjx.class
+/guess.class

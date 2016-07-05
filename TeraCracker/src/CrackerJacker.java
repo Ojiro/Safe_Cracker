@@ -11,8 +11,8 @@ public class CrackerJacker {
 	static int payout=0; // how much a player gets for cracking a safe, the range of values is determined by the difficulty of a safe
 	static int difficulty=1; // Correlates to how tough a safe is to crack, and settings will be changed based on this value
 	static int guessLimit=10;  // in most difficulties, the number of guesses will be 10. However this may change for a few safes
-	static int posistionsCorrect=0; // during play, this variable tells how many positions are correct (note that positions and digits are 2 distinct concepts)
-	static int digitsCorrect=0;  // during play, tells how many digits are correct (but doesn't tell how many are in the correct spots)
+	//static int posistionsCorrect=0; // during play, this variable tells how many positions are correct (note that positions and digits are 2 distinct concepts)
+	//static int digitsCorrect=0;  // during play, tells how many digits are correct (but doesn't tell how many are in the correct spots)
 	static int timeInSeconds=0; // holds the seconds portion of the time, i.e. if time left is 5:32, timeInSeconds=32
 	static int timeInMinutes=6; // hold the minutes portion of the time, i.e if the time left is 5:32 timeInMinutes=5. Default time is 6 minutes
 	static int explosives=0; // holds the number of TNT charges owned by the player
@@ -21,9 +21,11 @@ public class CrackerJacker {
 	static boolean isWinner=false; // hold if the current safe has been solved
 	static boolean career=true;  // boolean keeps a dead carer from playing by turning it false and saving it in load file
 	static String career_file=""; //file location of .cjx file for loading and saving a carreer
-	static StringBuilder[] guessArray= new StringBuilder[10];  // holds all the guesses in a single game
-	static StringBuilder currentGuess= new StringBuilder(); // hold the parts of a current guess, before it is added to the guessArray
+    guess[] guessArray= new guess[10];  // holds all the guesses in a single game
+    guess currentGuess= new guess();//new StringBuilder(); // hold the parts of a current guess, before it is added to the guessArray
 	static StringBuilder combo= new StringBuilder();
+	boolean analyzeWithArrow=false; //when this is false, arrows will act as a directional guess
+									//when true, it will shift along the guess history to show details
 	
 
 	//=========================================================================================================================================
@@ -285,8 +287,8 @@ public class CrackerJacker {
 					 */
 					
 					// reset the number of digits and positions to zero
-					posistionsCorrect=0;
-					digitsCorrect=0;
+					currentGuess.posistionsCorrect=0;
+					currentGuess.digitsCorrect=0;
 					char guessChar=(' ');
 					char comboChar=(' ');
 					int[] includeArray= new int[120]; // index for the array will be a digit in the guess, so if the guess is 222, index 2 will equal 3
@@ -296,15 +298,15 @@ public class CrackerJacker {
 					// check the number of posistion correct
 					for (int i=0; i<comboSize; i++) 
 					{
-						 guessChar=guessArray[turnCount].charAt(i);
+						 guessChar=guessArray[turnCount].currentGuess.charAt(i);
 						 comboChar=combo.charAt(i);
 						 
 						// check each character in the guess against the character in the combo at the same position
 						if( guessChar==comboChar)
 						{
 							
-							posistionsCorrect++; // if the condition matches, increment the number of posistions correct
-							
+							currentGuess.posistionsCorrect++; // if the condition matches, increment the number of posistions correct
+
 						}
 						else;
 						
@@ -316,7 +318,7 @@ public class CrackerJacker {
 					for(int i=0; i<comboSize; i++)  // loop fills arrays with proper values
 					{
 					
-						includeArray[(int)guessArray[turnCount].charAt(i)]++;
+						includeArray[(int)guessArray[turnCount].currentGuess.charAt(i)]++;
 						
 					} 
 					
@@ -329,18 +331,18 @@ public class CrackerJacker {
 							// if a number hits a match with the combo, the array is decremented so
 							// that it can only hit as many times as it exists in the guess
 							
-							if (guessArray[turnCount].charAt(j)==combo.charAt(i) && includeArray[guessArray[turnCount].charAt(j)] >0 )
+							if (guessArray[turnCount].currentGuess.charAt(j)==combo.charAt(i) && includeArray[guessArray[turnCount].currentGuess.charAt(j)] >0 )
 							{						
-								digitsCorrect++;
+								currentGuess.digitsCorrect++;
 								
-								includeArray[guessArray[turnCount].charAt(j)]--;
+								includeArray[guessArray[turnCount].currentGuess.charAt(j)]--;
 								break;
 							}
 								
 						}  // ends j loop
 					} // ends i loop
 					
-					if (posistionsCorrect==comboSize)
+					if (currentGuess.posistionsCorrect==comboSize)
 					{
 						isWinner=true;
 					}
@@ -357,6 +359,14 @@ public class CrackerJacker {
 			picks=p.snips;
 			career=p.career;
 		}
-				
+			
+		public int digitsCorrect()
+		{
+			return currentGuess.digitsCorrect;
+		}
 		
+		public int posistionsCorrect()
+		{
+			return currentGuess.posistionsCorrect;
+		}
 }

@@ -73,7 +73,7 @@ public class Interface {
 			JButton temp = (JButton) e.getSource();
 			// acquires the input of the entered digit or direction
 
-			if ((CrackerJacker.currentGuess).length() < (CrackerJacker.comboSize)
+			if ((CrackerJacker.currentGuess.currentGuess).length() < (CrackerJacker.comboSize)
 					&& (CrackerJacker.turnCount) < (CrackerJacker.guessLimit)) {
 				// condition does not allow the string to be bigger then the
 				// combination
@@ -81,46 +81,28 @@ public class Interface {
 				// switch updates the current guess string
 				switch (temp.getText()) {
 				case "0":
-					(CrackerJacker.currentGuess).append(temp.getText());
-					break;
 				case "1":
-					(CrackerJacker.currentGuess).append(temp.getText());
-					break;
 				case "2":
-					(CrackerJacker.currentGuess).append(temp.getText());
-					break;
 				case "3":
-					(CrackerJacker.currentGuess).append(temp.getText());
-					break;
 				case "4":
-					(CrackerJacker.currentGuess).append(temp.getText());
-					break;
 				case "5":
-					(CrackerJacker.currentGuess).append(temp.getText());
-					break;
 				case "6":
-					(CrackerJacker.currentGuess).append(temp.getText());
-					break;
 				case "7":
-					(CrackerJacker.currentGuess).append(temp.getText());
-					break;
 				case "8":
-					(CrackerJacker.currentGuess).append(temp.getText());
-					break;
 				case "9":
-					(CrackerJacker.currentGuess).append(temp.getText());
+					(CrackerJacker.currentGuess.currentGuess).append(temp.getText());
 					break;
 				case "Up":
-					(CrackerJacker.currentGuess).append("U");
+					(CrackerJacker.currentGuess.currentGuess).append("U");
 					break;
 				case "Down":
-					(CrackerJacker.currentGuess).append("D");
+					(CrackerJacker.currentGuess.currentGuess).append("D");
 					break;
 				case "Left":
-					(CrackerJacker.currentGuess).append("L");
+					(CrackerJacker.currentGuess.currentGuess).append("\u8592");
 					break;
 				case "Right":
-					(CrackerJacker.currentGuess).append("R");
+					(CrackerJacker.currentGuess.currentGuess).append("R");
 					break;
 				default:
 					printUpdate();
@@ -132,7 +114,7 @@ public class Interface {
 
 			} // ends if
 
-			else if (CrackerJacker.currentGuess.length() == CrackerJacker.comboSize
+			else if ( (CrackerJacker.currentGuess.currentGuess).length() == CrackerJacker.comboSize
 					&& temp.getText().equals("Enter")
 					&& CrackerJacker.turnCount < CrackerJacker.guessLimit) {
 				// process a completed guess
@@ -143,14 +125,14 @@ public class Interface {
 				// check the number of positions and digits correct
 				CrackerJacker.getPosistions();
 
-				CrackerJacker.currentGuess = new StringBuilder(); // clears out
+				(CrackerJacker.currentGuess).currentGuess = new StringBuilder(); // clears out
 																	// the
 																	// current
 																	// guess
 				CrackerJacker.turnCount++;
 				printUpdate();
 
-			} else if (CrackerJacker.currentGuess.length() == CrackerJacker.comboSize
+			} else if ( (CrackerJacker.currentGuess.currentGuess).length() == CrackerJacker.comboSize
 					&& !temp.getText().equals("Enter")) {
 				// suggest user hit enter
 			}
@@ -388,7 +370,7 @@ public class Interface {
 			try {
 				if (!CrackerJacker.isWinner) // only allows the guess to be cleared if the game hasn't already been won
 				{
-					CrackerJacker.currentGuess = new StringBuilder();
+					CrackerJacker.currentGuess.currentGuess = new StringBuilder();
 					printUpdate();
 				} else;
 			}
@@ -409,8 +391,8 @@ public class Interface {
 														// digit on the current
 														// guess
 			try {
-				int deleteCharLocation = CrackerJacker.currentGuess.length() - 1;
-				CrackerJacker.currentGuess.deleteCharAt(deleteCharLocation);
+				int deleteCharLocation = (CrackerJacker.currentGuess.currentGuess).length() - 1;
+				(CrackerJacker.currentGuess.currentGuess).deleteCharAt(deleteCharLocation);
 				printUpdate();
 			} catch (StringIndexOutOfBoundsException ex) { // does nothing if
 															// there is a
@@ -511,73 +493,6 @@ public class Interface {
 			
 			
 			}
-			
-			
-			/*
-			if (e.getKeyCode() == KeyEvent.VK_0) {
-				GUI.J0.doClick();
-				System.out.println("hit key event code");
-			} else if (e.getKeyChar() == '1') {
-				GUI.J1.doClick();
-			} else if (e.getKeyChar() == '2') {
-				GUI.J2.doClick();
-			} else if (e.getKeyChar() == '3') {
-				GUI.J3.doClick();
-			} else if (e.getKeyChar() == '4') {
-				GUI.J4.doClick();
-			} else if (e.getKeyChar() == '5') {
-				GUI.J5.doClick();
-			} else if (e.getKeyChar() == '6') {
-				GUI.J6.doClick();
-			} else if (e.getKeyChar() == '7') {
-				GUI.J7.doClick();
-			} else if (e.getKeyChar() == '8') {
-				GUI.J8.doClick();
-			} else if (e.getKeyChar() == '9') {
-				GUI.J9.doClick();
-			} else if (e.getKeyChar() == 'u' || e.getKeyChar() == 'U') {
-				GUI.JUp.doClick();
-			} else if (e.getKeyChar() == 'd' || e.getKeyChar() == 'D') {
-				GUI.JDown.doClick();
-			} else if (e.getKeyChar() == 'l' || e.getKeyChar() == 'L') {
-				GUI.JLeft.doClick();
-			} else if (e.getKeyChar() == 'r' || e.getKeyChar() == 'R') {
-				GUI.JRight.doClick();
-			} else if (e.getKeyChar() == 'h' || e.getKeyChar() == 'H') {
-				// triggers the how-to button
-				GUI.Help.doClick();
-			} else if (e.getKeyChar() == 'S') {
-				// triggers the save button, but only with a capital S to avoid
-				// an accidental save
-				GUI.Save.doClick();
-			} else if (e.getKeyChar() == 'L') {
-				// triggers the load button, but only with a capital L to avoid
-				// an accidental load
-				GUI.Load.doClick();
-			} else if (e.getKeyChar() == 'P') {
-				// triggers the button to the proshop, but only with a capital P
-				// to avoid accidental entry into the proshop
-				GUI.JStore.doClick();
-
-			} else if (e.getKeyChar() == 'x') {
-				GUI.JTNT.doClick();
-			} else if (e.getKeyChar() == 'p') {
-				GUI.JPicks.doClick();
-			} else if (e.getKeyChar() == 's') {
-				GUI.JSnips.doClick();
-			} else if ((int) e.getKeyChar() == 10) { // trigger enter button
-				GUI.JEnter.doClick();
-			} else if ((int) e.getKeyChar() == 8) {
-				// triggers the backspace button
-				GUI.JBackSpace.doClick();
-			} else if ((int) e.getKeyChar() == 127) {
-				// triggers the clear button
-				GUI.JClear.doClick();
-			} else {
-				// System.out.println((int)e.getKeyChar());
-				// print typed character for debugging
-			}
-			*/
 
 		}
 
@@ -913,8 +828,8 @@ public class Interface {
 					+ CrackerJacker.timeInSeconds + "\n" + tempBuilder + "\n"
 					+ "\n" + "             " + CrackerJacker.currentGuess
 					+ "\n" + "      Digits Correct: "
-					+ CrackerJacker.digitsCorrect + "    Posistions Correct: "
-					+ CrackerJacker.posistionsCorrect);
+					+ CrackerJacker.digitsCorrect() + "    Posistions Correct: "
+					+ CrackerJacker.posistionsCorrect());
 
 			// update the tool buttons
 			if (CrackerJacker.explosives > 0) {
@@ -1024,8 +939,8 @@ public class Interface {
 			GUI.JPicks.setText("");
 		}
 
-		CrackerJacker.posistionsCorrect = 0;
-		CrackerJacker.digitsCorrect = 0;
+		CrackerJacker.currentGuess.posistionsCorrect = 0;
+		CrackerJacker.currentGuess.digitsCorrect = 0;
 		}
 	}
 
@@ -1088,8 +1003,8 @@ public class Interface {
 			GUI.JPicks.setText("");
 		}
 
-		CrackerJacker.posistionsCorrect = 0;
-		CrackerJacker.digitsCorrect = 0;
+		CrackerJacker.currentGuess.posistionsCorrect = 0;
+		CrackerJacker.currentGuess.digitsCorrect = 0;
 
 	} // ends winning protocol
 
