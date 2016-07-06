@@ -99,7 +99,7 @@ public class Interface {
 					(CrackerJacker.currentGuess.currentGuess).append("D");
 					break;
 				case "Left":
-					(CrackerJacker.currentGuess.currentGuess).append("\u8592");
+					(CrackerJacker.currentGuess.currentGuess).append("L");
 					break;
 				case "Right":
 					(CrackerJacker.currentGuess.currentGuess).append("R");
@@ -125,10 +125,7 @@ public class Interface {
 				// check the number of positions and digits correct
 				CrackerJacker.getPosistions();
 
-				(CrackerJacker.currentGuess).currentGuess = new StringBuilder(); // clears out
-																	// the
-																	// current
-																	// guess
+				CrackerJacker.currentGuess = new guess(); // clears out the current guess
 				CrackerJacker.turnCount++;
 				printUpdate();
 
@@ -805,10 +802,10 @@ public class Interface {
 
 				if (i == CrackerJacker.turnCount - 1) {
 					tempBuilder.append("  | "
-							+ CrackerJacker.guessArray[i].toString() + " | ");
+							+ CrackerJacker.guessArray[i].currentGuess.toString() + " | ");
 				} else {
 					tempBuilder.append("   "
-							+ CrackerJacker.guessArray[i].toString());
+							+ CrackerJacker.guessArray[i].currentGuess.toString());
 				}
 
 			} // ends for loop
@@ -826,7 +823,7 @@ public class Interface {
 					+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
 					+ "    Time: " + CrackerJacker.timeInMinutes + ":"
 					+ CrackerJacker.timeInSeconds + "\n" + tempBuilder + "\n"
-					+ "\n" + "             " + CrackerJacker.currentGuess
+					+ "\n" + "             " + CrackerJacker.currentGuess.currentGuess.toString()
 					+ "\n" + "      Digits Correct: "
 					+ CrackerJacker.digitsCorrect() + "    Posistions Correct: "
 					+ CrackerJacker.posistionsCorrect());
