@@ -21,7 +21,7 @@ public class CrackerJacker {
 	static boolean isWinner=false; // hold if the current safe has been solved
 	static boolean career=true;  // boolean keeps a dead carer from playing by turning it false and saving it in load file
 	static String career_file=""; //file location of .cjx file for loading and saving a carreer
-    guess[] guessArray= new guess[10];  // holds all the guesses in a single game
+    guess[] guessArray; // holds all the guesses in a single game
     guess currentGuess= new guess();//new StringBuilder(); // hold the parts of a current guess, before it is added to the guessArray
 	static StringBuilder combo= new StringBuilder();
 	boolean analyzeWithArrow=false; //when this is false, arrows will act as a directional guess
@@ -50,6 +50,9 @@ public class CrackerJacker {
 				 * will return 1-9 but no zeros, this is required for the first digit in the combination. and use a character to return a direction
 				 */
 
+				guessArray=new guess[guessLimit];
+				
+		//		for(int i=0; i<comboSize; i++);
 	           combo= new StringBuilder();  // clears the old combination, for a new StringBuilder
 				
 			
@@ -273,7 +276,7 @@ public class CrackerJacker {
 		//#14
 		// posistionsCorrect
 		//
-				public void getPosistions()
+		public void getPosistions()
 				{
 					/* method finds the number of positions correct in the guess.
 					 *  for example if the combo is 789 and the guess is 987, there is only 1 position (the 8) 
@@ -346,13 +349,14 @@ public class CrackerJacker {
 					{
 						isWinner=true;
 					}
-					
+					 
 				} // ends posistionsCorrect method
 		
 		public void setPlayer(player p)
 		{
 			loot=p.loot;
 			totalBreakIns=p.totalBreakIns;
+
 			wantedLevel=p.wantedLevel;
 			explosives=p.explosives;
 			snips=p.snips;
@@ -360,13 +364,18 @@ public class CrackerJacker {
 			career=p.career;
 		}
 			
+
 		public int digitsCorrect()
 		{
-			return currentGuess.digitsCorrect;
+			if(turnCount>0)
+			return guessArray[turnCount-1].digitsCorrect;
+			return 0;
 		}
 		
 		public int posistionsCorrect()
 		{
-			return currentGuess.posistionsCorrect;
+			if(turnCount>0)
+			return guessArray[turnCount-1].posistionsCorrect;
+			else return 0;
 		}
 }

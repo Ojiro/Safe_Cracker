@@ -128,7 +128,7 @@ public class Interface {
 				CrackerJacker.currentGuess = new guess(); // clears out the current guess
 				CrackerJacker.turnCount++;
 				printUpdate();
-
+				
 			} else if ( (CrackerJacker.currentGuess.currentGuess).length() == CrackerJacker.comboSize
 					&& !temp.getText().equals("Enter")) {
 				// suggest user hit enter
@@ -791,24 +791,18 @@ public class Interface {
 			// print the necessary information for gamePlay
 			StringBuilder tempBuilder = new StringBuilder();
 
-			for (int i = 0; i < CrackerJacker.turnCount; i++) // for loop
-																// strings
-																// together all
-																// the
-																// previous
-																// guesses
-																// for display
+			for (int i = 0; i < CrackerJacker.turnCount; i++) 
 			{
-
+				//for loop strings together previous guesses
 				if (i == CrackerJacker.turnCount - 1) {
 					tempBuilder.append("  | "
-							+ CrackerJacker.guessArray[i].currentGuess.toString() + " | ");
+							+ CrackerJacker.guessArray[i].currentGuess + " | ");
 				} else {
 					tempBuilder.append("   "
 							+ CrackerJacker.guessArray[i].currentGuess.toString());
 				}
 
-			} // ends for loop
+			}
 
 			// display top and bottom text area
 			// uncomment the combo portion of the next line to make the combo
@@ -826,8 +820,10 @@ public class Interface {
 					+ "\n" + "             " + CrackerJacker.currentGuess.currentGuess.toString()
 					+ "\n" + "      Digits Correct: "
 					+ CrackerJacker.digitsCorrect() + "    Posistions Correct: "
+				//	+ CrackerJacker.currentGuess.digitsCorrect + "    Posistions Correct: "
 					+ CrackerJacker.posistionsCorrect());
 
+					
 			// update the tool buttons
 			if (CrackerJacker.explosives > 0) {
 				GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
