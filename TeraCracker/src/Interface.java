@@ -497,7 +497,7 @@ public class Interface {
 			
 			switch(e.getKeyCode())
 			{
-			case KeyEvent.VK_KP_UP: GUI.JUp.doClick(); break;
+			case KeyEvent.VK_UP: GUI.JUp.doClick(); break;
 			case KeyEvent.VK_DOWN: GUI.JDown.doClick(); break;
 			case KeyEvent.VK_LEFT: GUI.JLeft.doClick(); break;
 			case KeyEvent.VK_RIGHT: GUI.JRight.doClick(); break;
