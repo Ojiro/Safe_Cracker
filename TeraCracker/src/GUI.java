@@ -24,6 +24,8 @@ public class GUI extends JFrame {
 	final short Column_3=225;
 	final short Column_4=325;
 	final short Column_5=425;
+	final short Column_6=550;
+	final short Column_7=650;
 	
 	final short Row_1=200;
 	final short Row_2=250;
@@ -133,22 +135,22 @@ public class GUI extends JFrame {
 		JLeft.setLocation(Column_3, Row_3);
 		JRight.setLocation(Column_4, Row_3);
 		JEnter.setLocation(Column_5, Row_3);
-		JClear.setLocation(Column_3, 350);
-		JBackSpace.setLocation(Column_1, 350);
-		Help.setLocation(550, Row_1);
-		JStore.setLocation(650, Row_1);
-		Load.setLocation(550, Row_2);
-		Save.setLocation(650, Row_2);
-		Exit.setLocation(650,Row_4);
-		Career.setLocation(650,Row_3);
-		JTNT.setLocation(550, Row_3);
-		JPicks.setLocation(550, Row_4);
-		JSnips.setLocation(550, Row_5);
-		JInfo.setLocation(650, Row_5);
-		JStore.setForeground(Color.LIGHT_GRAY);
-		JTNT.setForeground(Color.LIGHT_GRAY);
-		JPicks.setForeground(Color.LIGHT_GRAY);
-		JSnips.setForeground(Color.LIGHT_GRAY);
+		JClear.setLocation(Column_3, Row_4);
+		JBackSpace.setLocation(Column_1, Row_4);
+		Help.setLocation(Column_6, Row_1);
+		JStore.setLocation(Column_7, Row_1);
+		Load.setLocation(Column_6, Row_2);
+		Save.setLocation(Column_7, Row_2);
+		Exit.setLocation(Column_7,Row_4);
+		Career.setLocation(Column_7,Row_3);
+		JTNT.setLocation(Column_6, Row_3);
+		JPicks.setLocation(Column_6, Row_4);
+		JSnips.setLocation(Column_6, Row_5);
+		JInfo.setLocation(Column_7, Row_5);
+	//	JStore.setForeground(Color.LIGHT_GRAY);
+	//	JTNT.setForeground(Color.LIGHT_GRAY);
+	//	JPicks.setForeground(Color.LIGHT_GRAY);
+	//	JSnips.setForeground(Color.LIGHT_GRAY);
 		
 		welcomeScreen();
 		JStore.setVisible(true);
@@ -567,6 +569,7 @@ public class GUI extends JFrame {
 		public static void setProShopText()
 		{
 			// set text for ProShop
+			topText.setBackground(Color.WHITE);
 			clearAllButtons(true);
 			J0.setText("TNT");
 			J1.setText("Picks");

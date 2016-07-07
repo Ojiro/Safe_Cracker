@@ -19,8 +19,7 @@ import javax.swing.Timer;
 
 
 public class Interface {
-	// listeners are instantiated here because they will be repeatedly turned on
-	// an off
+	// listeners are instantiated here because they will be repeatedly turned on and off
 	difficultySelectionListener difficultyListener = new difficultySelectionListener();
 	gameListener gameListener = new gameListener();
 	exitWelcome exitWelcome = new exitWelcome();
@@ -39,15 +38,13 @@ public class Interface {
 	exitAppListener exitAppListener= new exitAppListener();
 	careerListener careerListener=new careerListener();
 	
-	private Timer timer = new Timer(1000, new timerListener()); // time event
-																// listener
+	private Timer timer = new Timer(1000, new timerListener()); // time event listener
 	GUI GUI;
 	CrackerJacker CrackerJacker;
 
 	Interface(GUI a, CrackerJacker b) {
 		GUI = a;
 		CrackerJacker = b;
-		// register listeners
 		setWelcomeListeners();
 		GUI.Exit.addActionListener(exitAppListener);
 		GUI.Career.addActionListener(careerListener);
