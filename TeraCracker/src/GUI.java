@@ -76,6 +76,7 @@ public class GUI extends JFrame {
 	static JTextArea topText = new JTextArea();
 	static JLabel name = new JLabel("Cracker-Jacker 5000 DLX");
 
+	CrackerJacker CrackerJacker;
 	 GUI() {
 		// instantiate a new game board
 		mainWindow.setSize(775, 500);
@@ -156,6 +157,7 @@ public class GUI extends JFrame {
 		JInfo.setVisible(true);
 		Exit.setVisible(true);
 		Career.setVisible(true);
+		
 	}
 
 	public void welcomeScreen() {
@@ -270,7 +272,7 @@ public class GUI extends JFrame {
 	// requestDifficulty
 	// Receives the desired difficulty of the next safe from the user
 	// also prints an update for the user between games
-	public static void requestDifficulty() {
+	public void requestDifficulty() {
 		// be very careful in changing the spacing of the text here, it takes a
 		// lot of work to line these up properly
 		topText.setBackground(Color.WHITE);
@@ -301,7 +303,7 @@ public class GUI extends JFrame {
 	
 	//
 	//setGameText
-	public static void setGameText()
+	public void setGameText()
 	{
 		// set text to guess mode
 				J0.setText("0");
@@ -559,7 +561,7 @@ public class GUI extends JFrame {
 			helpWindow.setVisible(true);
 		}
 
-		public static void setProShopText()
+		public void setProShopText()
 		{
 			// set text for ProShop
 			topText.setBackground(Color.WHITE);
@@ -716,7 +718,7 @@ public class GUI extends JFrame {
 			}
 		}
 		
-		public static void openFileSelector()
+		public void openFileSelector()
 		{
 			final JFileChooser fc = new JFileChooser();
 			//fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -794,4 +796,53 @@ public class GUI extends JFrame {
 		{
 			mainWindow.dispose();
 		}
+
+		public void printUpdate()
+		{
+			//method prints out the current status of the game include previous guesses & digits correct
+				StringBuilder tempBuilder = new StringBuilder();
+
+				int selectedVal=CrackerJacker.turnCount-CrackerJacker.leftCounter-1; // index of guess to be viewed
+				for (int i = 0; i < CrackerJacker.turnCount; i++) 
+				{
+					//for loop strings together previous guesses
+					if (i == selectedVal) {
+						tempBuilder.append("  | "
+								+ CrackerJacker.guessArray[i].currentGuess + " | ");
+					} else {
+						tempBuilder.append("   "
+								+ CrackerJacker.guessArray[i].currentGuess.toString());
+					}
+
+				}
+
+				// display top and bottom text area
+				topText.setText("		Loot:  $" + CrackerJacker.loot
+						+ "     Wanted Level: " + CrackerJacker.wantedLevel
+						+ "      Break-Ins: " + CrackerJacker.totalBreakIns
+						+ "   combo: " + CrackerJacker.combo + "\n"
+						+ " Difficulty: " + CrackerJacker.difficulty + "\n"
+						+ " Digits: " + CrackerJacker.comboSize + " Directions: "
+						+ CrackerJacker.directions + "\n" + " Guesses:  "
+						+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
+						+ "    Time: " + CrackerJacker.timeInMinutes + ":"
+						+ CrackerJacker.timeInSeconds + "\n" );
+				
+				if(CrackerJacker.debugMode) //if the debugMode variable is set, show the combo 
+					topText.append(tempBuilder + "\n");  
+						
+				topText.append("\n" + "             " + CrackerJacker.currentGuess.currentGuess.toString() );
+				
+				if(CrackerJacker.isAnalysisMode)
+				{
+					topText.append(" ANALYSIS MODE: ON");
+				}
+				topText.append( "\n" + "      Digits Correct: "
+						+ CrackerJacker.digitsCorrect() + "    Posistions Correct: "
+						+ CrackerJacker.posistionsCorrect() + "\t\t Analysis Mode: CTRL");
+
+		}
+		
+		public void setGameBoard(CrackerJacker a)
+		{ this.CrackerJacker=a; }
 }

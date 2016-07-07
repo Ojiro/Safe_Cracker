@@ -45,6 +45,7 @@ public class Interface {
 	Interface(GUI a, CrackerJacker b) {
 		GUI = a;
 		CrackerJacker = b;
+		GUI.setGameBoard(CrackerJacker);
 		setWelcomeListeners();
 		//declare listeners for buttons that will never have their listener removed
 		GUI.Exit.addActionListener(exitAppListener);
@@ -781,7 +782,6 @@ public class Interface {
 		// method is responsible for updating the board during the guessing phase
 		// it is called by the numberListener and hits under certain conditions
 
-		// checks if the safe has been cracked or not
 		if (CrackerJacker.isWinner) {
 			winningProtocol();
 			CrackerJacker.turnCount = 0;
@@ -790,46 +790,7 @@ public class Interface {
 			losingProtocol();
 			CrackerJacker.turnCount = 0;
 		} else {
-			// if the game is neither a winner nor a loser, then it continues to print the necessary information for gamePlay
-			StringBuilder tempBuilder = new StringBuilder();
-
-			int selectedVal=CrackerJacker.turnCount-CrackerJacker.leftCounter-1; // index of guess to be viewed
-			for (int i = 0; i < CrackerJacker.turnCount; i++) 
-			{
-				//for loop strings together previous guesses
-				if (i == selectedVal) {
-					tempBuilder.append("  | "
-							+ CrackerJacker.guessArray[i].currentGuess + " | ");
-				} else {
-					tempBuilder.append("   "
-							+ CrackerJacker.guessArray[i].currentGuess.toString());
-				}
-
-			}
-
-			// display top and bottom text area
-			// uncomment the combo portion of the next line to make the combo
-			// visible during play.
-			GUI.topText.setText("		Loot:  $" + CrackerJacker.loot
-					+ "     Wanted Level: " + CrackerJacker.wantedLevel
-					+ "      Break-Ins: " + CrackerJacker.totalBreakIns
-					+ "   combo: " + CrackerJacker.combo + "\n"
-					+ " Difficulty: " + CrackerJacker.difficulty + "\n"
-					+ " Digits: " + CrackerJacker.comboSize + " Directions: "
-					+ CrackerJacker.directions + "\n" + " Guesses:  "
-					+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
-					+ "    Time: " + CrackerJacker.timeInMinutes + ":"
-					+ CrackerJacker.timeInSeconds + "\n" + tempBuilder + "\n"
-					+ "\n" + "             " + CrackerJacker.currentGuess.currentGuess.toString() );
-			
-			if(CrackerJacker.isAnalysisMode)
-			{
-				GUI.topText.append(" ANALYSIS MODE: ON");
-			}
-			GUI.topText.append( "\n" + "      Digits Correct: "
-					+ CrackerJacker.digitsCorrect() + "    Posistions Correct: "
-					+ CrackerJacker.posistionsCorrect() + "\t\t Analysis Mode: CTRL");
-
+			GUI.printUpdate();
 					
 			// update the tool buttons
 			setToolButtons(true);
