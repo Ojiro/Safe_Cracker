@@ -52,6 +52,7 @@ public class Interface {
 		GUI.Career.addActionListener(careerListener);
 		GUI.JInfo.addActionListener(infoPress);
 		GUI.Help.addActionListener(helpListener);
+		GUI.Load.addActionListener(loadListener);
 	}
 
 	// ========================================================================================================================================
@@ -650,6 +651,10 @@ public class Interface {
 			} catch (ClassNotFoundException e1) {
 				GUI.setLoadFailed();
 			}
+			catch(NullPointerException e1)
+			{
+	
+			}
 			
 		}
 	}
@@ -890,8 +895,8 @@ public class Interface {
 	public void clearListeners()
 	{
 		JButton[] buttonArr={GUI.J0,GUI.J1,GUI.J2,GUI.J3,GUI.J4,GUI.J5,GUI.J6,GUI.J7,GUI.J8,GUI.J9,
-				GUI.JTNT,GUI.JSnips,GUI.JStore,GUI.JPicks,GUI.Load,GUI.Save,GUI.JBackSpace,
-				GUI.JClear,GUI.JEnter,GUI.JUp,GUI.JDown,GUI.JLeft,GUI.JRight
+				GUI.JTNT,GUI.JSnips,GUI.JStore,GUI.JPicks,GUI.JBackSpace,
+				GUI.JClear,GUI.JEnter,GUI.JUp,GUI.JDown,GUI.JLeft,GUI.JRight,GUI.Save
 				
 		};
 		
@@ -982,12 +987,13 @@ public class Interface {
 			ObjectInputStream input= new ObjectInputStream(new FileInputStream(CrackerJacker.career_file));
 			Object a;
 			a=input.readObject();
+			input.close();
 			player p=(player)a;
 			CrackerJacker.setPlayer(p);
 			//GUI=new GUI();
 			setDifficultyListeners();
 			GUI.setDifficultyListener();
-			input.close();
+		
 		
 	}
 	
