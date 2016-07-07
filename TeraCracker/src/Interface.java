@@ -912,10 +912,9 @@ public class Interface {
 
 	public void saveFile() throws FileNotFoundException, IOException
 	{
-		//if a carrer is still active, it can be saved. Otherwise it can only be saved if the 
+		//if a career is still active, it can be saved. Otherwise it can only be saved if the 
 		// if the .cjx file already exists. If the file doesn't exist allow the player to select a save location
 		
-		//player(int loot, int totalBreakIns, int wantedLevel, int explosives, int snips, int picks, boolean career)
 		player player=new player(CrackerJacker.loot, CrackerJacker.totalBreakIns,CrackerJacker.wantedLevel,
 				CrackerJacker.explosives,CrackerJacker.snips,CrackerJacker.picks, CrackerJacker.career);
 		
@@ -984,7 +983,6 @@ public class Interface {
 		
 			GUI.openFileSelector();
 			
-		
 			ObjectInputStream input= new ObjectInputStream(new FileInputStream(CrackerJacker.career_file));
 			Object a;
 			a=input.readObject();
@@ -993,7 +991,7 @@ public class Interface {
 			//GUI=new GUI();
 			setDifficultyListeners();
 			GUI.setDifficultyListener();
-		
+			input.close();
 		
 	}
 	

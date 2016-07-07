@@ -33,47 +33,47 @@ public class GUI extends JFrame {
 	final short Row_4=350;
 	final short Row_5=400;
 	
-	static JFrame mainWindow = new JFrame("GigaCracker");
-	static JFrame helpWindow = new JFrame("How To");
-	static JPanel p0 = new JPanel();
+	JFrame mainWindow = new JFrame("GigaCracker");
+	JFrame helpWindow = new JFrame("How To");
+	JPanel p0 = new JPanel();
 
 	//Buttons that will allow for regular play (0-9, directions...)
-	static JButton J0 = new JButton("");
-	static JButton J1 = new JButton("");
-	static JButton J2 = new JButton("");
-	static JButton J3 = new JButton("");
-	static JButton J4 = new JButton("");
-	static JButton J5 = new JButton("");
-	static JButton J6 = new JButton("");
-	static JButton J7 = new JButton("");
-	static JButton J8 = new JButton("");
-	static JButton J9 = new JButton("");
-	static JButton JUp = new JButton("");
-	static JButton JDown = new JButton("");
-	static JButton JLeft = new JButton("");
-	static JButton JRight = new JButton("");
-	static JButton JEnter = new JButton("Enter"); 
+	JButton J0 = new JButton("");
+	JButton J1 = new JButton("");
+	JButton J2 = new JButton("");
+	JButton J3 = new JButton("");
+	JButton J4 = new JButton("");
+	JButton J5 = new JButton("");
+	JButton J6 = new JButton("");
+	JButton J7 = new JButton("");
+	JButton J8 = new JButton("");
+	JButton J9 = new JButton("");
+	JButton JUp = new JButton("");
+	JButton JDown = new JButton("");
+	JButton JLeft = new JButton("");
+	JButton JRight = new JButton("");
+	JButton JEnter = new JButton("Enter"); 
 	
-	static JButton JClear = new JButton("");
-	static JButton JBackSpace = new JButton("");
-	static JButton JInfo = new JButton("Info");
+	JButton JClear = new JButton("");
+	JButton JBackSpace = new JButton("");
+	JButton JInfo = new JButton("Info");
 	JButton Exit=new JButton("Exit");
 	JButton Career=new JButton("Career");
 
 	// Extra buttons for cheats
-	static JButton JStore = new JButton("Pro Shop");
-	static JButton JTNT = new JButton("-");
-	static JButton JSnips = new JButton("-");
-	static JButton JPicks = new JButton("-");
+	JButton JStore = new JButton("Pro Shop");
+	JButton JTNT = new JButton("-");
+	JButton JSnips = new JButton("-");
+	JButton JPicks = new JButton("-");
 
 	// create JButtons for help, referred to as helper buttons throughout the program
-	static JButton Help = new JButton("How To"); // opens a box on how to play
-	static JButton Load = new JButton("Load");
-	static JButton Save = new JButton("Save");
+	JButton Help = new JButton("How To"); // opens a box on how to play
+	JButton Load = new JButton("Load");
+	JButton Save = new JButton("Save");
 	
 	//display area
-	static JTextArea topText = new JTextArea();
-	static JLabel name = new JLabel("Cracker-Jacker 5000 DLX");
+	JTextArea topText = new JTextArea();
+	JLabel name = new JLabel("Cracker-Jacker 5000 DLX");
 
 	CrackerJacker CrackerJacker;
 	 GUI() {
@@ -310,13 +310,13 @@ public class GUI extends JFrame {
 				JBackSpace.setForeground(Color.BLACK);
 				JClear.setForeground(Color.BLACK);
 				
-				GUI.topText.setText("		Loot:  " + CrackerJacker.loot
+				topText.setText("		Loot:  " + CrackerJacker.loot
 						+ "     Wanted Level: " + CrackerJacker.wantedLevel
 						+ "      Break-Ins: " + CrackerJacker.totalBreakIns);
 	
 	}
 	
-	public static void setGameOver()
+	public void setGameOver()
 	{
 		//display shown if the player has lost the game
 		topText.setBackground(Color.RED);
@@ -394,7 +394,7 @@ public class GUI extends JFrame {
 		}
 	} // ends buy status
 		
-	public static void clearAllButtons(boolean isVisible)	
+	public void clearAllButtons(boolean isVisible)	
 	{
 		//method clears the text from MOST JButtons, and sets the visibility to isVisible
 		J0.setText("");
@@ -422,7 +422,7 @@ public class GUI extends JFrame {
 		setButtonVisibility(isVisible);
 	}
 	
-	public static void setButtonVisibility(boolean isVisible)
+	public void setButtonVisibility(boolean isVisible)
 	{
 		J0.setVisible(isVisible);
 		J1.setVisible(isVisible);
@@ -454,7 +454,7 @@ public class GUI extends JFrame {
 		
 	}
 	
-	public static void setHelpText()
+	public void setHelpText()
 	{
 		//this is the help window for the player to learn about the game
 		helpWindow.setSize(815, 700);
@@ -597,7 +597,7 @@ public class GUI extends JFrame {
 		}
 	}
 	
-	public static void setInfoText()
+	public void setInfoText()
 	{
 		//brings up a new text box with information about the game and creation
 		JFrame infoWindow = new JFrame();
@@ -615,7 +615,7 @@ public class GUI extends JFrame {
 		infoWindow.setVisible(true);
 	}
 	
-	public static void setSaveConfirm()
+	public void setSaveConfirm()
 	{
 		//brings up a new text box with infomation about the game and creation
 		JFrame infoWindow = new JFrame();
@@ -626,7 +626,7 @@ public class GUI extends JFrame {
 		infoWindow.setVisible(true);
 	}
 	
-	public static void setButtonListener(String buttonID, ActionListener a)
+	public void setButtonListener(String buttonID, ActionListener a)
 	{
 		switch(buttonID)
 		{
@@ -659,7 +659,7 @@ public class GUI extends JFrame {
 		}
 	}
 	
-	public static void removeButtonListeners(String buttonID, ActionListener a)
+	public void removeButtonListeners(String buttonID, ActionListener a)
 	{
 		switch(buttonID)
 		{

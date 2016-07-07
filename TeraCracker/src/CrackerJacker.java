@@ -1,30 +1,30 @@
 
 public class CrackerJacker {
 
-	static int loot=3000; // Loot is the currency of the game. Player gains and looses loot based on winning/losing safes. default is 3000 
-	static int turnCount=0;  // this is the number of guesses made in the game, it counts upward from zero
-	static int totalBreakIns=0; // Counts the number of safes cracked in a players career default is 0
-	static int wantedLevel=1; // Wanted level dictates the cost of bail and increments based on how many safes the player has cracked
-	static int comboSize=3; // determines how many digits in a combo, default is 3
-	static int directions=0; // details how many directions can be found in a combination
-	static int bail=0; // how much a player pays for failing to crack a safe, value will be based on wantedLevel and the difficulty of a safe
-	static int payout=0; // how much a player gets for cracking a safe, the range of values is determined by the difficulty of a safe
-	static int difficulty=1; // Correlates to how tough a safe is to crack, and settings will be changed based on this value
-	static int guessLimit=10;  // in most difficulties, the number of guesses will be 10. However this may change for a few safes
-	static int timeInSeconds=0; // holds the seconds portion of the time, i.e. if time left is 5:32, timeInSeconds=32
-	static int timeInMinutes=6; // hold the minutes portion of the time, i.e if the time left is 5:32 timeInMinutes=5. Default time is 6 minutes
-	static int explosives=0; // holds the number of TNT charges owned by the player
-	static int snips=0;  // hold the number of snips owned by the player
-	static int picks=0; // hold the number of lock picks owned by the player
-	static boolean isWinner=false; // hold if the current safe has been solved
-	static boolean career=true;  // boolean keeps a dead carer from playing by turning it false and saving it in load file
+	int loot=3000; // Loot is the currency of the game. Player gains and looses loot based on winning/losing safes. default is 3000 
+	int turnCount=0;  // this is the number of guesses made in the game, it counts upward from zero
+	int totalBreakIns=0; // Counts the number of safes cracked in a players career default is 0
+	int wantedLevel=1; // Wanted level dictates the cost of bail and increments based on how many safes the player has cracked
+	int comboSize=3; // determines how many digits in a combo, default is 3
+	int directions=0; // details how many directions can be found in a combination
+	int bail=0; // how much a player pays for failing to crack a safe, value will be based on wantedLevel and the difficulty of a safe
+	int payout=0; // how much a player gets for cracking a safe, the range of values is determined by the difficulty of a safe
+	int difficulty=1; // Correlates to how tough a safe is to crack, and settings will be changed based on this value
+	int guessLimit=10;  // in most difficulties, the number of guesses will be 10. However this may change for a few safes
+	int timeInSeconds=0; // holds the seconds portion of the time, i.e. if time left is 5:32, timeInSeconds=32
+	int timeInMinutes=6; // hold the minutes portion of the time, i.e if the time left is 5:32 timeInMinutes=5. Default time is 6 minutes
+	int explosives=0; // holds the number of TNT charges owned by the player
+	int snips=0;  // hold the number of snips owned by the player
+	int picks=0; // hold the number of lock picks owned by the player
+	boolean isWinner=false; // hold if the current safe has been solved
+	boolean career=true;  // boolean keeps a dead carer from playing by turning it false and saving it in load file
 	boolean isAnalysisMode=false; //when analysis mode is on, arrow will traverse previous guesses
 	boolean debugMode=true; //debug mode shows the combo in the status update when debugMode is true
 	int leftCounter=0; //used in analysis mode to determine how far back to go
-	static String career_file=""; //file location of .cjx file for loading and saving a carreer
+	String career_file=""; //file location of .cjx file for loading and saving a carreer
     guess[] guessArray; // holds all the guesses in a single game
     guess currentGuess= new guess();//new StringBuilder(); // hold the parts of a current guess, before it is added to the guessArray
-	static StringBuilder combo= new StringBuilder();
+	StringBuilder combo= new StringBuilder();
 	boolean analyzeWithArrow=false; //when this is false, arrows will act as a directional guess
 									//when true, it will shift along the guess history to show details
 
