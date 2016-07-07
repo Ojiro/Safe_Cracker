@@ -212,18 +212,18 @@ public class GUI extends JFrame {
 
 	private void welcomeText() {
 		topText.setBackground(Color.WHITE);
-		topText.setText("		 Welcome to SafeCracker V3"
+		topText.setText("		Welcome to SafeCracker V3"
 				+ "\n"
 				+ "\n"
-				+ "The Object of the game is to acquire loot by cracking safes"
+				+ " The Object of the game is to acquire loot by cracking safes"
 				+ "\n"
-				+ "Your Cracker-Jacker 5000 DLX will tell you how many posistions and digits you get right"
+				+ " Your Cracker-Jacker 5000 DLX will tell you how many posistions and digits you get right"
 				+ "\n"
-				+ "However, don't take to long, othewise you'll get busted by the cops"
+				+ " However, don't take to long, othewise you'll get busted by the cops"
 				+ "\n"
-				+ "If you run out of loot, or can't make bail, your carrer is over."
-				+ "\n" + "For more information, click how to" + "\n"
-				+ "To play, click enter");
+				+ " If you run out of loot, or can't make bail, your carrer is over."
+				+ "\n" + " For more information, click how to" + "\n"
+				+ " To play, click enter");
 
 		p0.add(topText);
 		clearAllButtons(true);
@@ -279,15 +279,15 @@ public class GUI extends JFrame {
 				+ "	                                              Select Difficulty"
 				+ "\n"
 				+ "\n"
-				+ "(0) Easy - 3 Digits, 0 Directions             (5) Hard- 6 Digits, 2 Directions                (U) Extreme-8 Digits, 3 Directions"
+				+ " (0) Easy - 3 Digits, 0 Directions             (5) Hard- 6 Digits, 2 Directions                (U) Extreme-8 Digits, 3 Directions"
 				+ "\n"
-				+ "(1) PiggyBank- 4 Digits, 1 Directions    (6) ChineseLock- 6 Directions                 (D) FedHeist-8 Digits, 2 Directions"
+				+ " (1) PiggyBank- 4 Digits, 1 Directions    (6) ChineseLock- 6 Directions                 (D) FedHeist-8 Digits, 2 Directions"
 				+ "\n"
-				+ "(2) KittyBank- 4 Digits, 0 Directions       (7) BankHeist-6 Digits, 0 Directions       (L) Oceans666-8 Digits, 1 Direction  "
+				+ " (2) KittyBank- 4 Digits, 0 Directions       (7) BankHeist-6 Digits, 0 Directions       (L) Oceans666-8 Digits, 1 Direction  "
 				+ "\n"
-				+ "(3) Motel Safe- 5 Digits, 1 directions     (8) JewelHeist-7 Digits, 3 Directions      (R) Heistenberg- 10 Digits, 0 Directions"
+				+ " (3) Motel Safe- 5 Digits, 1 directions     (8) JewelHeist-7 Digits, 3 Directions      (R) Heistenberg- 10 Digits, 0 Directions"
 				+ "\n"
-				+ "(4) Hotel Safe- 5 Digits, 0 Direction       (9) MuseumHeist-7 Digits, 2 Directions"
+				+ " (4) Hotel Safe- 5 Digits, 0 Direction       (9) MuseumHeist-7 Digits, 2 Directions"
 				+ "\n" + "");
 
 	}
