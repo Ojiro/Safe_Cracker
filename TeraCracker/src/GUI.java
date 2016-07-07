@@ -345,7 +345,7 @@ public class GUI extends JFrame {
 				);
 		
 		clearAllButtons(true);
-		J7.setText("Restart Game");
+		J7.setText("Restart");
 	
 		
 	}
