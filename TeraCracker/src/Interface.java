@@ -79,6 +79,7 @@ public class Interface {
 				// combination
 
 				// switch updates the current guess string
+			if(!CrackerJacker.isAnalysisMode){
 				switch (temp.getText()) {
 				case "0":
 				case "1":
@@ -108,7 +109,18 @@ public class Interface {
 					printUpdate();
 					return;
 				}
-				// ends switch
+			}
+			else
+			{
+				switch (temp.getText())
+				{
+				case "Left":
+					CrackerJacker.incLeftCounter(true);
+					break;
+				case "Right":
+					CrackerJacker.incLeftCounter(false);
+				}
+			}
 
 				printUpdate();
 
@@ -507,7 +519,7 @@ public class Interface {
 			case KeyEvent.VK_S: GUI.JSnips.doClick(); break;
 			case KeyEvent.VK_X: GUI.JTNT.doClick(); break;
 		
-		//	case KeyEvent.VK_SHIFT: GUI.Help.doClick(); break;
+			case KeyEvent.VK_CONTROL: CrackerJacker.toggleAnalysis(); break;
 			
 			}
 
@@ -791,10 +803,11 @@ public class Interface {
 			// print the necessary information for gamePlay
 			StringBuilder tempBuilder = new StringBuilder();
 
+			int selectedVal=CrackerJacker.turnCount-CrackerJacker.leftCounter-1; // index of guess to be viewed
 			for (int i = 0; i < CrackerJacker.turnCount; i++) 
 			{
 				//for loop strings together previous guesses
-				if (i == CrackerJacker.turnCount - 1) {
+				if (i == selectedVal) {
 					tempBuilder.append("  | "
 							+ CrackerJacker.guessArray[i].currentGuess + " | ");
 				} else {
@@ -817,11 +830,15 @@ public class Interface {
 					+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
 					+ "    Time: " + CrackerJacker.timeInMinutes + ":"
 					+ CrackerJacker.timeInSeconds + "\n" + tempBuilder + "\n"
-					+ "\n" + "             " + CrackerJacker.currentGuess.currentGuess.toString()
-					+ "\n" + "      Digits Correct: "
+					+ "\n" + "             " + CrackerJacker.currentGuess.currentGuess.toString() );
+			
+			if(CrackerJacker.isAnalysisMode)
+			{
+				GUI.topText.append(" ANALYSIS MODE: ON");
+			}
+			GUI.topText.append( "\n" + "      Digits Correct: "
 					+ CrackerJacker.digitsCorrect() + "    Posistions Correct: "
-				//	+ CrackerJacker.currentGuess.digitsCorrect + "    Posistions Correct: "
-					+ CrackerJacker.posistionsCorrect());
+					+ CrackerJacker.posistionsCorrect() + "\t\t Analysis Mode: CTRL");
 
 					
 			// update the tool buttons

@@ -11,8 +11,6 @@ public class CrackerJacker {
 	static int payout=0; // how much a player gets for cracking a safe, the range of values is determined by the difficulty of a safe
 	static int difficulty=1; // Correlates to how tough a safe is to crack, and settings will be changed based on this value
 	static int guessLimit=10;  // in most difficulties, the number of guesses will be 10. However this may change for a few safes
-	//static int posistionsCorrect=0; // during play, this variable tells how many positions are correct (note that positions and digits are 2 distinct concepts)
-	//static int digitsCorrect=0;  // during play, tells how many digits are correct (but doesn't tell how many are in the correct spots)
 	static int timeInSeconds=0; // holds the seconds portion of the time, i.e. if time left is 5:32, timeInSeconds=32
 	static int timeInMinutes=6; // hold the minutes portion of the time, i.e if the time left is 5:32 timeInMinutes=5. Default time is 6 minutes
 	static int explosives=0; // holds the number of TNT charges owned by the player
@@ -20,6 +18,8 @@ public class CrackerJacker {
 	static int picks=0; // hold the number of lock picks owned by the player
 	static boolean isWinner=false; // hold if the current safe has been solved
 	static boolean career=true;  // boolean keeps a dead carer from playing by turning it false and saving it in load file
+	boolean isAnalysisMode=false; //when analysis mode is on, arrow will traverse previous guesses
+	int leftCounter=0; //used in analysis mode to determine how far back to go
 	static String career_file=""; //file location of .cjx file for loading and saving a carreer
     guess[] guessArray; // holds all the guesses in a single game
     guess currentGuess= new guess();//new StringBuilder(); // hold the parts of a current guess, before it is added to the guessArray
@@ -367,9 +367,28 @@ public class CrackerJacker {
 
 		public int digitsCorrect()
 		{
-			if(turnCount>0)
-			return guessArray[turnCount-1].digitsCorrect;
-			return 0;
+			if(!isAnalysisMode){
+				
+				if(turnCount>0)
+					return guessArray[turnCount-1].digitsCorrect;
+				return 0;
+			}
+			else
+			{
+				if(leftCounter>=turnCount)
+				{
+					return guessArray[0].digitsCorrect;
+				}
+				else if(leftCounter>0)
+				{
+					return guessArray[turnCount-leftCounter-1].digitsCorrect;
+				}
+				else
+				{
+					return guessArray[turnCount-1].digitsCorrect;
+				}
+			}
+			
 		}
 		
 		public int posistionsCorrect()
@@ -377,5 +396,54 @@ public class CrackerJacker {
 			if(turnCount>0)
 			return guessArray[turnCount-1].posistionsCorrect;
 			else return 0;
+		}
+		
+		
+		public void toggleAnalysis()
+		{
+			if(turnCount==0)
+			{
+				//do not permit analysis mode to be on when there are no guesses
+				isAnalysisMode=false;
+				return;
+			}
+			isAnalysisMode=!isAnalysisMode;
+			
+			if(!isAnalysisMode)
+			{
+				//reset the left counter when analysis mode is off
+				leftCounter=0;
+			}
+		}
+
+		public void incLeftCounter(boolean increment)
+		{
+			if(increment)
+			{
+				//rules to increment leftCounter
+				if(leftCounter+1>=turnCount-1)
+				{
+					leftCounter=turnCount-1;
+				}
+				else
+				{
+					leftCounter++;
+				}
+			}
+			else
+			{
+				//rules to decrement leftCounter
+				if(leftCounter==0 )
+				{
+					// if the player comes back to the current guess from previous guesses, turn off analysis
+					leftCounter=0;
+					isAnalysisMode=false;
+				}
+				if(leftCounter>0)
+				{
+					leftCounter--;
+					
+				}
+			}
 		}
 }
