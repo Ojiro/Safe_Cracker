@@ -213,6 +213,7 @@ public class GUI extends JFrame {
 				+ "To play, click enter");
 
 		p0.add(topText);
+		clearAllButtons(true);
 		JEnter.setText("Play");
 		JInfo.setText("Info");
 		Load.setText("Load");
@@ -246,8 +247,6 @@ public class GUI extends JFrame {
 		JBackSpace.setText("Back Space");
 		JClear.setText("Clear");
 
-		// hideButtons();
-		// hideTools();
 		JClear.setForeground(Color.LIGHT_GRAY);
 		JBackSpace.setForeground(Color.LIGHT_GRAY);
 
@@ -274,38 +273,20 @@ public class GUI extends JFrame {
 			JSnips.setForeground(Color.LIGHT_GRAY);
 		}
 
-		/*
-		 * // show the proshop to the player if they have more than 3 break-ins
-		 * if((TeraCracker.totalBreakIns)>=3) // makes the pro shop available if
-		 * the player has broken enough safes {
-		 * JStore.addActionListener(proShopListener);
-		 * JStore.setText("Pro Shop"); } else {
-		 * 
-		 * JStore.removeActionListener(proShopListener); }
-		 */
-
+		
+		  // show the proshop to the player if they have more than 3 break-ins
+		  if((CrackerJacker.totalBreakIns)>=3) // makes the pro shop available if
+		 { 
+			  // the player has broken enough safes 
+		  JStore.setText("Pro Shop");
+		  JStore.setForeground(Color.BLACK);
+		  } 
+		  else {
+		  JStore.setForeground(Color.LIGHT_GRAY);
+		  }
 		mainWindow.requestFocus();
-
-		J0.setVisible(true);
-		J1.setVisible(true);
-		J2.setVisible(true);
-		J3.setVisible(true);
-		J4.setVisible(true);
-		J5.setVisible(true);
-		J6.setVisible(true);
-		J7.setVisible(true);
-		J8.setVisible(true);
-		J9.setVisible(true);
-		JUp.setVisible(true);
-		JDown.setVisible(true);
-		JLeft.setVisible(true);
-		JRight.setVisible(true);
-		JEnter.setVisible(true);
-		JBackSpace.setVisible(true);
-		JClear.setVisible(true);
-
 		requestDifficulty();
-	}
+		  }
 
 	// #2
 	// requestDifficulty
@@ -339,6 +320,7 @@ public class GUI extends JFrame {
 
 	}
 
+	
 	//
 	//setGameText
 	public static void setGameText()
@@ -365,15 +347,11 @@ public class GUI extends JFrame {
 				JBackSpace.setForeground(Color.BLACK);
 				JClear.setForeground(Color.BLACK);
 
-				// if the player has more than 3 break-ins show the proshop
 				// proshop will not be accessible during the guess phase
-				if (CrackerJacker.totalBreakIns >= 3) {
 					JStore.setText("Pro Shop");
 					JStore.setForeground(Color.LIGHT_GRAY);
 					JStore.setVisible(true);
-				} else {
-					JStore.setVisible(false);
-				}
+				
 
 				// show tools if they are available,
 				if (CrackerJacker.explosives > 0) {
@@ -434,7 +412,7 @@ public class GUI extends JFrame {
 			{
 				if (!sucessful)
 				{
-					// informers the user they couldn't but their item
+					// informs the user they couldn't but their item
 					topText.setText("		Loot:  $" + CrackerJacker.loot + "     Wanted Level: " + CrackerJacker.wantedLevel+ "      Break-Ins: " + CrackerJacker.totalBreakIns
 							+ "\n"
 							+ "		You Don't Have Enough Loot To Buy That!"
@@ -606,7 +584,9 @@ public class GUI extends JFrame {
 							+ "\n"
 							+ "Say a combonation is 123UD, and you guess 321RU. There will be 4 digits correct, but only 1 posistion correct."
 							+ "\n"
-							+ "Your Cracker-Jacker 5000 DLX will give you a history of all your previous guesses, but is unable to keep track of the posistions and digits correct"
+							+ "Your Cracker-Jacker 5000 DLX will give you a history of all your previous guesses, you can view the position and digits correct by turning on analysis mode"
+							+ "\n"
+							+ "To turn on analysis mode, hit CTRL. Once analysis mode is on, you can view your previous guesses, along with the digits and posistions correct, with the left and right arrows"
 							+ "\n"
 							+ "\n"
 							+ "Wanted Level and Bail"
@@ -629,6 +609,8 @@ public class GUI extends JFrame {
 							+ "--The Save button will save your current carrer. You can click the save button or use Shift+S"
 							+ "\n"
 							+ "The Load button will load a previous carrer, you can click the Load button or use Shift+L"
+							+ "\n"
+							+ "When you save your carrer, it will save a .cjx file, you must use this file type to load a carrer"
 							+ "\n"
 							+ "While you can load and save a carrer that has ended (has run out of loot), you won't be able to play anymore safes with that carrer");
 			helpText.setEditable(false);

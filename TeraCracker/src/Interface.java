@@ -709,7 +709,6 @@ public class Interface {
 		if ((CrackerJacker.totalBreakIns) >= 3) 
 		{// makes the pro shop available if the player has broken enough safes
 			(GUI.JStore).addActionListener(proShopListener);
-			(GUI.JStore).setText("Pro Shop");
 		} else {
 
 			(GUI.JStore).removeActionListener(proShopListener);
@@ -919,12 +918,11 @@ public class Interface {
 
 		// proshop may be turned on during this phase
 		if (CrackerJacker.totalBreakIns >= 3) {
-			GUI.JStore.setText("Pro Shop");
 			GUI.JStore.setForeground(Color.BLACK);
-			GUI.JStore.setVisible(true);
 			GUI.JStore.addActionListener(proShopListener);
 		} else {
-			GUI.JStore.setVisible(false);
+			GUI.JStore.setForeground(Color.LIGHT_GRAY);
+			GUI.JStore.removeActionListener(proShopListener);
 		}
 
 		// show tools if they are available,
@@ -986,12 +984,11 @@ public class Interface {
 
 		// turn off tools
 		if (CrackerJacker.totalBreakIns >= 3) {
-			GUI.JStore.setText("Pro Shop");
 			GUI.JStore.setForeground(Color.BLACK);
-			GUI.JStore.setVisible(true);
 			GUI.JStore.addActionListener(proShopListener);
 		} else {
-			GUI.JStore.setVisible(false);
+			GUI.JStore.setForeground(Color.LIGHT_GRAY);
+			GUI.JStore.removeActionListener(proShopListener);
 		}
 
 		// show tools if they are available,
