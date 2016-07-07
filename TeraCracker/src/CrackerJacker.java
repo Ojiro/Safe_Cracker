@@ -367,9 +367,31 @@ public class CrackerJacker {
 		public int posistionsCorrect()
 		{
 			//returns the positions correct from a guess object in the guess array
-			if(turnCount>0)
+			/*if(turnCount>0)
 			return guessArray[turnCount-1].posistionsCorrect;
-			else return 0;
+			else return 0; */
+			
+	if(!isAnalysisMode){
+				
+				if(turnCount>0)
+					return guessArray[turnCount-1].posistionsCorrect;
+				return 0;
+			}
+			else
+			{
+				if(leftCounter>=turnCount)
+				{
+					return guessArray[0].posistionsCorrect;
+				}
+				else if(leftCounter>0)
+				{
+					return guessArray[turnCount-leftCounter-1].posistionsCorrect;
+				}
+				else
+				{
+					return guessArray[turnCount-1].posistionsCorrect;
+				}
+			}
 		}
 		
 		
