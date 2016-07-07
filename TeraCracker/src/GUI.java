@@ -36,9 +36,8 @@ public class GUI extends JFrame {
 	static JFrame mainWindow = new JFrame("GigaCracker");
 	static JFrame helpWindow = new JFrame("How To");
 	static JPanel p0 = new JPanel();
-	// create JButtons that act as input
 
-	// These buttons act as basic inputs, numbers and directions for the game
+	//Buttons that will allow for regular play (0-9, directions...)
 	static JButton J0 = new JButton("");
 	static JButton J1 = new JButton("");
 	static JButton J2 = new JButton("");
@@ -53,9 +52,8 @@ public class GUI extends JFrame {
 	static JButton JDown = new JButton("");
 	static JButton JLeft = new JButton("");
 	static JButton JRight = new JButton("");
-	static JButton JEnter = new JButton("Enter"); // allow the player to advance
-													// through the game and
-													// enter guesses
+	static JButton JEnter = new JButton("Enter"); 
+	
 	static JButton JClear = new JButton("");
 	static JButton JBackSpace = new JButton("");
 	static JButton JInfo = new JButton("Info");
@@ -68,11 +66,12 @@ public class GUI extends JFrame {
 	static JButton JSnips = new JButton("-");
 	static JButton JPicks = new JButton("-");
 
-	// create JButtons for help, referred to as helper buttons throughout the
-	// program
+	// create JButtons for help, referred to as helper buttons throughout the program
 	static JButton Help = new JButton("How To"); // opens a box on how to play
 	static JButton Load = new JButton("Load");
 	static JButton Save = new JButton("Save");
+	
+	//display area
 	static JTextArea topText = new JTextArea();
 	static JLabel name = new JLabel("Cracker-Jacker 5000 DLX");
 
@@ -152,7 +151,7 @@ public class GUI extends JFrame {
 		
 		welcomeScreen();
 		JStore.setVisible(true);
-		mainWindow.setVisible(true); // turn the mainWindow visible
+		mainWindow.setVisible(true);
 		JEnter.setVisible(true);
 		JInfo.setVisible(true);
 		Exit.setVisible(true);
@@ -204,9 +203,7 @@ public class GUI extends JFrame {
 		welcomeText();
 	}
 
-	// #1
-	// welcomeText
-	//
+
 	private void welcomeText() {
 		topText.setBackground(Color.WHITE);
 		topText.setText("		 Welcome to SafeCracker V3"
@@ -234,13 +231,8 @@ public class GUI extends JFrame {
 
 	}
 
-	// #18
-	// setDifficultyListener
-	// sets the listeners for the select difficulty selection phase of the game
 	public void setDifficultyListener() {
 
-		// Interface.setDifficultyListeners();
-		// Reset the text on the buttons
 		J0.setText("Easy");
 		J1.setText("PiggyBank");
 		J2.setText("KittyBank");
@@ -261,17 +253,11 @@ public class GUI extends JFrame {
 
 		JClear.setForeground(Color.LIGHT_GRAY);
 		JBackSpace.setForeground(Color.LIGHT_GRAY);
-
-		// tools are off during this phase
 	
 		mainWindow.requestFocus();
 		requestDifficulty();
 		  }
 
-	// #2
-	// requestDifficulty
-	// Receives the desired difficulty of the next safe from the user
-	// also prints an update for the user between games
 	public void requestDifficulty() {
 		// be very careful in changing the spacing of the text here, it takes a
 		// lot of work to line these up properly
@@ -300,9 +286,6 @@ public class GUI extends JFrame {
 
 	}
 
-	
-	//
-	//setGameText
 	public void setGameText()
 	{
 		// set text to guess mode
@@ -327,16 +310,12 @@ public class GUI extends JFrame {
 				JBackSpace.setForeground(Color.BLACK);
 				JClear.setForeground(Color.BLACK);
 				
-
 				GUI.topText.setText("		Loot:  " + CrackerJacker.loot
 						+ "     Wanted Level: " + CrackerJacker.wantedLevel
 						+ "      Break-Ins: " + CrackerJacker.totalBreakIns);
-				// bottomText.setText("");
 	
 	}
 	
-	//
-	// Game Over
 	public static void setGameOver()
 	{
 		//display shown if the player has lost the game
@@ -348,23 +327,248 @@ public class GUI extends JFrame {
 		
 		clearAllButtons(true);
 		J7.setText("Restart");
-	
 		
 	}
-	//
-	// buyStatus
-	// method prints an update for a the user when they try to buy something in the proshop
-			public void buyStatus(boolean sucessful, String item)
-			{
-				if (!sucessful)
-				{
-					// informs the user they couldn't but their item
-					topText.setText("		Loot:  $" + CrackerJacker.loot + "     Wanted Level: " + CrackerJacker.wantedLevel+ "      Break-Ins: " + CrackerJacker.totalBreakIns
+
+	public void buyStatus(boolean sucessful, String item)
+	{
+		//show the status of an attempted purchase in the proshop
+		if (!sucessful)
+		{
+			// informs the user they couldn't but their item
+			topText.setText("		Loot:  $" + CrackerJacker.loot + "     Wanted Level: " + CrackerJacker.wantedLevel+ "      Break-Ins: " + CrackerJacker.totalBreakIns
+					+ "\n"
+					+ "		You Don't Have Enough Loot To Buy That!"
+					+ "\n"
+					+ "\n"
+					+ "  		Here's What We Got"
+					+ "\n"
+					+ "\n"
+					+ "$4,500 "
+					+ "TNT- Breaks A Safe For You, But May Alert The Cops (Tread Lightly)"
+					+ "\n"
+					+ "$3,500 "
+					+ "Lock Pick- Removes A Digit From A Combo"
+					+ "\n"
+					+ "$3,000 "
+					+ "Snips- Delays The Cops And Gives You An Extra Move ");
+		}
+		else if (sucessful)
+		{
+			// informs the user of a sucessful purchase in the proshop
+			
+			topText.setText("		Loot:  $" + CrackerJacker.loot + "     Wanted Level: " + CrackerJacker.wantedLevel+ "      Break-Ins: " + CrackerJacker.totalBreakIns
+					+ "\n"
+					+ "\n"
+					+ "		Nice! You Sucessfully Bought " + item
+					+ "\n"
+					+ "   		Here's What We Got"
+					+ "\n"
+					+ "\n"
+					+ "$4,500 "
+					+ "TNT- Breaks A Safe For You, But May Alert The Cops (Tread Lightly)"
+					+ "\n"
+					+ "$3,500 "
+					+ "Lock Pick- Removes A Digit From A Combo"
+					+ "\n"
+					+ "$3,000 "
+					+ "Snips- Delays The Cops And Gives You An Extra Move ");
+			
+		} // ends else if
+		
+		// show tools as they are added
+		if (CrackerJacker.explosives>0)
+		{
+			JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
+			JTNT.setForeground(Color.GRAY);
+		}
+		if (CrackerJacker.picks>0)
+		{
+			JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
+			JPicks.setForeground(Color.GRAY);
+		}
+		if (CrackerJacker.snips>0)
+		{
+			JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
+			JSnips.setForeground(Color.GRAY);
+		}
+	} // ends buy status
+		
+	public static void clearAllButtons(boolean isVisible)	
+	{
+		//method clears the text from MOST JButtons, and sets the visibility to isVisible
+		J0.setText("");
+		J1.setText("");
+		J2.setText("");
+		J3.setText("");
+		J4.setText("");
+		J5.setText("");
+		J6.setText("");
+		J7.setText("");
+		J8.setText("");
+		J9.setText("");
+		JUp.setText("");
+		JDown.setText("");
+		JLeft.setText("");
+		JRight.setText("");
+		JClear.setText("");
+		JBackSpace.setText("");
+		JEnter.setText("");
+		JTNT.setText("");
+		JSnips.setText("");
+		JPicks.setText("");
+		JStore.setText("");
+		
+		setButtonVisibility(isVisible);
+	}
+	
+	public static void setButtonVisibility(boolean isVisible)
+	{
+		J0.setVisible(isVisible);
+		J1.setVisible(isVisible);
+		J2.setVisible(isVisible);
+		J3.setVisible(isVisible);
+		J4.setVisible(isVisible);
+		J5.setVisible(isVisible);
+		J6.setVisible(isVisible);
+		J7.setVisible(isVisible);
+		J8.setVisible(isVisible);
+		J9.setVisible(isVisible);
+		JUp.setVisible(isVisible);
+		JDown.setVisible(isVisible);
+		JLeft.setVisible(isVisible);
+		JRight.setVisible(isVisible);
+		JEnter.setVisible(isVisible);
+		JBackSpace.setVisible(isVisible);
+		JClear.setVisible(isVisible);
+		
+		JTNT.setVisible(isVisible);
+		JPicks.setVisible(isVisible);
+		JSnips.setVisible(isVisible);
+		JStore.setVisible(isVisible);
+		
+		JInfo.setVisible(isVisible);
+		Help.setVisible(isVisible);
+		Load.setVisible(isVisible);
+		Save.setVisible(isVisible);
+		
+	}
+	
+	public static void setHelpText()
+	{
+		//this is the help window for the player to learn about the game
+		helpWindow.setSize(815, 700);
+		JTextArea helpText = new JTextArea(
+				"		How To Play SafeCracker"
+						+ "\n"
+						+ "\n"
+						+ "Choosing a Safe"
+						+ "\n"
+						+ "--Cracking safes can be a very lucrative but dangerous carrer. "
+						+ "\n"
+						+ "There are many different types of safes just waiting to have their loot liberated from them."
+						+ "\n"
+						+ "However, it is important to choose wisely. There are two number associated with each safe, the number of digits and the number of directions."
+						+ "\n"
+						+ "The number of digits tells you have many slots are in a combo, obviously a safe with 7 digits will be harder to crack than a safe with 4"
+						+ "\n"
+						+ "The number of directions are counted in the number of digits, but there are only 4 directions; U,D,L and R."
+						+ "\n"
+						+ "Any Digit that is not a directions, is a number from 0-9"
+						+ "\n"
+						+ "To pick a safe as your next target, you can press the button with its name, or the number or letter labeled to the very left of the name"
+						+ "\n"
+						+ "\n"
+						+ "Cracking a Safe"
+						+ "\n"
+						+ "--When you try to crack a safe, you must guess the numbers and directions involved in the safe."
+						+ "\n"
+						+ " All safes have numbers, but some will not have any directions."
+						+ "\n"
+						+ "The directions will always be the last set of digits in the combo, so for example a JewelHeist safe will have 7 digits, 3 of which are directions"
+						+ "\n"
+						+ "so a JewelHeist combo may look like 1234LRU but never L123R4U."
+						+ "\n"
+						+ "\n"
+						+ "Using Your Cracker-Jacker 5000 DLX"
+						+ "\n"
+						+ "--When you attempt to crack a safe, the Cracker-Jacker 5000 DLX will tell you how many posistions and how many digits you've gotten correct."
+						+ "\n"
+						+ "The digits correct tell you how many of the numbers and directions you guesses are used within the combo, but not if they are in the right location"
+						+ "\n"
+						+ "The posistions correct tell you how many locations within the combo are matched correctly, but not which digits are right."
+						+ "\n"
+						+ "Say a combonation is 123UD, and you guess 321RU. There will be 4 digits correct, but only 1 posistion correct."
+						+ "\n"
+						+ "Your Cracker-Jacker 5000 DLX will give you a history of all your previous guesses, you can view the position and digits correct by turning on analysis mode"
+						+ "\n"
+						+ "To turn on analysis mode, hit CTRL. Once analysis mode is on, you can view your previous guesses, along with the digits and posistions correct, with the left and right arrows"
+						+ "\n"
+						+ "\n"
+						+ "Wanted Level and Bail"
+						+ "\n"
+						+ "--Your wanted level tells you how bad the cops want to catch you, it is based not only on the number of safes you have cracked, but how difficult they were"
+						+ "\n"
+						+ "While your wanted level won't lead cops to you, it will affect how much your bail is if you get caught."
+						+ "\n"
+						+ "Bail is how much loot you loose if you get caught by the cops. You can be caught if you take to much time to crack a safe"
+						+ "\n"
+						+ "or you use to many guesses. You can also get caught when you try unothadoxed methods to crack a safe quickly"
+						+ "\n"
+						+ " How much you have to bail out is dependant on how difficult the safe was to crack as well as your wanted level"
+						+ "\n"
+						+ "Be careful choosing a safe, the cost of bail can quickly skyrocket. Of course, safes that are harder to crack probably have more loot"
+						+ "\n"
+						+ "\n"
+						+ "Loading and Saving You Carrer"
+						+ "\n"
+						+ "--The Save button will save your current carrer. You can click the save button or use Shift+S"
+						+ "\n"
+						+ "The Load button will load a previous carrer, you can click the Load button or use Shift+L"
+						+ "\n"
+						+ "When you save your carrer, it will save a .cjx file, you must use this file type to load a carrer"
+						+ "\n"
+						+ "While you can load and save a carrer that has ended (has run out of loot), you won't be able to play anymore safes with that carrer");
+		helpText.setEditable(false);
+	
+		helpWindow.add(helpText);
+		helpWindow.setVisible(true);
+	}
+	
+	public void setProShopText()
+	{
+		// set text for ProShop
+		topText.setBackground(Color.WHITE);
+		clearAllButtons(true);
+		J0.setText("TNT");
+		J1.setText("Picks");
+		J2.setText("Snips");
+	
+		JEnter.setText("Exit");
+	
+		if (CrackerJacker.loot < 3000) 
+		{
+			// text shown if the player doesn't have enough money
+			topText.setText("		Loot:  $" + CrackerJacker.loot
+					+ "     Wanted Level: " + CrackerJacker.wantedLevel
+					+ "      Break-Ins: " + CrackerJacker.totalBreakIns + "\n"
+					+ "\n" + "        We Aint Got Anything For You Right Now!"
+					+ "\n");
+		} else 
+		{
+			// text shown if the player has enough money
+			topText
+					.setText("		Loot:  $"
+							+ CrackerJacker.loot
+							+ "     Wanted Level: "
+							+ CrackerJacker.wantedLevel
+							+ "      Break-Ins: "
+							+ CrackerJacker.totalBreakIns
 							+ "\n"
-							+ "		You Don't Have Enough Loot To Buy That!"
 							+ "\n"
+							+ "            		Psst, Welcome To The Pro-Shop"
 							+ "\n"
-							+ "  		Here's What We Got"
+							+ "              		     Here's What We Got"
 							+ "\n"
 							+ "\n"
 							+ "$4,500 "
@@ -375,474 +579,243 @@ public class GUI extends JFrame {
 							+ "\n"
 							+ "$3,000 "
 							+ "Snips- Delays The Cops And Gives You An Extra Move ");
-				}
-				else if (sucessful)
-				{
-					// informs the user of a sucessful purchase in the proshop
-					
-					topText.setText("		Loot:  $" + CrackerJacker.loot + "     Wanted Level: " + CrackerJacker.wantedLevel+ "      Break-Ins: " + CrackerJacker.totalBreakIns
-							+ "\n"
-							+ "\n"
-							+ "		Nice! You Sucessfully Bought " + item
-							+ "\n"
-							+ "   		Here's What We Got"
-							+ "\n"
-							+ "\n"
-							+ "$4,500 "
-							+ "TNT- Breaks A Safe For You, But May Alert The Cops (Tread Lightly)"
-							+ "\n"
-							+ "$3,500 "
-							+ "Lock Pick- Removes A Digit From A Combo"
-							+ "\n"
-							+ "$3,000 "
-							+ "Snips- Delays The Cops And Gives You An Extra Move ");
-					
-				} // ends else if
-				
-				// show tools as they are added
-				if (CrackerJacker.explosives>0)
-				{
-					JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
-					JTNT.setForeground(Color.GRAY);
-				}
-				if (CrackerJacker.picks>0)
-				{
-					JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
-					JPicks.setForeground(Color.GRAY);
-				}
-				if (CrackerJacker.snips>0)
-				{
-					JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
-					JSnips.setForeground(Color.GRAY);
-				}
-			} // ends buy status
+		}
 	
-		
-	//
-	// Clear All Buttons
-		public static void clearAllButtons(boolean isVisible)	
-		{
-			//method clears the text from all JButtons, and sets the visibility to isVisible
-			J0.setText("");
-			J1.setText("");
-			J2.setText("");
-			J3.setText("");
-			J4.setText("");
-			J5.setText("");
-			J6.setText("");
-			J7.setText("");
-			J8.setText("");
-			J9.setText("");
-			JUp.setText("");
-			JDown.setText("");
-			JLeft.setText("");
-			JRight.setText("");
-			JClear.setText("");
-			JBackSpace.setText("");
-			JEnter.setText("");
-			JTNT.setText("");
-			JSnips.setText("");
-			JPicks.setText("");
-			JStore.setText("");
-			
-			setButtonVisibility(isVisible);
+		// check if there are any quantities of tools and displays the number is
+		// they do
+		if (CrackerJacker.explosives > 0) {
+			JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
+			JTNT.setForeground(Color.GRAY);
 		}
-		
-	//Set Button Visisblilty
-		public static void setButtonVisibility(boolean isVisible)
-		{
-			J0.setVisible(isVisible);
-			J1.setVisible(isVisible);
-			J2.setVisible(isVisible);
-			J3.setVisible(isVisible);
-			J4.setVisible(isVisible);
-			J5.setVisible(isVisible);
-			J6.setVisible(isVisible);
-			J7.setVisible(isVisible);
-			J8.setVisible(isVisible);
-			J9.setVisible(isVisible);
-			JUp.setVisible(isVisible);
-			JDown.setVisible(isVisible);
-			JLeft.setVisible(isVisible);
-			JRight.setVisible(isVisible);
-			JEnter.setVisible(isVisible);
-			JBackSpace.setVisible(isVisible);
-			JClear.setVisible(isVisible);
-			
-			JTNT.setVisible(isVisible);
-			JPicks.setVisible(isVisible);
-			JSnips.setVisible(isVisible);
-			JStore.setVisible(isVisible);
-			
-			JInfo.setVisible(isVisible);
-			Help.setVisible(isVisible);
-			Load.setVisible(isVisible);
-			Save.setVisible(isVisible);
-			
+		if (CrackerJacker.picks > 0) {
+			JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
+			JPicks.setForeground(Color.GRAY);
 		}
-		
-		public static void setHelpText()
-		{
-			helpWindow.setSize(815, 700);
-			JTextArea helpText = new JTextArea(
-					"		How To Play SafeCracker"
-							+ "\n"
-							+ "\n"
-							+ "Choosing a Safe"
-							+ "\n"
-							+ "--Cracking safes can be a very lucrative but dangerous carrer. "
-							+ "\n"
-							+ "There are many different types of safes just waiting to have their loot liberated from them."
-							+ "\n"
-							+ "However, it is important to choose wisely. There are two number associated with each safe, the number of digits and the number of directions."
-							+ "\n"
-							+ "The number of digits tells you have many slots are in a combo, obviously a safe with 7 digits will be harder to crack than a safe with 4"
-							+ "\n"
-							+ "The number of directions are counted in the number of digits, but there are only 4 directions; U,D,L and R."
-							+ "\n"
-							+ "Any Digit that is not a directions, is a number from 0-9"
-							+ "\n"
-							+ "To pick a safe as your next target, you can press the button with its name, or the number or letter labeled to the very left of the name"
-							+ "\n"
-							+ "\n"
-							+ "Cracking a Safe"
-							+ "\n"
-							+ "--When you try to crack a safe, you must guess the numbers and directions involved in the safe."
-							+ "\n"
-							+ " All safes have numbers, but some will not have any directions."
-							+ "\n"
-							+ "The directions will always be the last set of digits in the combo, so for example a JewelHeist safe will have 7 digits, 3 of which are directions"
-							+ "\n"
-							+ "so a JewelHeist combo may look like 1234LRU but never L123R4U."
-							+ "\n"
-							+ "\n"
-							+ "Using Your Cracker-Jacker 5000 DLX"
-							+ "\n"
-							+ "--When you attempt to crack a safe, the Cracker-Jacker 5000 DLX will tell you how many posistions and how many digits you've gotten correct."
-							+ "\n"
-							+ "The digits correct tell you how many of the numbers and directions you guesses are used within the combo, but not if they are in the right location"
-							+ "\n"
-							+ "The posistions correct tell you how many locations within the combo are matched correctly, but not which digits are right."
-							+ "\n"
-							+ "Say a combonation is 123UD, and you guess 321RU. There will be 4 digits correct, but only 1 posistion correct."
-							+ "\n"
-							+ "Your Cracker-Jacker 5000 DLX will give you a history of all your previous guesses, you can view the position and digits correct by turning on analysis mode"
-							+ "\n"
-							+ "To turn on analysis mode, hit CTRL. Once analysis mode is on, you can view your previous guesses, along with the digits and posistions correct, with the left and right arrows"
-							+ "\n"
-							+ "\n"
-							+ "Wanted Level and Bail"
-							+ "\n"
-							+ "--Your wanted level tells you how bad the cops want to catch you, it is based not only on the number of safes you have cracked, but how difficult they were"
-							+ "\n"
-							+ "While your wanted level won't lead cops to you, it will affect how much your bail is if you get caught."
-							+ "\n"
-							+ "Bail is how much loot you loose if you get caught by the cops. You can be caught if you take to much time to crack a safe"
-							+ "\n"
-							+ "or you use to many guesses. You can also get caught when you try unothadoxed methods to crack a safe quickly"
-							+ "\n"
-							+ " How much you have to bail out is dependant on how difficult the safe was to crack as well as your wanted level"
-							+ "\n"
-							+ "Be careful choosing a safe, the cost of bail can quickly skyrocket. Of course, safes that are harder to crack probably have more loot"
-							+ "\n"
-							+ "\n"
-							+ "Loading and Saving You Carrer"
-							+ "\n"
-							+ "--The Save button will save your current carrer. You can click the save button or use Shift+S"
-							+ "\n"
-							+ "The Load button will load a previous carrer, you can click the Load button or use Shift+L"
-							+ "\n"
-							+ "When you save your carrer, it will save a .cjx file, you must use this file type to load a carrer"
-							+ "\n"
-							+ "While you can load and save a carrer that has ended (has run out of loot), you won't be able to play anymore safes with that carrer");
-			helpText.setEditable(false);
-
-			helpWindow.add(helpText);
-			helpWindow.setVisible(true);
+		if (CrackerJacker.snips > 0) {
+			JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
+			JSnips.setForeground(Color.GRAY);
 		}
-
-		public void setProShopText()
-		{
-			// set text for ProShop
-			topText.setBackground(Color.WHITE);
-			clearAllButtons(true);
-			J0.setText("TNT");
-			J1.setText("Picks");
-			J2.setText("Snips");
+	}
 	
-			JEnter.setText("Exit");
-
-			if (CrackerJacker.loot < 3000) // text shown if the player doesn't have
-											// enough money
+	public static void setInfoText()
+	{
+		//brings up a new text box with information about the game and creation
+		JFrame infoWindow = new JFrame();
+		infoWindow.setSize(250, 250);
+		JTextArea infoText = new JTextArea(
+				"Thank You For Playing Safe Cracker \n"
+						+ "\n"
+						+ "Created By: Steven Paytosh \n"
+						+ "\n"
+						+ "Computer Science and Engineering @ Univeristy of Toledo \n"
+						+ "\n" + "Spring 2014" + "\n"
+						+ "https://github.com/StevePaytosh/SafeCracker");
+		infoWindow.setSize(500, 250);
+		infoWindow.add(infoText);
+		infoWindow.setVisible(true);
+	}
+	
+	public static void setSaveConfirm()
+	{
+		//brings up a new text box with infomation about the game and creation
+		JFrame infoWindow = new JFrame();
+		infoWindow.setSize(250, 250);
+		JTextArea infoText = new JTextArea("Carrer Saved");
+		infoWindow.setSize(500, 250);
+		infoWindow.add(infoText);
+		infoWindow.setVisible(true);
+	}
+	
+	public static void setButtonListener(String buttonID, ActionListener a)
+	{
+		switch(buttonID)
+		{
+		case "0": J0.addActionListener(a);
+		case "1": J0.addActionListener(a);
+		case "2": J0.addActionListener(a);
+		case "3": J0.addActionListener(a);
+		case "4": J0.addActionListener(a);
+		case "5": J0.addActionListener(a);
+		case "6": J0.addActionListener(a);
+		case "7": J0.addActionListener(a);
+		case "8": J0.addActionListener(a);
+		case "9": J0.addActionListener(a);
+		case "Up": J0.addActionListener(a);
+		case "Down": J0.addActionListener(a);
+		case "Left": J0.addActionListener(a);
+		case "Right": J0.addActionListener(a);
+		case "BackSpace": J0.addActionListener(a);
+		case "Clear": J0.addActionListener(a);
+		case "Info": J0.addActionListener(a);
+		case "Store": J0.addActionListener(a);
+		case "Help": J0.addActionListener(a);
+		case "TNT": J0.addActionListener(a);
+		case "Picks": J0.addActionListener(a);
+		case "Snips": J0.addActionListener(a);
+		case "Enter": J0.addActionListener(a);
+		case "Save": J0.addActionListener(a);
+		case "Load": J0.addActionListener(a);
+		
+		}
+	}
+	
+	public static void removeButtonListeners(String buttonID, ActionListener a)
+	{
+		switch(buttonID)
+		{
+		case "0": J0.addActionListener(a);
+		case "1": J0.addActionListener(a);
+		case "2": J0.addActionListener(a);
+		case "3": J0.addActionListener(a);
+		case "4": J0.addActionListener(a);
+		case "5": J0.addActionListener(a);
+		case "6": J0.addActionListener(a);
+		case "7": J0.addActionListener(a);
+		case "8": J0.addActionListener(a);
+		case "9": J0.addActionListener(a);
+		case "Up": J0.addActionListener(a);
+		case "Down": J0.addActionListener(a);
+		case "Left": J0.addActionListener(a);
+		case "Right": J0.addActionListener(a);
+		case "BackSpace": J0.addActionListener(a);
+		case "Clear": J0.addActionListener(a);
+		case "Info": J0.addActionListener(a);
+		case "Store": J0.addActionListener(a);
+		case "Help": J0.addActionListener(a);
+		case "TNT": J0.addActionListener(a);
+		case "Picks": J0.addActionListener(a);
+		case "Snips": J0.addActionListener(a);
+		case "Enter": J0.addActionListener(a);
+		case "Save": J0.addActionListener(a);
+		case "Load": J0.addActionListener(a);
+		
+		}
+	}
+	
+	public void openFileSelector()
+	{
+		final JFileChooser fc = new JFileChooser();
+		//fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+		fc.setAcceptAllFileFilterUsed(false); //set all file types to not appear (only .cjx should appear)
+	//	cjx cjx= new cjx();
+	//	fc.setFileFilter(cjx);
+		int returnVal = fc.showOpenDialog(mainWindow);
+		//System.out.println(fc.getSelectedFile().getAbsolutePath());
+		CrackerJacker.career_file=fc.getSelectedFile().getAbsolutePath();
+	}
+	
+	private class cjx implements FileFilter{
+	
+		@Override
+		public boolean accept(File arg0) {
+			String extension=arg0.getPath();
+			System.out.println(extension);
+			
+			return false;
+		}
+		
+	}
+	
+	public void setProShopButton(boolean set)
+	{
+		JStore.setText("Pro Shop");
+		if(set)
+			JStore.setForeground(Color.BLACK);
+		else
+			JStore.setForeground(Color.LIGHT_GRAY);
+	}
+	
+	public void setToolButtons(boolean gamePhase)
+	{
+		if ((CrackerJacker.explosives) > 0) {
+			JTNT.setText("TNT (" + (CrackerJacker.explosives) + "x)");
+			JTNT.setForeground(!gamePhase?Color.LIGHT_GRAY:Color.BLACK);
+		} else {
+			JTNT.setText("-");
+			JTNT.setForeground(Color.LIGHT_GRAY);
+		}
+		
+		if ((CrackerJacker.picks) > 0) {
+			JPicks.setText("Picks (" + (CrackerJacker.picks) + "x)");
+			JPicks.setForeground(!gamePhase?Color.LIGHT_GRAY:Color.BLACK);
+		} else {
+			JPicks.setText("-");
+			JPicks.setForeground(Color.LIGHT_GRAY);
+		}
+		
+		if ((CrackerJacker.snips) > 0) {
+			JSnips.setText("Snips (" + (CrackerJacker.snips) + "x)");
+			JSnips.setForeground(!gamePhase?Color.LIGHT_GRAY:Color.BLACK);
+		} else {
+			JSnips.setText("-");
+			JSnips.setForeground(Color.LIGHT_GRAY);
+		}
+	}
+	
+	public void setCareer()
+	{
+		//brings up a new text box with infomation about the players career
+		JFrame infoWindow = new JFrame();
+		infoWindow.setSize(250, 250);
+		JTextArea infoText = new JTextArea("Career Stats:"
+				+ "\n"
+				+ "Safes Cracked: " + CrackerJacker.totalBreakIns
+				+ "\n"
+				+ "...");
+		infoWindow.setSize(500, 250);
+		infoWindow.add(infoText);
+		infoWindow.setVisible(true);
+	}
+	public void terminate()
+	{
+		mainWindow.dispose();
+	}
+	
+	public void printUpdate()
+	{
+		//method prints out the current status of the game include previous guesses & digits correct
+			StringBuilder tempBuilder = new StringBuilder();
+	
+			int selectedVal=CrackerJacker.turnCount-CrackerJacker.leftCounter-1; // index of guess to be viewed
+			for (int i = 0; i < CrackerJacker.turnCount; i++) 
 			{
-
-				topText.setText("		Loot:  $" + CrackerJacker.loot
-						+ "     Wanted Level: " + CrackerJacker.wantedLevel
-						+ "      Break-Ins: " + CrackerJacker.totalBreakIns + "\n"
-						+ "\n" + "        We Aint Got Anything For You Right Now!"
-						+ "\n");
-			} else // text shown if the player has enough money
-			{
-				topText
-						.setText("		Loot:  $"
-								+ CrackerJacker.loot
-								+ "     Wanted Level: "
-								+ CrackerJacker.wantedLevel
-								+ "      Break-Ins: "
-								+ CrackerJacker.totalBreakIns
-								+ "\n"
-								+ "\n"
-								+ "            		Psst, Welcome To The Pro-Shop"
-								+ "\n"
-								+ "              		     Here's What We Got"
-								+ "\n"
-								+ "\n"
-								+ "$4,500 "
-								+ "TNT- Breaks A Safe For You, But May Alert The Cops (Tread Lightly)"
-								+ "\n"
-								+ "$3,500 "
-								+ "Lock Pick- Removes A Digit From A Combo"
-								+ "\n"
-								+ "$3,000 "
-								+ "Snips- Delays The Cops And Gives You An Extra Move ");
-			}
-
-			// check if there are any quantities of tools and displays the number is
-			// they do
-			if (CrackerJacker.explosives > 0) {
-				JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
-				JTNT.setForeground(Color.GRAY);
-			}
-			if (CrackerJacker.picks > 0) {
-				JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
-				JPicks.setForeground(Color.GRAY);
-			}
-			if (CrackerJacker.snips > 0) {
-				JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
-				JSnips.setForeground(Color.GRAY);
-			}
-		}
-
-		public static void setInfoText()
-		{
-			//brings up a new text box with infomation about the game and creation
-			JFrame infoWindow = new JFrame();
-			infoWindow.setSize(250, 250);
-			JTextArea infoText = new JTextArea(
-					"Thank You For Playing Safe Cracker \n"
-							+ "\n"
-							+ "Created By: Steven Paytosh \n"
-							+ "\n"
-							+ "Computer Science and Engineering @ Univeristy of Toledo \n"
-							+ "\n" + "Spring 2014" + "\n"
-							+ "https://github.com/StevePaytosh/SafeCracker");
-			infoWindow.setSize(500, 250);
-			infoWindow.add(infoText);
-			infoWindow.setVisible(true);
-		}
-
-		public static void setSaveConfirm()
-		{
-			//brings up a new text box with infomation about the game and creation
-			JFrame infoWindow = new JFrame();
-			infoWindow.setSize(250, 250);
-			JTextArea infoText = new JTextArea("Carrer Saved");
-			infoWindow.setSize(500, 250);
-			infoWindow.add(infoText);
-			infoWindow.setVisible(true);
-		}
-		
-		public static void setButtonListener(String buttonID, ActionListener a)
-		{
-			switch(buttonID)
-			{
-			case "0": J0.addActionListener(a);
-			case "1": J0.addActionListener(a);
-			case "2": J0.addActionListener(a);
-			case "3": J0.addActionListener(a);
-			case "4": J0.addActionListener(a);
-			case "5": J0.addActionListener(a);
-			case "6": J0.addActionListener(a);
-			case "7": J0.addActionListener(a);
-			case "8": J0.addActionListener(a);
-			case "9": J0.addActionListener(a);
-			case "Up": J0.addActionListener(a);
-			case "Down": J0.addActionListener(a);
-			case "Left": J0.addActionListener(a);
-			case "Right": J0.addActionListener(a);
-			case "BackSpace": J0.addActionListener(a);
-			case "Clear": J0.addActionListener(a);
-			case "Info": J0.addActionListener(a);
-			case "Store": J0.addActionListener(a);
-			case "Help": J0.addActionListener(a);
-			case "TNT": J0.addActionListener(a);
-			case "Picks": J0.addActionListener(a);
-			case "Snips": J0.addActionListener(a);
-			case "Enter": J0.addActionListener(a);
-			case "Save": J0.addActionListener(a);
-			case "Load": J0.addActionListener(a);
-			
-			}
-		}
-		
-		public static void removeButtonListeners(String buttonID, ActionListener a)
-		{
-			switch(buttonID)
-			{
-			case "0": J0.addActionListener(a);
-			case "1": J0.addActionListener(a);
-			case "2": J0.addActionListener(a);
-			case "3": J0.addActionListener(a);
-			case "4": J0.addActionListener(a);
-			case "5": J0.addActionListener(a);
-			case "6": J0.addActionListener(a);
-			case "7": J0.addActionListener(a);
-			case "8": J0.addActionListener(a);
-			case "9": J0.addActionListener(a);
-			case "Up": J0.addActionListener(a);
-			case "Down": J0.addActionListener(a);
-			case "Left": J0.addActionListener(a);
-			case "Right": J0.addActionListener(a);
-			case "BackSpace": J0.addActionListener(a);
-			case "Clear": J0.addActionListener(a);
-			case "Info": J0.addActionListener(a);
-			case "Store": J0.addActionListener(a);
-			case "Help": J0.addActionListener(a);
-			case "TNT": J0.addActionListener(a);
-			case "Picks": J0.addActionListener(a);
-			case "Snips": J0.addActionListener(a);
-			case "Enter": J0.addActionListener(a);
-			case "Save": J0.addActionListener(a);
-			case "Load": J0.addActionListener(a);
-			
-			}
-		}
-		
-		public void openFileSelector()
-		{
-			final JFileChooser fc = new JFileChooser();
-			//fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-			fc.setAcceptAllFileFilterUsed(false); //set all file types to not appear (only .cjx should appear)
-		//	cjx cjx= new cjx();
-		//	fc.setFileFilter(cjx);
-			int returnVal = fc.showOpenDialog(mainWindow);
-			//System.out.println(fc.getSelectedFile().getAbsolutePath());
-			CrackerJacker.career_file=fc.getSelectedFile().getAbsolutePath();
-		}
-
-		private class cjx implements FileFilter{
-
-			@Override
-			public boolean accept(File arg0) {
-				String extension=arg0.getPath();
-				System.out.println(extension);
-				
-				return false;
-			}
-			
-		}
-		
-		public void setProShopButton(boolean set)
-		{
-			JStore.setText("Pro Shop");
-			if(set)
-				JStore.setForeground(Color.BLACK);
-			else
-				JStore.setForeground(Color.LIGHT_GRAY);
-		}
-
-		public void setToolButtons(boolean gamePhase)
-		{
-			if ((CrackerJacker.explosives) > 0) {
-				JTNT.setText("TNT (" + (CrackerJacker.explosives) + "x)");
-				JTNT.setForeground(!gamePhase?Color.LIGHT_GRAY:Color.BLACK);
-			} else {
-				JTNT.setText("-");
-				JTNT.setForeground(Color.LIGHT_GRAY);
-			}
-			
-			if ((CrackerJacker.picks) > 0) {
-				JPicks.setText("Picks (" + (CrackerJacker.picks) + "x)");
-				JPicks.setForeground(!gamePhase?Color.LIGHT_GRAY:Color.BLACK);
-			} else {
-				JPicks.setText("-");
-				JPicks.setForeground(Color.LIGHT_GRAY);
-			}
-			
-			if ((CrackerJacker.snips) > 0) {
-				JSnips.setText("Snips (" + (CrackerJacker.snips) + "x)");
-				JSnips.setForeground(!gamePhase?Color.LIGHT_GRAY:Color.BLACK);
-			} else {
-				JSnips.setText("-");
-				JSnips.setForeground(Color.LIGHT_GRAY);
-			}
-		}
-		
-		public void setCareer()
-		{
-			//brings up a new text box with infomation about the players career
-			JFrame infoWindow = new JFrame();
-			infoWindow.setSize(250, 250);
-			JTextArea infoText = new JTextArea("Career Stats:"
-					+ "\n"
-					+ "Safes Cracked: " + CrackerJacker.totalBreakIns
-					+ "\n"
-					+ "...");
-			infoWindow.setSize(500, 250);
-			infoWindow.add(infoText);
-			infoWindow.setVisible(true);
-		}
-		public void terminate()
-		{
-			mainWindow.dispose();
-		}
-
-		public void printUpdate()
-		{
-			//method prints out the current status of the game include previous guesses & digits correct
-				StringBuilder tempBuilder = new StringBuilder();
-
-				int selectedVal=CrackerJacker.turnCount-CrackerJacker.leftCounter-1; // index of guess to be viewed
-				for (int i = 0; i < CrackerJacker.turnCount; i++) 
-				{
-					//for loop strings together previous guesses
-					if (i == selectedVal) {
-						tempBuilder.append("  | "
-								+ CrackerJacker.guessArray[i].currentGuess + " | ");
-					} else {
-						tempBuilder.append("   "
-								+ CrackerJacker.guessArray[i].currentGuess.toString());
-					}
-
+				//for loop strings together previous guesses
+				if (i == selectedVal) {
+					tempBuilder.append("  | "
+							+ CrackerJacker.guessArray[i].currentGuess + " | ");
+				} else {
+					tempBuilder.append("   "
+							+ CrackerJacker.guessArray[i].currentGuess.toString());
 				}
-
-				// display top and bottom text area
-				topText.setText("		Loot:  $" + CrackerJacker.loot
-						+ "     Wanted Level: " + CrackerJacker.wantedLevel
-						+ "      Break-Ins: " + CrackerJacker.totalBreakIns
-						+ "   combo: " + CrackerJacker.combo + "\n"
-						+ " Difficulty: " + CrackerJacker.difficulty + "\n"
-						+ " Digits: " + CrackerJacker.comboSize + " Directions: "
-						+ CrackerJacker.directions + "\n" + " Guesses:  "
-						+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
-						+ "    Time: " + CrackerJacker.timeInMinutes + ":"
-						+ CrackerJacker.timeInSeconds + "\n" );
-				
-				if(CrackerJacker.debugMode) //if the debugMode variable is set, show the combo 
-					topText.append(tempBuilder + "\n");  
-						
-				topText.append("\n" + "             " + CrackerJacker.currentGuess.currentGuess.toString() );
-				
-				if(CrackerJacker.isAnalysisMode)
-				{
-					topText.append(" ANALYSIS MODE: ON");
-				}
-				topText.append( "\n" + "      Digits Correct: "
-						+ CrackerJacker.digitsCorrect() + "    Posistions Correct: "
-						+ CrackerJacker.posistionsCorrect() + "\t\t Analysis Mode: CTRL");
-
-		}
-		
-		public void setGameBoard(CrackerJacker a)
-		{ this.CrackerJacker=a; }
+	
+			}
+	
+			topText.setText("		Loot:  $" + CrackerJacker.loot
+					+ "     Wanted Level: " + CrackerJacker.wantedLevel
+					+ "      Break-Ins: " + CrackerJacker.totalBreakIns
+					+ "   combo: " + CrackerJacker.combo + "\n"
+					+ " Difficulty: " + CrackerJacker.difficulty + "\n"
+					+ " Digits: " + CrackerJacker.comboSize + " Directions: "
+					+ CrackerJacker.directions + "\n" + " Guesses:  "
+					+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
+					+ "    Time: " + CrackerJacker.timeInMinutes + ":"
+					+ CrackerJacker.timeInSeconds + "\n" );
+			
+			if(CrackerJacker.debugMode) //if the debugMode variable is set, show the combo 
+				topText.append(tempBuilder + "\n");  
+					
+			topText.append("\n" + "             " + CrackerJacker.currentGuess.currentGuess.toString() );
+			
+			if(CrackerJacker.isAnalysisMode)
+			{
+				topText.append(" ANALYSIS MODE: ON");
+			}
+			topText.append( "\n" + "      Digits Correct: "
+					+ CrackerJacker.digitsCorrect() + "    Posistions Correct: "
+					+ CrackerJacker.posistionsCorrect() + "\t\t Analysis Mode: CTRL");
+	
+	}
+	
+	public void setGameBoard(CrackerJacker a)
+	{ this.CrackerJacker=a; }
 }
