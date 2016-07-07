@@ -251,39 +251,7 @@ public class GUI extends JFrame {
 		JBackSpace.setForeground(Color.LIGHT_GRAY);
 
 		// tools are off during this phase
-		if ((CrackerJacker.explosives) > 0) {
-			JTNT.setText("TNT (" + (CrackerJacker.explosives) + "x)");
-			JTNT.setForeground(Color.LIGHT_GRAY);
-		} else {
-			JTNT.setText("-");
-			JTNT.setForeground(Color.LIGHT_GRAY);
-		}
-		if ((CrackerJacker.picks) > 0) {
-			JPicks.setText("Picks (" + (CrackerJacker.picks) + "x)");
-			JPicks.setForeground(Color.LIGHT_GRAY);
-		} else {
-			JPicks.setText("-");
-			JPicks.setForeground(Color.LIGHT_GRAY);
-		}
-		if ((CrackerJacker.snips) > 0) {
-			JSnips.setText("Snips (" + (CrackerJacker.snips) + "x)");
-			JSnips.setForeground(Color.LIGHT_GRAY);
-		} else {
-			JSnips.setText("-");
-			JSnips.setForeground(Color.LIGHT_GRAY);
-		}
-
-		
-		  // show the proshop to the player if they have more than 3 break-ins
-		  if((CrackerJacker.totalBreakIns)>=3) // makes the pro shop available if
-		 { 
-			  // the player has broken enough safes 
-		  JStore.setText("Pro Shop");
-		  JStore.setForeground(Color.BLACK);
-		  } 
-		  else {
-		  JStore.setForeground(Color.LIGHT_GRAY);
-		  }
+	
 		mainWindow.requestFocus();
 		requestDifficulty();
 		  }
@@ -797,5 +765,41 @@ public class GUI extends JFrame {
 				return false;
 			}
 			
+		}
+		
+		public void setProShopButton(boolean set)
+		{
+			JStore.setText("Pro Shop");
+			if(set)
+				JStore.setForeground(Color.BLACK);
+			else
+				JStore.setForeground(Color.LIGHT_GRAY);
+		}
+
+		public void setToolButtons(boolean gamePhase)
+		{
+			if ((CrackerJacker.explosives) > 0) {
+				JTNT.setText("TNT (" + (CrackerJacker.explosives) + "x)");
+				JTNT.setForeground(!gamePhase?Color.LIGHT_GRAY:Color.BLACK);
+			} else {
+				JTNT.setText("-");
+				JTNT.setForeground(Color.LIGHT_GRAY);
+			}
+			
+			if ((CrackerJacker.picks) > 0) {
+				JPicks.setText("Picks (" + (CrackerJacker.picks) + "x)");
+				JPicks.setForeground(!gamePhase?Color.LIGHT_GRAY:Color.BLACK);
+			} else {
+				JPicks.setText("-");
+				JPicks.setForeground(Color.LIGHT_GRAY);
+			}
+			
+			if ((CrackerJacker.snips) > 0) {
+				JSnips.setText("Snips (" + (CrackerJacker.snips) + "x)");
+				JSnips.setForeground(!gamePhase?Color.LIGHT_GRAY:Color.BLACK);
+			} else {
+				JSnips.setText("-");
+				JSnips.setForeground(Color.LIGHT_GRAY);
+			}
 		}
 }

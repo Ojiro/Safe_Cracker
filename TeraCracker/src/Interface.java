@@ -552,8 +552,7 @@ public class Interface {
 	}
 
 	public class applyCheat implements ActionListener {
-		// listener is responsible for applying cheats from the proshop to the
-		// game
+		// listener is responsible for applying cheats from the proshop to the game
 
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -705,16 +704,12 @@ public class Interface {
 		// listener which prevents a bug from occuring when a player doesn't
 		// enter enough digits
 		
-		// show the proshop to the player if they have more than 3 break-ins
-		if ((CrackerJacker.totalBreakIns) >= 3) 
-		{// makes the pro shop available if the player has broken enough safes
-			(GUI.JStore).addActionListener(proShopListener);
-		} else {
-
-			(GUI.JStore).removeActionListener(proShopListener);
-		}
-
 		GUI.setDifficultyListener();
+		
+		setProShopButton();
+		setToolButtons(false);
+
+		
 	}
 
 	// #19
@@ -748,32 +743,7 @@ public class Interface {
 		GUI.setGameText();
 
 		// show tools if they are available,
-		if (CrackerJacker.explosives > 0) {
-			// JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
-			GUI.JTNT.addActionListener(applyCheat);
-		} else {
-			// JTNT.setText("-");
-			// JTNT.setForeground(Color.LIGHT_GRAY);
-			GUI.JTNT.removeActionListener(applyCheat);
-		}
-
-		if (CrackerJacker.snips > 0) {
-			// JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
-			GUI.JSnips.addActionListener(applyCheat);
-		} else {
-			// JSnips.setText("-");
-			// JSnips.setForeground(Color.LIGHT_GRAY);
-			GUI.JSnips.removeActionListener(applyCheat);
-		}
-
-		if (CrackerJacker.picks > 0) {
-			// JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
-			GUI.JPicks.addActionListener(applyCheat);
-		} else {
-			// JPicks.setText("-");
-			// JPicks.setForeground(Color.LIGHT_GRAY);
-			GUI.JPicks.removeActionListener(applyCheat);
-		}
+		setToolButtons(true);
 
 		timer.start();
 		printUpdate();
@@ -785,8 +755,7 @@ public class Interface {
 	//
 	public void printUpdate() {
 
-		// method is responsible for updating the board during the guessing
-		// phase
+		// method is responsible for updating the board during the guessing phase
 		// it is called by the numberListener and hits under certain conditions
 
 		// checks if the safe has been cracked or not
@@ -798,8 +767,7 @@ public class Interface {
 			losingProtocol();
 			CrackerJacker.turnCount = 0;
 		} else {
-			// if the game is neither a winner nor a loser, then it continues to
-			// print the necessary information for gamePlay
+			// if the game is neither a winner nor a loser, then it continues to print the necessary information for gamePlay
 			StringBuilder tempBuilder = new StringBuilder();
 
 			int selectedVal=CrackerJacker.turnCount-CrackerJacker.leftCounter-1; // index of guess to be viewed
@@ -841,32 +809,7 @@ public class Interface {
 
 					
 			// update the tool buttons
-			if (CrackerJacker.explosives > 0) {
-				GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
-				GUI.JTNT.setForeground(Color.BLACK);
-				GUI.JTNT.addActionListener(applyCheat);
-			} else {
-				GUI.JTNT.setText("");
-				GUI.JTNT.removeActionListener(applyCheat);
-			}
-
-			if (CrackerJacker.snips > 0) {
-				GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
-				GUI.JSnips.setForeground(Color.BLACK);
-				GUI.JSnips.addActionListener(applyCheat);
-			} else {
-				GUI.JSnips.setText("");
-				GUI.JSnips.removeActionListener(applyCheat);
-			}
-
-			if (CrackerJacker.picks > 0) {
-				GUI.JPicks.setText("Lock Pick (" + CrackerJacker.picks + "x)");
-				GUI.JPicks.setForeground(Color.BLACK);
-				GUI.JPicks.addActionListener(applyCheat);
-			} else {
-				GUI.JPicks.setText("");
-				GUI.JPicks.removeActionListener(applyCheat);
-			}
+			setToolButtons(true);
 
 		}// ends else
 
@@ -912,18 +855,12 @@ public class Interface {
 		clearListeners();
 
 		GUI.JEnter.addActionListener(exitRound1);
-
 		GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
 		GUI.JClear.setForeground(Color.LIGHT_GRAY);
 
-		// proshop may be turned on during this phase
-		if (CrackerJacker.totalBreakIns >= 3) {
-			GUI.JStore.setForeground(Color.BLACK);
-			GUI.JStore.addActionListener(proShopListener);
-		} else {
-			GUI.JStore.setForeground(Color.LIGHT_GRAY);
-			GUI.JStore.removeActionListener(proShopListener);
-		}
+		//set proshop button
+		setProShopButton();
+		setToolButtons(false);
 
 		// show tools if they are available,
 		if (CrackerJacker.explosives > 0) {
@@ -982,33 +919,9 @@ public class Interface {
 		GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
 		GUI.JClear.setForeground(Color.LIGHT_GRAY);
 
-		// turn off tools
-		if (CrackerJacker.totalBreakIns >= 3) {
-			GUI.JStore.setForeground(Color.BLACK);
-			GUI.JStore.addActionListener(proShopListener);
-		} else {
-			GUI.JStore.setForeground(Color.LIGHT_GRAY);
-			GUI.JStore.removeActionListener(proShopListener);
-		}
-
-		// show tools if they are available,
-		if (CrackerJacker.explosives > 0) {
-			GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
-		} else {
-			GUI.JTNT.setText("");
-		}
-
-		if (CrackerJacker.snips > 0) {
-			GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
-		} else {
-			GUI.JSnips.setText("");
-		}
-
-		if (CrackerJacker.picks > 0) {
-			GUI.JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
-		} else {
-			GUI.JPicks.setText("");
-		}
+		//set pro shop button
+		setProShopButton();
+		setToolButtons(false);
 
 		CrackerJacker.currentGuess.posistionsCorrect = 0;
 		CrackerJacker.currentGuess.digitsCorrect = 0;
@@ -1025,6 +938,8 @@ public class Interface {
 		(GUI.mainWindow).setFocusTraversalKeysEnabled(false); // keeps focus from shifting away
 		(GUI.mainWindow).addKeyListener(keyBoardListener); // registers the keyListener for the game
 		GUI.welcomeScreen();
+		setProShopButton();
+		setToolButtons(false);
 	}
 
 	public void gameOverProtocol() {
@@ -1160,4 +1075,48 @@ public class Interface {
 		
 	}
 	
+	public void setProShopButton()
+	{
+		if (CrackerJacker.totalBreakIns >= 3) {
+			GUI.JStore.addActionListener(proShopListener);
+			GUI.setProShopButton(true);
+		} else {
+			GUI.JStore.removeActionListener(proShopListener);
+			GUI.setProShopButton(false);
+		}
+		
+		
+	}
+
+	public void setToolButtons(boolean gamePhase)
+	{
+		if(gamePhase && CrackerJacker.explosives>0)
+		{
+			GUI.JTNT.addActionListener(applyCheat);
+		}
+		else 
+		{
+			GUI.JTNT.removeActionListener(applyCheat);
+		}
+		
+		if(gamePhase && CrackerJacker.snips>0)
+		{
+			GUI.JSnips.addActionListener(applyCheat);
+		}
+		else 
+		{
+			GUI.JSnips.removeActionListener(applyCheat);
+		}
+		
+		if(gamePhase && CrackerJacker.picks>0)
+		{
+			GUI.JPicks.addActionListener(applyCheat);
+		}
+		else 
+		{
+			GUI.JPicks.removeActionListener(applyCheat);
+		}
+		
+		GUI.setToolButtons(gamePhase);
+	}
 }
