@@ -524,6 +524,7 @@ public class Interface {
 			case KeyEvent.VK_X: GUI.JTNT.doClick(); break;
 		
 			case KeyEvent.VK_CONTROL: CrackerJacker.toggleAnalysis(); break;
+			case KeyEvent.VK_ESCAPE: GUI.Exit.doClick();
 			
 			}
 
