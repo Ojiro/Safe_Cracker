@@ -64,13 +64,9 @@ public class Interface {
 	
 	public class gameListener implements ActionListener {
 		/*
-		 * This is the main listener in the game and should ideally hold most of
-		 * the logic it covers all the numbered buttons and the directions. It
-		 * does not cover the enter button or the helper buttons.
-		 * 
-		 * When the player enters a number or direction, this listener adds the
-		 * information to the guess and applies the guess when the proper
-		 * conditions are met
+		 This is the main listener for the game. This listens for buttons presses and
+		 append the appropriate value to the current guess and submits the guess once the player 
+		 hits enter.
 		 */
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -158,8 +154,7 @@ public class Interface {
 	} // ends numberListener2
 
 	class timerListener implements ActionListener {
-		// class acts as a listener for a timer that tells the user how long
-		// they've been playing
+		// class acts as a listener for a timer that tells the user how long a safe has been in play
 		@Override
 		public void actionPerformed(ActionEvent e) {
 
@@ -350,8 +345,7 @@ public class Interface {
 	public class exitRound implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
-			// Transitions from the end of a game to the select difficulty
-			// screen
+			// Transitions from the end of a game to the select difficulty screen
 			CrackerJacker.isWinner = false;
 			GUI.requestDifficulty();
 			setDifficultyListeners();
@@ -363,7 +357,6 @@ public class Interface {
 		public void actionPerformed(ActionEvent e) {
 			// When the game is over, take the player back to the welcome screen
 			setWelcomeListeners();
-
 		}
 	}
 
@@ -372,9 +365,7 @@ public class Interface {
 		public void actionPerformed(ActionEvent e) { 
 			// brings up a box to help explain the game to the player
 			GUI.setHelpText();
-
 		}
-
 	}
 
 	public class clearGuess implements ActionListener {
@@ -408,14 +399,9 @@ public class Interface {
 				int deleteCharLocation = (CrackerJacker.currentGuess.currentGuess).length() - 1;
 				(CrackerJacker.currentGuess.currentGuess).deleteCharAt(deleteCharLocation);
 				printUpdate();
-			} catch (StringIndexOutOfBoundsException ex) { // does nothing if
-															// there is a
-															// StringIndexOutOfBoundsException
-															// this type of
-															// error occurs if
-															// somebody hits
-															// backspace or
-															// clear
+			} catch (StringIndexOutOfBoundsException ex) { 
+				// does nothing if there is a StringIndexOutOfBoundsException
+				// this type of error occurs if  somebody hits backspace or clear
 			}
 
 		}
@@ -442,8 +428,7 @@ public class Interface {
 					CrackerJacker.explosives++;
 
 					GUI.buyStatus(true, "TNT");
-				} else { // display message telling user that they don't have
-							// enough money
+				} else { // display message telling user that they don't have enough money
 					GUI.buyStatus(false, "Nothing");
 
 				}
@@ -565,10 +550,8 @@ public class Interface {
 			JButton hold = (JButton) e.getSource();
 
 			if (hold.getText().contains("TNT")) {
-				// apply an explosive charge to the safe that may crack the safe
-				// or may call the cops
-				// Success rate should be about 75% on easy and medium levels,
-				// and 45% for harder level
+		    // apply an explosive charge to the safe that may crack the safe or may call the cops
+				// Success rate should be about 75% on easy and medium levels, and 45% for harder level
 
 				CrackerJacker.explosives--;
 
@@ -577,12 +560,11 @@ public class Interface {
 					int rand = (int) (Math.random() * 4);
 
 					if (rand > 0)
-						winningProtocol(); // wins if the random
-											// number is 1 or more
+						winningProtocol(); // wins if the random number is 1 or more
 					else
 						losingProtocol();
 					// otherwise it is a loser
-				} // ends if(difficulty<10)
+				} 
 				else {
 					// selects success for harder level
 					int rand = (int) (Math.random() * 101);
@@ -591,9 +573,8 @@ public class Interface {
 						winningProtocol();
 					else
 						losingProtocol();
-				} // ends else
-
-			} // ends else (hold.getText().equals("TNT))
+				} 
+			} 
 
 			else if (hold.getText().contains("Snips")) { // delay the cops by
 															// adding time and
@@ -622,14 +603,14 @@ public class Interface {
 							|| CrackerJacker.combo.charAt(i) == 'R') {
 						CrackerJacker.directions++;
 					}
-				} // ends for loop
+				} 
 
 				CrackerJacker.comboSize = CrackerJacker.combo.length();
 				printUpdate();
 
-			}// ends else if
-		} // ends actionPerformed method
-	} // ends applyCheat class
+			}
+		}
+	}
 
 	public class infoPress implements ActionListener { 
 		// opens a window to identify special information about the creation of this program
@@ -637,7 +618,7 @@ public class Interface {
 		public void actionPerformed(ActionEvent e) {
 			GUI.setInfoText();
 		}
-	} // end infoPress
+	} 
 
 	public class saveListener implements ActionListener{
 		@Override
@@ -735,9 +716,6 @@ public class Interface {
 		
 	}
 
-	// #19
-	// setGameListeners
-	// sets the listeners for the guessing phase of the game
 	private void setGameListener() {
 
 		// remove the difficulty phase listeners
@@ -772,11 +750,8 @@ public class Interface {
 		timer.start();
 		printUpdate();
 
-	}// ends setGameListener
+	}
 
-	// #17
-	// printUpdate
-	//
 	public void printUpdate() {
 
 		// method is responsible for updating the board during the guessing phase
@@ -794,16 +769,11 @@ public class Interface {
 					
 			// update the tool buttons
 			setToolButtons(true);
-
-		}// ends else
+		}
 
 		GUI.mainWindow.requestFocus();
+	}
 
-	} // ends printUpdate
-
-	//
-	// losingProtocol
-	//
 	public void losingProtocol() {
 		timer.stop();
 
@@ -848,9 +818,6 @@ public class Interface {
 		}
 	}
 
-	//
-	// winningProtocol
-	//
 	public void winningProtocol() {
 		timer.stop();
 
@@ -870,8 +837,7 @@ public class Interface {
 
 		CrackerJacker.turnCount = 0;
 
-		// sets listeners for the transition from the end of the game to the
-		// difficulty selection
+		// sets listeners for the transition from the end of the game to the difficulty selection
 		clearListeners();
 
 		GUI.JEnter.addActionListener(exitRound1);
@@ -886,7 +852,7 @@ public class Interface {
 		CrackerJacker.currentGuess.posistionsCorrect = 0;
 		CrackerJacker.currentGuess.digitsCorrect = 0;
 
-	} // ends winning protocol
+	}
 
 	public void setWelcomeListeners() {
 		clearListeners();
@@ -904,18 +870,13 @@ public class Interface {
 	}
 
 	public void gameOverProtocol() {
-		// When the game is over, the only button the user will have a is
-		// restart button
-		CrackerJacker.career=false; //carrer is over
+		// When the game is over, the only button the user will have a is  restart button
+		CrackerJacker.career=false; //career is over
 		clearListeners();
 		GUI.J7.addActionListener(exitGame);
 
-		// set the listener for a button to go the welcome screen
 	}
 
-	// #16
-	// proShop
-	//
 	public void proShop() {
 
 		clearListeners();
@@ -1038,6 +999,7 @@ public class Interface {
 	
 	public void setProShopButton()
 	{
+		//the proshop will be available when the player has 3 or more broeken safes and is not is guess mode
 		if (CrackerJacker.totalBreakIns >= 3) {
 			GUI.JStore.addActionListener(proShopListener);
 			GUI.setProShopButton(true);
@@ -1051,6 +1013,8 @@ public class Interface {
 
 	public void setToolButtons(boolean gamePhase)
 	{
+		//tool buttons will show the number of available tool during the guessing phase
+		//otherwise they will be grayed out
 		if(gamePhase && CrackerJacker.explosives>0)
 		{
 			GUI.JTNT.addActionListener(applyCheat);
