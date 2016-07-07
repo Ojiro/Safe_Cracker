@@ -29,6 +29,7 @@ public class GUI extends JFrame {
 	final short Row_2=250;
 	final short Row_3=300;
 	final short Row_4=350;
+	final short Row_5=400;
 	
 	static JFrame mainWindow = new JFrame("GigaCracker");
 	static JFrame helpWindow = new JFrame("How To");
@@ -56,6 +57,8 @@ public class GUI extends JFrame {
 	static JButton JClear = new JButton("");
 	static JButton JBackSpace = new JButton("");
 	static JButton JInfo = new JButton("Info");
+	JButton Exit=new JButton("Exit");
+	JButton Career=new JButton("Career");
 
 	// Extra buttons for cheats
 	static JButton JStore = new JButton("Pro Shop");
@@ -69,7 +72,6 @@ public class GUI extends JFrame {
 	static JButton Load = new JButton("Load");
 	static JButton Save = new JButton("Save");
 	static JTextArea topText = new JTextArea();
-	// JTextArea bottomText= new JTextArea();
 	static JLabel name = new JLabel("Cracker-Jacker 5000 DLX");
 
 	 GUI() {
@@ -113,6 +115,8 @@ public class GUI extends JFrame {
 		JSnips.setSize(Standard_Button_Width, Standard_Button_Height);
 		JPicks.setSize(Standard_Button_Width, Standard_Button_Height);
 		JInfo.setSize(Standard_Button_Width, Standard_Button_Height);
+		Exit.setSize(Standard_Button_Width,Standard_Button_Height );
+		Career.setSize(Standard_Button_Width,Standard_Button_Height);
 
 		J0.setLocation(Column_1, Row_1);
 		J1.setLocation(Column_2, Row_1);
@@ -131,14 +135,16 @@ public class GUI extends JFrame {
 		JEnter.setLocation(Column_5, Row_3);
 		JClear.setLocation(Column_3, 350);
 		JBackSpace.setLocation(Column_1, 350);
-		Help.setLocation(550, 200);
-		JStore.setLocation(650, 200);
-		Load.setLocation(550, 250);
-		Save.setLocation(650, 250);
-		JTNT.setLocation(550, 300);
-		JPicks.setLocation(550, 350);
-		JSnips.setLocation(550, 400);
-		JInfo.setLocation(650, 400);
+		Help.setLocation(550, Row_1);
+		JStore.setLocation(650, Row_1);
+		Load.setLocation(550, Row_2);
+		Save.setLocation(650, Row_2);
+		Exit.setLocation(650,Row_4);
+		Career.setLocation(650,Row_3);
+		JTNT.setLocation(550, Row_3);
+		JPicks.setLocation(550, Row_4);
+		JSnips.setLocation(550, Row_5);
+		JInfo.setLocation(650, Row_5);
 		JStore.setForeground(Color.LIGHT_GRAY);
 		JTNT.setForeground(Color.LIGHT_GRAY);
 		JPicks.setForeground(Color.LIGHT_GRAY);
@@ -147,9 +153,10 @@ public class GUI extends JFrame {
 		welcomeScreen();
 		JStore.setVisible(true);
 		mainWindow.setVisible(true); // turn the mainWindow visible
-		//hideButtons();  // Consider removing this method 
 		JEnter.setVisible(true);
 		JInfo.setVisible(true);
+		Exit.setVisible(true);
+		Career.setVisible(true);
 	}
 
 	public void welcomeScreen() {
@@ -182,6 +189,8 @@ public class GUI extends JFrame {
 		mainWindow.add(p0);
 		p0.add(name);
 		p0.add(JInfo);
+		p0.add(Exit);
+		p0.add(Career);
 
 		JUp.setVisible(true);
 		JDown.setVisible(true);
@@ -769,5 +778,24 @@ public class GUI extends JFrame {
 				JSnips.setText("-");
 				JSnips.setForeground(Color.LIGHT_GRAY);
 			}
+		}
+		
+		public void setCareer()
+		{
+			//brings up a new text box with infomation about the players career
+			JFrame infoWindow = new JFrame();
+			infoWindow.setSize(250, 250);
+			JTextArea infoText = new JTextArea("Career Stats:"
+					+ "\n"
+					+ "Safes Cracked: " + CrackerJacker.totalBreakIns
+					+ "\n"
+					+ "...");
+			infoWindow.setSize(500, 250);
+			infoWindow.add(infoText);
+			infoWindow.setVisible(true);
+		}
+		public void terminate()
+		{
+			mainWindow.dispose();
 		}
 }

@@ -36,7 +36,9 @@ public class Interface {
 	infoPress infoPress = new infoPress();
 	saveListener saveListener=new saveListener();
 	loadListener loadListener= new loadListener();
-
+	exitAppListener exitAppListener= new exitAppListener();
+	careerListener careerListener=new careerListener();
+	
 	private Timer timer = new Timer(1000, new timerListener()); // time event
 																// listener
 	GUI GUI;
@@ -47,6 +49,8 @@ public class Interface {
 		CrackerJacker = b;
 		// register listeners
 		setWelcomeListeners();
+		GUI.Exit.addActionListener(exitAppListener);
+		GUI.Career.addActionListener(careerListener);
 	}
 
 	// ========================================================================================================================================
@@ -670,7 +674,24 @@ public class Interface {
 			}
 		}
 	}
-	// public class
+	
+	public class exitAppListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			GUI.terminate();
+		}
+	}
+	
+	public class careerListener implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			GUI.setCareer();
+		}
+	}
 
 	// ===================================================
 	// METHODS
