@@ -46,8 +46,11 @@ public class Interface {
 		GUI = a;
 		CrackerJacker = b;
 		setWelcomeListeners();
+		//declare listeners for buttons that will never have their listener removed
 		GUI.Exit.addActionListener(exitAppListener);
 		GUI.Career.addActionListener(careerListener);
+		GUI.JInfo.addActionListener(infoPress);
+		GUI.Help.addActionListener(helpListener);
 	}
 
 	// ========================================================================================================================================
@@ -843,26 +846,24 @@ public class Interface {
 	public void losingProtocol() {
 		timer.stop();
 
-		// getBail();
-		CrackerJacker.bail = 500; // holder value, 500 is the default/ minimum
-									// bail out value
-
+		CrackerJacker.bail = 500; // holder value, 500 is the default/ minimum bail out value
 		CrackerJacker.bail *= CrackerJacker.wantedLevel
 				* CrackerJacker.difficulty; // sets the amount to bail out
-
 		// check if the player has enough to bail out
-		if (CrackerJacker.bail > CrackerJacker.loot) {
+		if (CrackerJacker.bail > CrackerJacker.loot) 
+		{
 			// initiate the end of game protocol
 			GUI.setGameOver();
 			gameOverProtocol();
 			
-		} else{
+		} 
+		else
+		{
 
-			CrackerJacker.loot -= CrackerJacker.bail; // subtracts the bail out
-														// from loot
+			CrackerJacker.loot -= CrackerJacker.bail; // subtracts the bail out from loot
 
-		GUI.topText.setBackground(Color.RED);
-		GUI.topText.setText("		Loot:  $" + CrackerJacker.loot
+			GUI.topText.setBackground(Color.RED);
+			GUI.topText.setText("		Loot:  $" + CrackerJacker.loot
 				+ "     Wanted Level: " + CrackerJacker.wantedLevel
 				+ "      Break-Ins: " + CrackerJacker.totalBreakIns + "\n"
 				+ "\n" + "    	    Busted!" + "\n"
@@ -870,8 +871,7 @@ public class Interface {
 				+ "         You Bailed Out $" + CrackerJacker.bail + "\n"
 				+ "         Hit Enter To Case Out Your Next Target");
 
-		// sets listeners for the transition from the end of the game to the
-		// difficulty selection
+		// sets listeners for the transition from the end of the game to the difficulty selection
 		clearListeners();
 
 		GUI.JEnter.addActionListener(exitRound1);
@@ -879,7 +879,6 @@ public class Interface {
 		GUI.JClear.setForeground(Color.LIGHT_GRAY);
 		GUI.Save.addActionListener(saveListener);
 		GUI.Save.setForeground(Color.BLACK);
-		//set proshop button
 		setProShopButton();
 		setToolButtons(false);
 
@@ -973,8 +972,8 @@ public class Interface {
 	public void clearListeners()
 	{
 		JButton[] buttonArr={GUI.J0,GUI.J1,GUI.J2,GUI.J3,GUI.J4,GUI.J5,GUI.J6,GUI.J7,GUI.J8,GUI.J9,
-				GUI.JTNT,GUI.JSnips,GUI.JStore,GUI.JPicks,GUI.Help,GUI.Load,GUI.Save,GUI.JBackSpace,
-				GUI.JClear,GUI.JEnter,GUI.JUp,GUI.JDown,GUI.JLeft,GUI.JRight,GUI.JInfo
+				GUI.JTNT,GUI.JSnips,GUI.JStore,GUI.JPicks,GUI.Load,GUI.Save,GUI.JBackSpace,
+				GUI.JClear,GUI.JEnter,GUI.JUp,GUI.JDown,GUI.JLeft,GUI.JRight
 				
 		};
 		

@@ -147,10 +147,7 @@ public class GUI extends JFrame {
 		JPicks.setLocation(Column_6, Row_4);
 		JSnips.setLocation(Column_6, Row_5);
 		JInfo.setLocation(Column_7, Row_5);
-	//	JStore.setForeground(Color.LIGHT_GRAY);
-	//	JTNT.setForeground(Color.LIGHT_GRAY);
-	//	JPicks.setForeground(Color.LIGHT_GRAY);
-	//	JSnips.setForeground(Color.LIGHT_GRAY);
+
 		
 		welcomeScreen();
 		JStore.setVisible(true);
@@ -445,10 +442,6 @@ public class GUI extends JFrame {
 			JSnips.setText("");
 			JPicks.setText("");
 			JStore.setText("");
-			JInfo.setText("");
-			Help.setText("");
-			Load.setText("");
-			Save.setText("");
 			
 			setButtonVisibility(isVisible);
 		}
