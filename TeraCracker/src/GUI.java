@@ -260,6 +260,9 @@ public class GUI extends JFrame {
 		JClear.setForeground(Color.LIGHT_GRAY);
 		JBackSpace.setForeground(Color.LIGHT_GRAY);
 	
+		Load.setForeground(Color.BLACK);
+		Save.setForeground(Color.BLACK);
+		
 		mainWindow.requestFocus();
 		requestDifficulty();
 		  }
@@ -312,7 +315,8 @@ public class GUI extends JFrame {
 				JClear.setText("Clear");
 				JBackSpace.setText("Back Space");
 				JEnter.setText("Enter");
-				Save.setForeground(Color.GRAY);
+				Save.setForeground(Color.LIGHT_GRAY);
+				Load.setForeground(Color.LIGHT_GRAY);
 				JBackSpace.setForeground(Color.BLACK);
 				JClear.setForeground(Color.BLACK);
 				
@@ -546,9 +550,12 @@ public class GUI extends JFrame {
 		// set text for ProShop
 		topText.setBackground(Color.WHITE);
 		clearAllButtons(true);
+		JStore.setText("Pro Shop");
+		JStore.setForeground(Color.LIGHT_GRAY);
 		J0.setText("TNT");
 		J1.setText("Picks");
 		J2.setText("Snips");
+		
 	
 		JEnter.setText("Exit");
 	

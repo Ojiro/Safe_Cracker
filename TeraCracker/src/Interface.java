@@ -52,7 +52,6 @@ public class Interface {
 		GUI.Career.addActionListener(careerListener);
 		GUI.JInfo.addActionListener(infoPress);
 		GUI.Help.addActionListener(helpListener);
-		GUI.Load.addActionListener(loadListener);
 	}
 
 	// ========================================================================================================================================
@@ -741,7 +740,8 @@ public class Interface {
 		GUI.JBackSpace.addActionListener(backSpaceListener);
 		GUI.JClear.addActionListener(clearListener);
 
-		GUI.Save.removeActionListener(saveListener);
+		//GUI.Save.removeActionListener(saveListener);
+		//GUI.Load.removeActionListener(loadListener);
 		GUI.mainWindow.requestFocus();
 		GUI.setGameText();
 
@@ -802,15 +802,19 @@ public class Interface {
 				+ "         You Failed To Crack The Safe" + "\n"
 				+ "         You Bailed Out $" + CrackerJacker.bail + "\n"
 				+ "         Hit Enter To Case Out Your Next Target");
-
-		// sets listeners for the transition from the end of the game to the difficulty selection
-		clearListeners();
-
-		GUI.JEnter.addActionListener(exitRound1);
+		
 		GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
 		GUI.JClear.setForeground(Color.LIGHT_GRAY);
-		GUI.Save.addActionListener(saveListener);
+		GUI.Load.setForeground(Color.BLACK);
 		GUI.Save.setForeground(Color.BLACK);
+			
+		// sets listeners for the transition from the end of the game to the difficulty selection	
+		clearListeners();
+		
+		
+		GUI.JEnter.addActionListener(exitRound1);
+		GUI.Save.addActionListener(saveListener);
+		GUI.Load.addActionListener(loadListener);
 		setProShopButton();
 		setToolButtons(false);
 
@@ -837,15 +841,18 @@ public class Interface {
 				+ "         Hit Enter To Case Out Your Next Target");
 
 		CrackerJacker.turnCount = 0;
-
+		
+		GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
+		GUI.JClear.setForeground(Color.LIGHT_GRAY);
+		GUI.Save.setForeground(Color.BLACK);
+		GUI.Load.setForeground(Color.BLACK);
+		
 		// sets listeners for the transition from the end of the game to the difficulty selection
 		clearListeners();
 
 		GUI.JEnter.addActionListener(exitRound1);
-		GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
-		GUI.JClear.setForeground(Color.LIGHT_GRAY);
 		GUI.Save.addActionListener(saveListener);
-		GUI.Save.setForeground(Color.BLACK);
+		GUI.Load.addActionListener(loadListener);
 		//set pro shop button
 		setProShopButton();
 		setToolButtons(false);
@@ -865,11 +872,11 @@ public class Interface {
 		(GUI.mainWindow).setFocusTraversalKeysEnabled(false); // keeps focus from shifting away
 		(GUI.mainWindow).addKeyListener(keyBoardListener); // registers the keyListener for the game
 		GUI.Save.addActionListener(saveListener);
+		GUI.Load.addActionListener(loadListener);
 		GUI.welcomeScreen();
 		setProShopButton();
 		setToolButtons(false);
 	}
-
 	public void gameOverProtocol() {
 		// When the game is over, the only button the user will have a is  restart button
 		CrackerJacker.career=false; //career is over
@@ -896,7 +903,7 @@ public class Interface {
 	{
 		JButton[] buttonArr={GUI.J0,GUI.J1,GUI.J2,GUI.J3,GUI.J4,GUI.J5,GUI.J6,GUI.J7,GUI.J8,GUI.J9,
 				GUI.JTNT,GUI.JSnips,GUI.JStore,GUI.JPicks,GUI.JBackSpace,
-				GUI.JClear,GUI.JEnter,GUI.JUp,GUI.JDown,GUI.JLeft,GUI.JRight,GUI.Save
+				GUI.JClear,GUI.JEnter,GUI.JUp,GUI.JDown,GUI.JLeft,GUI.JRight,GUI.Save,GUI.Load
 				
 		};
 		
