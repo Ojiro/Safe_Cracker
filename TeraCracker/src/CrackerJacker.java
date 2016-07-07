@@ -36,13 +36,6 @@ public class CrackerJacker {
 	//=========================================================================================================================================
 		
 		
-
-
-
-
-		// #5
-		// makeCombo
-		// returns a combination based on the difficulty
 			public void makeCombo()
 			{	
 			
@@ -53,7 +46,6 @@ public class CrackerJacker {
 
 				guessArray=new guess[guessLimit];
 				
-		//		for(int i=0; i<comboSize; i++);
 	           combo= new StringBuilder();  // clears the old combination, for a new StringBuilder
 				
 			
@@ -85,11 +77,10 @@ public class CrackerJacker {
 			
 			
 			} // ends makeCombo
-		// #6
-	    // randomNumber, no-arg
-		//  creates a random digit from 0-9
+	
 			public static String randomNumber()
 			{
+				//creates a random number from 0-9
 				while(true)
 				{
 					int a=(int)(Math.random()*10);
@@ -101,20 +92,11 @@ public class CrackerJacker {
 					}
 					else if (a<0 || a>9)
 						continue;
-					
-				
-				} // ends loop
-				
-				
-				
-			} // ends randomNumber(no arg)
+						
+				} 
+			} 
 
 			
-			
-		// #7
-		// randomNumber(integer argument)
-		// creates a random digit from 1-9, zero will not be an option
-		// integer argument is completely irrelevant to the method and only invokes a method that will not return a zero
 				public static String randomNumber(int z)
 				{
 					while(true)
@@ -132,17 +114,13 @@ public class CrackerJacker {
 						continue;
 					}
 					
-					} // ends loop
+					} 
 				
-				} // ends randomNumber(int)
+				} 
 				
-		
-				
-		// #8
-		// randomNumber(char argument)
-		// creates a number 0-9 or a character U,D,L,R,I
 				public static String randomNumber(char z)
 				{
+					//creates a random number 0-9 or U,D,L,R
 					while (true)
 					{
 						int a=(int)(Math.random()*1011);
@@ -168,9 +146,6 @@ public class CrackerJacker {
 					} // ends while loop
 				} // end randomNumber(char)
 				
-		// #12
-		// wantedLevel
-		// Determines the wanted level of the player
 				public void wantedLevel()
 				{  
 					// determine the wanted level
@@ -274,9 +249,6 @@ public class CrackerJacker {
 				   
 				}
 
-		//#14
-		// posistionsCorrect
-		//
 		public void getPosistions()
 				{
 					/* method finds the number of positions correct in the guess.
@@ -299,7 +271,7 @@ public class CrackerJacker {
 														// the large index range account for having string inputs
 					
 					
-					// check the number of posistion correct
+					// check the number of positions correct
 					for (int i=0; i<comboSize; i++) 
 					{
 						 guessChar=guessArray[turnCount].currentGuess.charAt(i);
@@ -309,27 +281,26 @@ public class CrackerJacker {
 						if( guessChar==comboChar)
 						{
 							
-							currentGuess.posistionsCorrect++; // if the condition matches, increment the number of posistions correct
+							currentGuess.posistionsCorrect++; // if the condition matches, increment the number of positions correct
 
 						}
 						else;
 						
-					} // ends for loop
+					} 
 					
 					
 					// check the number of digits correct
 				
-					for(int i=0; i<comboSize; i++)  // loop fills arrays with proper values
+					for(int i=0; i<comboSize; i++) 
 					{
 					
 						includeArray[(int)guessArray[turnCount].currentGuess.charAt(i)]++;
 						
 					} 
 					
-					for(int i=0; i<comboSize;i++) // i loop will call up values in the combo
-					{ 
-						
-						for(int j=0; j<comboSize;j++) // j loop will call up values in the guess
+					for(int i=0; i<comboSize;i++)
+					{ 	
+						for(int j=0; j<comboSize;j++)
 						{
 							// excludeArray holds how many times a number appears in the guess
 							// if a number hits a match with the combo, the array is decremented so
@@ -343,21 +314,21 @@ public class CrackerJacker {
 								break;
 							}
 								
-						}  // ends j loop
-					} // ends i loop
+						}
+					} 
 					
 					if (currentGuess.posistionsCorrect==comboSize)
 					{
 						isWinner=true;
 					}
 					 
-				} // ends posistionsCorrect method
+				} 
 		
 		public void setPlayer(player p)
 		{
+			//receives a player object and sets the current game value to the values in the object
 			loot=p.loot;
 			totalBreakIns=p.totalBreakIns;
-
 			wantedLevel=p.wantedLevel;
 			explosives=p.explosives;
 			snips=p.snips;
@@ -368,6 +339,7 @@ public class CrackerJacker {
 
 		public int digitsCorrect()
 		{
+			//return the digits correct from a guess object in the guess array
 			if(!isAnalysisMode){
 				
 				if(turnCount>0)
@@ -394,6 +366,7 @@ public class CrackerJacker {
 		
 		public int posistionsCorrect()
 		{
+			//returns the positions correct from a guess object in the guess array
 			if(turnCount>0)
 			return guessArray[turnCount-1].posistionsCorrect;
 			else return 0;
@@ -402,6 +375,7 @@ public class CrackerJacker {
 		
 		public void toggleAnalysis()
 		{
+			//toggles the state of isAnalysisMode, but factors a few other rules
 			if(turnCount==0)
 			{
 				//do not permit analysis mode to be on when there are no guesses
@@ -419,6 +393,7 @@ public class CrackerJacker {
 
 		public void incLeftCounter(boolean increment)
 		{
+			//increments or decrements the leftCounter based on the boolean parameter
 			if(increment)
 			{
 				//rules to increment leftCounter

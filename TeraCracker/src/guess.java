@@ -1,7 +1,10 @@
 
 public class guess {
 
-	int posistionsCorrect=0; // during play, this variable tells how many positions are correct (note that positions and digits are 2 distinct concepts)
+	/*Guess contains information for a single guess. current guess is the guess for the combo.
+	 * Positions and digits correct are the number of digit and positions correct for 
+	 * the given combo */
+	int posistionsCorrect=0; 
 	int digitsCorrect=0;  
 	StringBuilder currentGuess=new StringBuilder("");
 
