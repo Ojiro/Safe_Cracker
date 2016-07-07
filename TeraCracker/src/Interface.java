@@ -629,12 +629,10 @@ public class Interface {
 				saveFile();
 			} 
 			catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+			
 			} 
 			catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+		
 			}
 		}
 	}
@@ -646,15 +644,13 @@ public class Interface {
 			try {
 				loadFile();
 			} catch (FileNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				GUI.setLoadFailed();
 			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				GUI.setLoadFailed();
 			} catch (ClassNotFoundException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
+				GUI.setLoadFailed();
 			}
+			
 		}
 	}
 	

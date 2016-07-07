@@ -626,6 +626,28 @@ public class GUI extends JFrame {
 		infoWindow.setVisible(true);
 	}
 	
+	public void setSaveFailed()
+	{
+		JFrame infoWindow = new JFrame();
+		infoWindow.setSize(250, 250);
+		JTextArea infoText = new JTextArea("Failed To Save File:"
+				+ "\n"
+				+ "If you have already loaded a valid .cjx file, check that it has not been moved,renamed"
+				+ " or deleted");
+		infoWindow.setSize(500, 250);
+		infoWindow.add(infoText);
+		infoWindow.setVisible(true);
+	}
+	public void setLoadFailed()
+	{
+		JFrame infoWindow = new JFrame();
+		infoWindow.setSize(250, 250);
+		JTextArea infoText = new JTextArea("File failed to load:\n"
+				+ " Make sure you are uploading a valid .cjx file");
+		infoWindow.setSize(500, 250);
+		infoWindow.add(infoText);
+		infoWindow.setVisible(true);
+	}
 	public void setButtonListener(String buttonID, ActionListener a)
 	{
 		switch(buttonID)
