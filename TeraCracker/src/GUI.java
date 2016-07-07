@@ -1,5 +1,6 @@
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -83,7 +84,12 @@ public class GUI extends JFrame {
 		p0.setLocation(0, 0);
 		mainWindow.setLayout(null);
 		p0.setLayout(null);
-
+		
+		Color a=new Color(0,153,51);
+		topText.setBorder(BorderFactory.createLineBorder(Color.black));
+		mainWindow.getContentPane().setBackground(a);
+		p0.setBackground(a);
+		
 		topText.setSize(650, 150);
 		topText.setLocation(25, 25);
 		topText.setEditable(false);
