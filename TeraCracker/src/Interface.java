@@ -739,6 +739,7 @@ public class Interface {
 		GUI.JBackSpace.addActionListener(backSpaceListener);
 		GUI.JClear.addActionListener(clearListener);
 
+		GUI.Save.removeActionListener(saveListener);
 		GUI.mainWindow.requestFocus();
 		GUI.setGameText();
 
@@ -857,32 +858,11 @@ public class Interface {
 		GUI.JEnter.addActionListener(exitRound1);
 		GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
 		GUI.JClear.setForeground(Color.LIGHT_GRAY);
-
+		GUI.Save.addActionListener(saveListener);
+		GUI.Save.setForeground(Color.BLACK);
 		//set proshop button
 		setProShopButton();
 		setToolButtons(false);
-
-		// show tools if they are available,
-		if (CrackerJacker.explosives > 0) {
-			GUI.JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
-
-		} else {
-			GUI.JTNT.setText("");
-
-		}
-
-		if (CrackerJacker.snips > 0) {
-			GUI.JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
-		} else {
-			GUI.JSnips.setText("");
-
-		}
-
-		if (CrackerJacker.picks > 0) {
-			GUI.JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
-		} else {
-			GUI.JPicks.setText("");
-		}
 
 		CrackerJacker.currentGuess.posistionsCorrect = 0;
 		CrackerJacker.currentGuess.digitsCorrect = 0;
@@ -918,7 +898,8 @@ public class Interface {
 		GUI.JEnter.addActionListener(exitRound1);
 		GUI.JBackSpace.setForeground(Color.LIGHT_GRAY);
 		GUI.JClear.setForeground(Color.LIGHT_GRAY);
-
+		GUI.Save.addActionListener(saveListener);
+		GUI.Save.setForeground(Color.BLACK);
 		//set pro shop button
 		setProShopButton();
 		setToolButtons(false);
@@ -937,6 +918,7 @@ public class Interface {
 		(GUI.mainWindow).requestFocus(); // requests focus for the main window
 		(GUI.mainWindow).setFocusTraversalKeysEnabled(false); // keeps focus from shifting away
 		(GUI.mainWindow).addKeyListener(keyBoardListener); // registers the keyListener for the game
+		GUI.Save.addActionListener(saveListener);
 		GUI.welcomeScreen();
 		setProShopButton();
 		setToolButtons(false);

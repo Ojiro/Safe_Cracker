@@ -218,6 +218,8 @@ public class GUI extends JFrame {
 		JInfo.setText("Info");
 		Load.setText("Load");
 		Help.setText("How To");
+		Save.setText("Save");
+		Save.setForeground(Color.BLACK);
 		
 
 	}
@@ -311,45 +313,11 @@ public class GUI extends JFrame {
 				JClear.setText("Clear");
 				JBackSpace.setText("Back Space");
 				JEnter.setText("Enter");
-
+				Save.setForeground(Color.GRAY);
 				JBackSpace.setForeground(Color.BLACK);
 				JClear.setForeground(Color.BLACK);
-
-				// proshop will not be accessible during the guess phase
-					JStore.setText("Pro Shop");
-					JStore.setForeground(Color.LIGHT_GRAY);
-					JStore.setVisible(true);
 				
 
-				// show tools if they are available,
-				if (CrackerJacker.explosives > 0) {
-					JTNT.setText("TNT (" + CrackerJacker.explosives + "x)");
-					//JTNT.addActionListener(applyCheat);
-				} else {
-					JTNT.setText("-");
-					JTNT.setForeground(Color.LIGHT_GRAY);
-					//JTNT.removeActionListener(applyCheat);
-				}
-
-				if (CrackerJacker.snips > 0) {
-					JSnips.setText("Snips (" + CrackerJacker.snips + "x)");
-					//JSnips.addActionListener(applyCheat);
-				} else {
-					JSnips.setText("-");
-					JSnips.setForeground(Color.LIGHT_GRAY);
-					//JSnips.removeActionListener(applyCheat);
-				}
-
-				if (CrackerJacker.picks > 0) {
-					JPicks.setText("Picks (" + CrackerJacker.picks + "x)");
-					//GUI.JPicks.addActionListener(applyCheat);
-				} else {
-					JPicks.setText("-");
-					JPicks.setForeground(Color.LIGHT_GRAY);
-					//JPicks.removeActionListener(applyCheat);
-				}
-
-				//
 				GUI.topText.setText("		Loot:  " + CrackerJacker.loot
 						+ "     Wanted Level: " + CrackerJacker.wantedLevel
 						+ "      Break-Ins: " + CrackerJacker.totalBreakIns);
