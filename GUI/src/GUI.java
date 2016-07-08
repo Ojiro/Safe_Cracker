@@ -34,7 +34,7 @@ public class GUI extends JFrame {
 	final short Row_4=350;
 	final short Row_5=400;
 	
-	JFrame mainWindow = new JFrame("GigaCracker");
+	JFrame mainWindow = new JFrame("SafeCracker");
 	JFrame helpWindow = new JFrame("How To");
 	JPanel p0 = new JPanel();
 
