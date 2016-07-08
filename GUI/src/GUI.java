@@ -794,7 +794,25 @@ public class GUI extends JFrame {
 				+ "\n"
 				+ "Safes Cracked: " + CrackerJacker.totalBreakIns
 				+ "\n"
-				+ "...");
+				+ "Loot: " + CrackerJacker.loot
+				+ "\n"
+				+ "Wanted Leve: " + CrackerJacker.wantedLevel
+				+ "\n"
+				+ "TNT Owned: " + CrackerJacker.explosives
+				+"\n"
+				+ "Snips Owned: " + CrackerJacker.snips
+				+ "\n"
+				+ "Picks Owned: " + CrackerJacker.picks
+				+ "\n"
+				+ "Current Save File Path: ");
+		
+		if(CrackerJacker.career_file=="")
+		{
+			infoText.append("None");
+		}
+		else
+			infoText.append(CrackerJacker.career_file);
+		
 		infoWindow.setSize(500, 250);
 		infoWindow.add(infoText);
 		infoWindow.setVisible(true);
