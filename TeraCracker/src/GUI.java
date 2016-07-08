@@ -165,6 +165,8 @@ public class GUI extends JFrame {
 		
 	}
 
+	
+	 
 	public void welcomeScreen() {
 		// add buttons to the panel
 		p0.add(J0);
@@ -729,28 +731,16 @@ public class GUI extends JFrame {
 	
 	public void openFileSelector()
 	{
+		//create a file selector 
 		final JFileChooser fc = new JFileChooser();
-		//fc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-		fc.setAcceptAllFileFilterUsed(false); //set all file types to not appear (only .cjx should appear)
-	//	cjx cjx= new cjx();
-	//	fc.setFileFilter(cjx);
-		int returnVal = fc.showOpenDialog(mainWindow);
-		//System.out.println(fc.getSelectedFile().getAbsolutePath());
+		cjx cjx= new cjx();
+		fc.setFileFilter(cjx);
+		//int returnVal = fc.showOpenDialog(mainWindow);
+		fc.showOpenDialog(mainWindow);
 		CrackerJacker.career_file=fc.getSelectedFile().getAbsolutePath();
 	}
 	
-	private class cjx implements FileFilter{
-	
-		@Override
-		public boolean accept(File arg0) {
-			String extension=arg0.getPath();
-			System.out.println(extension);
-			
-			return false;
-		}
 		
-	}
-	
 	public void setProShopButton(boolean set)
 	{
 		JStore.setText("Pro Shop");
@@ -850,7 +840,7 @@ public class GUI extends JFrame {
 					+ CrackerJacker.posistionsCorrect() + "\t\t Analysis Mode: CTRL");
 	
 	}
-	
+
 	public void setGameBoard(CrackerJacker a)
 	{ this.CrackerJacker=a; }
 }
