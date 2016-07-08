@@ -796,50 +796,50 @@ public class GUI extends JFrame {
 		mainWindow.dispose();
 	}
 	
-	public void printUpdate()
+public void printUpdate()
+{
+	//method prints out the current status of the game include previous guesses & digits correct
+	StringBuilder tempBuilder = new StringBuilder();
+
+	int selectedVal=CrackerJacker.turnCount-CrackerJacker.leftCounter-1; // index of guess to be viewed
+	for (int i = 0; i < CrackerJacker.turnCount; i++) 
 	{
-		//method prints out the current status of the game include previous guesses & digits correct
-			StringBuilder tempBuilder = new StringBuilder();
-	
-			int selectedVal=CrackerJacker.turnCount-CrackerJacker.leftCounter-1; // index of guess to be viewed
-			for (int i = 0; i < CrackerJacker.turnCount; i++) 
-			{
-				//for loop strings together previous guesses
-				if (i == selectedVal) {
-					tempBuilder.append("  | "
-							+ CrackerJacker.guessArray[i].currentGuess + " | ");
-				} else {
-					tempBuilder.append("   "
-							+ CrackerJacker.guessArray[i].currentGuess.toString());
-				}
-	
-			}
-	
-			topText.setText("		Loot:  $" + CrackerJacker.loot
-					+ "     Wanted Level: " + CrackerJacker.wantedLevel
-					+ "      Break-Ins: " + CrackerJacker.totalBreakIns
-					+ "   combo: " + CrackerJacker.combo + "\n"
-					+ " Difficulty: " + CrackerJacker.difficulty + "\n"
-					+ " Digits: " + CrackerJacker.comboSize + " Directions: "
-					+ CrackerJacker.directions + "\n" + " Guesses:  "
-					+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
-					+ "    Time: " + CrackerJacker.timeInMinutes + ":"
-					+ CrackerJacker.timeInSeconds + "\n" );
-			
-			if(CrackerJacker.debugMode) //if the debugMode variable is set, show the combo 
-				topText.append(tempBuilder + "\n");  
-					
-			topText.append("\n" + "             " + CrackerJacker.currentGuess.currentGuess.toString() );
-			
-			if(CrackerJacker.isAnalysisMode)
-			{
-				topText.append(" ANALYSIS MODE: ON");
-			}
-			topText.append( "\n" + "      Digits Correct: "
-					+ CrackerJacker.digitsCorrect() + "    Posistions Correct: "
-					+ CrackerJacker.posistionsCorrect() + "\t\t Analysis Mode: CTRL");
-	
+		//for loop strings together previous guesses
+		if (i == selectedVal) {
+			tempBuilder.append("  | "
+					+ CrackerJacker.guessArray[i].currentGuess + " | ");
+		} else {
+			tempBuilder.append("   "
+					+ CrackerJacker.guessArray[i].currentGuess.toString());
+		}
+
 	}
+
+	topText.setText("		Loot:  $" + CrackerJacker.loot
+			+ "     Wanted Level: " + CrackerJacker.wantedLevel
+			+ "      Break-Ins: " + CrackerJacker.totalBreakIns );
+	
+	if(CrackerJacker.debugMode)
+	topText.append("   combo: " + CrackerJacker.combo);
+
+	topText.append("\n"
+	+ " Difficulty: " + CrackerJacker.difficulty + "\n"
+	+ " Digits: " + CrackerJacker.comboSize + " Directions: "
+	+ CrackerJacker.directions + "\n" + " Guesses:  "
+	+ (CrackerJacker.guessLimit - CrackerJacker.turnCount)
+	+ "    Time: " + CrackerJacker.timeInMinutes + ":"
+	+ CrackerJacker.timeInSeconds + "\n" + tempBuilder + "\n" 
+	+"\n" + "             " + CrackerJacker.currentGuess.currentGuess.toString() );
+
+	if(CrackerJacker.isAnalysisMode)
+	{
+		topText.append(" ANALYSIS MODE: ON");
+	}
+	topText.append( "\n" + "      Digits Correct: "
+			+ CrackerJacker.digitsCorrect() + "    Posistions Correct: "
+			+ CrackerJacker.posistionsCorrect() + "\t\t Analysis Mode: CTRL");
+
+}
 
 	public void setGameBoard(CrackerJacker a)
 	{ this.CrackerJacker=a; }

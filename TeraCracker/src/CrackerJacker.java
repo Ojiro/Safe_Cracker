@@ -19,7 +19,7 @@ public class CrackerJacker {
 	boolean isWinner=false; // hold if the current safe has been solved
 	boolean career=true;  // boolean keeps a dead carer from playing by turning it false and saving it in load file
 	boolean isAnalysisMode=false; //when analysis mode is on, arrow will traverse previous guesses
-	boolean debugMode=true; //debug mode shows the combo in the status update when debugMode is true
+	boolean debugMode=false; //debug mode shows the combo in the status update when debugMode is true
 	int leftCounter=0; //used in analysis mode to determine how far back to go
 	String career_file=""; //file location of .cjx file for loading and saving a carreer
     guess[] guessArray; // holds all the guesses in a single game
